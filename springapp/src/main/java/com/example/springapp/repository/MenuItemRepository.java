@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.springapp.model.MenuItem;
 
 public interface MenuItemRepository extends JpaRepository<MenuItem, Long> {
-    // Additional custom methods can be defined here
+    
 }

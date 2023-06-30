@@ -1,57 +1,64 @@
-package com.example.springapp.controller;
+package com.example.springapp.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import javax.persistence.*;
 
-import com.example.springapp.model.Restaurant;
-import com.example.springapp.service.RestaurantService;
+@Entity
+public class MenuItem {
+    @Id
+    private Long id;
+    private String name;
+    private String description;
+    private Double price;
+    private String tags;
 
-import java.util.List;
-
-@RestController
-@RequestMapping("/restaurant")
-public class RestaurantController {
-
-    @Autowired
-    private RestaurantService restaurantService;
-
-    @PostMapping
-    public ResponseEntity<Void> createRestaurant(@RequestBody Restaurant restaurant) {
-        restaurantService.createRestaurant(restaurant);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public MenuItem() {
     }
 
-    @PutMapping
-    public ResponseEntity<Void> updateRestaurant(@RequestBody Restaurant restaurant) {
-        restaurantService.updateRestaurant(restaurant);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public MenuItem(Long id, String name, String description, Double price, String tags) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.tags = tags;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Restaurant>> getAllRestaurants() {
-        List<Restaurant> restaurants = restaurantService.getAllRestaurant();
-        return new ResponseEntity<>(restaurants, HttpStatus.OK);
+    public Long getId() {
+        return id;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Restaurant> getRestaurantById(@PathVariable Long id) {
-        Restaurant restaurant = restaurantService.getRestaurantById(id);
-        if (restaurant != null) {
-            return new ResponseEntity<>(restaurant, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<Restaurant> getRestaurantByName(@PathVariable String name) {
-        Restaurant restaurant = restaurantService.findByRestaurantName(name);
-        if (restaurant != null) {
-            return ResponseEntity.ok(restaurant);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 }
