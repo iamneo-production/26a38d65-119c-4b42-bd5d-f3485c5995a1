@@ -1,16 +1,11 @@
 package com.example.springapp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Restaurant {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String location;
     private Long ownerId;
@@ -24,8 +19,6 @@ public class Restaurant {
         this.location = location;
         this.ownerId = ownerId;
     }
-
-    // Getters and setters
 
     public Long getId() {
         return id;
