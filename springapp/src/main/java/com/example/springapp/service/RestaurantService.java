@@ -1,19 +1,18 @@
 package com.example.springapp.service;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.example.springapp.repository.RestaurantRepository;
-import com.example.springapp.model.Restaurant;
 
-@Service
-public class RestaurantService {
-    private final RestaurantRepository restaurantRepository;
+import com.example.springapp.model.Dish;
+import com.example.springapp.model.RestaurantInfo;
+import java.util.List;
 
-    @Autowired
-    public RestaurantService(RestaurantRepository restaurantRepository) {
-        this.restaurantRepository = restaurantRepository;
-    }
+public interface RestaurantService {
 
-    public Restaurant createRestaurant(Restaurant restaurant) {
-        return restaurantRepository.save(restaurant);
-    }
+  int addDish(String id, Dish dish);
+
+  int removeDish(String id, Dish dish);
+
+  List<Dish> getAllDishes(String id);
+
+  RestaurantInfo getInformation(String id);
+
+  int updateInfo(String id, RestaurantInfo info);
 }
