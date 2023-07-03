@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins="http://localhost:8081")
 @RestController
 @RequestMapping("/api/driver")
 public class DriverController {
