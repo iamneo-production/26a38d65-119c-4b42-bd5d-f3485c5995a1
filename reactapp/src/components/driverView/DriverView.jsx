@@ -3,7 +3,7 @@ import { HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import {
   Grid
 } from '@material-ui/core';
-import DriverBar from "./sidebar/DriverBar";
+// import DriverBar from "./sidebar/DriverBar";
 import DriverOrder from "./mainpage/DriverOrder";
 import DriverHome from "./mainpage/DriverHome";
 import DriverHistory from "./mainpage/DriverHistory";

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import ClearIcon from '@material-ui/icons/Clear';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import ClearIcon from '@material-ui/icons/Clear';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Geocode from "react-geocode";
 import {
   Typography,
@@ -16,7 +16,7 @@ import {
   TextField
       } from "@material-ui/core";
 import Rating from '@material-ui/lab/Rating';
-import DeleteIcon from '@material-ui/icons/Delete';
+// import DeleteIcon from '@material-ui/icons/Delete';
 import "./Card.css";
 import MapCard from "./MapCard";
 const axios = require('axios').default;
@@ -178,7 +178,8 @@ class OrderCard extends React.Component {
             <i><b>Order from {this.state.restaurant.information.restaurantName}</b></i>
             {this.props.userType === "customer" && !this.props.order.delivery ? (
               <IconButton size="small" style={{position : "absolute", right : "0"}} onClick={this.deleteOrder}>
-                <ClearIcon />
+                {/* <ClearIcon /> */}
+                Clear
               </IconButton>
             ) : null}
           </Typography>
@@ -215,7 +216,8 @@ class OrderCard extends React.Component {
             aria-expanded={this.state.expanded}
           >
           <Typography><b>Check Order Status</b></Typography>
-            <ExpandMoreIcon />
+            {/* <ExpandMoreIcon /> */}
+            Expand
           </IconButton>
           <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
             <CardContent>
@@ -248,7 +250,8 @@ class OrderCard extends React.Component {
                   <Rating name="read-only" value={this.props.order.comment.rating} readOnly />
                   <Typography color="textSecondary" variant="body2"><i>{this.props.order.comment.content}</i></Typography>
                   <IconButton onClick={this.deleteComment}>
-                    <DeleteIcon />
+                    {/* <DeleteIcon /> */}
+                    Delete
                   </IconButton>
                 </Box>
               ) : null}

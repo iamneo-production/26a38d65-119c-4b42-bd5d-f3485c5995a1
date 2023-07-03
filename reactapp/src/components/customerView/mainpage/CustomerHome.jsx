@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
+// import SearchIcon from '@material-ui/icons/Search';
 import {
   Grid, Typography
 } from '@material-ui/core';
@@ -62,7 +62,7 @@ const CustomerHome = ({ currentUser }) => {
               onChange={handleChange}
             />
             <IconButton type="submit" aria-label="search" style={{ marginLeft: '50px' }}>
-              <SearchIcon />
+              {/* <SearchIcon /> */}Search
             </IconButton>
           </Paper>
         </Grid>

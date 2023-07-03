@@ -7,9 +7,9 @@ import {
   CardActions,
   Grid
       } from "@material-ui/core";
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
-import DeleteIcon from '@material-ui/icons/Delete';
+// import AddIcon from '@material-ui/icons/Add';
+// import RemoveIcon from '@material-ui/icons/Remove';
+// import DeleteIcon from '@material-ui/icons/Delete';
 
 import './../../styles/commonclasses.css';
 import './../../styles/variable.css';
@@ -72,16 +72,19 @@ class DishCard extends React.Component {
 
           <Grid container justify="center" alignItems="center">
             <IconButton disabled={this.state.number === 0} onClick={this.handleMinus}>
-              <RemoveIcon />
+              {/* <RemoveIcon /> */}
+              Remove
             </IconButton>
             <Typography variant="h5">{this.state.number}</Typography>
             <IconButton onClick={this.handleAdd}>
-              <AddIcon />
+              {/* <AddIcon /> */}
+              Add
             </IconButton>
           </Grid> : 
           <Grid container justify="center" alignItems="center">
             <IconButton onClick={this.removeDish}>
-              <DeleteIcon />
+              {/* <DeleteIcon /> */}
+              Delete
             </IconButton>
           </Grid>
           }

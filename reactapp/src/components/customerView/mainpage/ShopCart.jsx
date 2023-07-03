@@ -1,7 +1,7 @@
 import { Grid, Typography, Button } from '@material-ui/core';
 import React from 'react';
 import OrderCard from "../../card/OrderCard";
-import PaymentGateway from '../../card/PaymentGateway';
+// import PaymentGateway from '../../card/PaymentGateway';
 const axios = require('axios').default;
 
 class ShopCart extends React.Component {

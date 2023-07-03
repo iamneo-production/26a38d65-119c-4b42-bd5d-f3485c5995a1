@@ -1,5 +1,5 @@
 import React from 'react';
-import FastFoodIcon from '@material-ui/icons/Fastfood';
+// import FastFoodIcon from '@material-ui/icons/Fastfood';
 import { Grid,Stack,TextField,Typography,RadioGroup
 ,Radio,Button,FormControl,FormControlLabel,FormLabel } from '@mui/material';
 const axios = require('axios').default;
@@ -71,7 +71,8 @@ class RestaurantInfo extends React.Component {
         <Grid container >
             <Grid item xs={7} container justifyContent="center" alignItems="center" alignContent='center'>
             <Stack  justifyContent="center" alignItems="center">
-                <FastFoodIcon className='icon'/>
+                {/* <FastFoodIcon className='icon'/> */}
+                Icon
                 <Typography component="h1" variant="h5">
                     Update Restaurant Profile
           </Typography>

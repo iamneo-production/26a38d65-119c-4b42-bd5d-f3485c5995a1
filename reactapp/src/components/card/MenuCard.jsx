@@ -14,10 +14,10 @@ import {
   TextField,
   Button
 } from '@mui/material';
-import DeleteIcon from '@material-ui/icons/Delete';
-import RemoveIcon from '@material-ui/icons/Remove';
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
+// import DeleteIcon from '@material-ui/icons/Delete';
+// import RemoveIcon from '@material-ui/icons/Remove';
+// import AddIcon from '@material-ui/icons/Add';
+// import EditIcon from '@material-ui/icons/Edit';
 import "./Card.css";
 const axios = require('axios').default;
 
@@ -111,19 +111,23 @@ class MenuCard extends React.Component {
           {this.props.currentUser.type !== "restaurant" ?
           <Grid container justify="center" alignItems="center">
             <IconButton disabled={this.state.number === 0} onClick={this.handleMinus}>
-              <RemoveIcon />
+              {/* <RemoveIcon /> */}
+              Remove
             </IconButton>
             <Typography variant="h5">{this.state.number}</Typography>
             <IconButton onClick={this.handleAdd}>
-              <AddIcon />
+              {/* <AddIcon /> */}
+              Add
             </IconButton>
           </Grid> : 
           <Grid container justifyContent="center"  alignItems="center">
             <IconButton color="inherit" onClick={this.removeDish}>
-              <DeleteIcon  />
+              {/* <DeleteIcon  />Delete */}
+              Delete
             </IconButton>
             <IconButton color="inherit" onClick={this.openUpdateDialog}>
-                    <EditIcon />
+                    {/* <EditIcon /> */}
+                    Edit
                   </IconButton>
           </Grid>
           }

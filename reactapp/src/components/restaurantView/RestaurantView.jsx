@@ -3,7 +3,7 @@ import { HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import {
   Grid
 } from '@material-ui/core';
-import RestaurantBar from "./sidebar/RestaurantBar";
+// import RestaurantBar from "./sidebar/RestaurantBar";
 import RestaurantOrder from "./mainpage/RestaurantOrder";
 import RestaurantHome from "./mainpage/RestaurantHome";
 import RestaurantHistory from "./mainpage/RestaurantHistory";

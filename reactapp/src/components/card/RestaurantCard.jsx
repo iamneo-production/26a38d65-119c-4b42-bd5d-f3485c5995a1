@@ -12,9 +12,8 @@ import {
     Button
         } from "@material-ui/core";
 import Rating from '@material-ui/lab/Rating';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 import './../../styles/commonclasses.css';
 import './../../styles/variable.css';
 
@@ -85,7 +84,8 @@ class RestaurantCard extends React.Component {
         aria-expanded={this.state.expanded}
       >
       <Typography><b>See Comments</b></Typography>
-        <ExpandMoreIcon />
+        {/* <ExpandMoreIcon /> */}
+        Expand
       </IconButton>
       <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
         <CardContent>
