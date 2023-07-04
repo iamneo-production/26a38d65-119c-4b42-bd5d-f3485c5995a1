@@ -1,6 +1,10 @@
+// comment model
+
+
 package com.example.springapp.model;
 
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "comments")
