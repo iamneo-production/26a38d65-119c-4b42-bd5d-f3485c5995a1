@@ -1,4 +1,6 @@
 
+// Restarurant model
+
 package com.example.springapp.model;
 
 import javax.persistence.*;
