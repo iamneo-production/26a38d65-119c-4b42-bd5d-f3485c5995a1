@@ -63,7 +63,7 @@ public class CustomerController {
     return customer.get();
   }
 
-  // Mapping for customer registration
+  // Mapping for customer registration--
   @PostMapping(path = "/register")
   public Customer registerCustomer(@RequestBody String jsonUser)
       throws UserAlreadyExistException {
