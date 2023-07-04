@@ -1,4 +1,5 @@
 package com.example.springapp.service;
+<<<<<<< HEAD
 
 import org.springframework.stereotype.Service;
 
@@ -36,4 +37,22 @@ public class RestaurantService {
     public Restaurant findByRestaurantName(String name) {
         return restaurantRepository.findByRestaurantName(name);
     }
+=======
+
+import com.example.springapp.model.Dish;
+import com.example.springapp.model.RestaurantInfo;
+import java.util.List;
+
+public interface RestaurantService {
+
+  int addDish(String id, Dish dish);
+
+  int removeDish(String id, Dish dish);
+
+  List<Dish> getAllDishes(String id);
+
+  RestaurantInfo getInformation(String id);
+
+  int updateInfo(String id, RestaurantInfo info);
+>>>>>>> 30650557d28f574c512b78a4bdfafe85aeda52f7
 }
