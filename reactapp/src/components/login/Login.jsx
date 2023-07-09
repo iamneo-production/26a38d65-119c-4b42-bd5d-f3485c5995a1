@@ -139,7 +139,8 @@ const Login = (props) => {
               </Grid>
             </form>
             {loginFailed && <p>{loginFailed}</p>}
-            <Link to="/register" style={{ marginLeft: '100px', textDecoration: 'none' }}>
+            <br/>
+            <Link to="/register" style={{ marginLeft: '0px', textDecoration: 'none' }}>
               Don't have an account? Sign Up
             </Link>
           </Paper>

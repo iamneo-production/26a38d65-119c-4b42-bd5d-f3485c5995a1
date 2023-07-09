@@ -32,7 +32,7 @@ class CustomerOrder extends React.Component {
             <Grid item key={order.id} xs={4}>
               <OrderCard order={order} userType={this.props.currentUser.type} getOrders={this.getActiveOrders} />
             </Grid>
-          )) : <Typography variant="h5"><i>You don't have any active orders...</i></Typography>}
+          )) : <Typography variant="h5"   style={{marginTop:'150px',marginLeft:'200px'}}><i>You don't have any active orders...</i></Typography>}
         </Grid>
       </div>
     ) : <div />

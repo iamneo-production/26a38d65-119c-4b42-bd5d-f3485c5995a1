@@ -531,7 +531,7 @@ const UserMenu = (props) => {
                 onClick={handleCloseNavMenu}
               >
 
-          <Link to={"/restaurant/history"} >
+          <Link to={"/restaurant/history"}  className="link">
               History</Link>
               </Button>
               </Grid>
@@ -541,7 +541,7 @@ const UserMenu = (props) => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                {/* <SettingsIcon/> */} settings
+                {/* <SettingsIcon/> */} Settings
               </IconButton>
             </Tooltip>
             <Menu
