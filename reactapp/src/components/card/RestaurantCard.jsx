@@ -85,7 +85,11 @@ class RestaurantCard extends React.Component {
       >
       <Typography><b>See Comments</b></Typography>
         {/* <ExpandMoreIcon /> */}
+<<<<<<< HEAD
         Expand
+=======
+        
+>>>>>>> Food-Ordering-and-Delivery-Application-malli172
       </IconButton>
       <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
         <CardContent>

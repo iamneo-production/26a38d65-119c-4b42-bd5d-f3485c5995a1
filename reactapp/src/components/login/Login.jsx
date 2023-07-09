@@ -139,7 +139,12 @@ const Login = (props) => {
               </Grid>
             </form>
             {loginFailed && <p>{loginFailed}</p>}
+<<<<<<< HEAD
             <Link to="/register" style={{ marginLeft: '100px', textDecoration: 'none' }}>
+=======
+            <br/>
+            <Link to="/register" style={{ marginLeft: '0px', textDecoration: 'none' }}>
+>>>>>>> Food-Ordering-and-Delivery-Application-malli172
               Don't have an account? Sign Up
             </Link>
           </Paper>

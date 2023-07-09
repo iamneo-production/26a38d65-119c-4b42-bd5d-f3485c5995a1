@@ -32,7 +32,11 @@ class CustomerHistory extends React.Component {
             <Grid item key={order.id} xs={4}>
               <OrderCard order={order} userType={this.props.currentUser.type} getOrders={this.getPastOrders} />
             </Grid>
+<<<<<<< HEAD
           )) : <Typography variant="h5"><i>You don't have any orders in the past...</i></Typography>}
+=======
+          )) : <Typography variant="h5"  style={{marginTop:'150px',marginLeft:'200px'}}><i>You don't have any orders in the past...</i></Typography>}
+>>>>>>> Food-Ordering-and-Delivery-Application-malli172
         </Grid>
       </div>
     ) : <div />
