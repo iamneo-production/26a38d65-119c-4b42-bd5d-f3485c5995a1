@@ -1,47 +1,33 @@
-package com.example.springapp.service;
+package main.java.com.example.springapp.service;
 
-import com.example.springapp.model.Comment;
-import com.example.springapp.model.Dish;
-import com.example.springapp.model.Order;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import main.java.com.example.springapp.model.Order;
+import main.java.com.example.springapp.repository.OrderRepository;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface OrderService {
+@Service
+public class OrderService {
+    private OrderRepository orderRepository;
 
-  int addOrderToCart(String customerId, String restaurantId, List<Dish> content);
+    @Autowired
+    public OrderService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
-  int checkoutOrder(String id);
+    public Order createOrder(Order order) {
+        return orderRepository.save(order);
+    }
 
-  int checkoutAll(List<Order> orders);
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
+    }
 
-  int cancelOrder(String id);
+    public Order getOrderById(Long id) {
+        return orderRepository.findById(id).orElse(null);
+    }
 
-  Optional<Order> getOrder(String id);
-
-  int acceptOrder(String id, String driverId);
-
-  int finishOrder(String id);
-
-  List<Order> customerCart(String customerId);
-
-  List<Order> customerGetActiveOrders(String customerId);
-
-  List<Order> customerFindPastOrders(String customerId);
-
-  List<Order> getAllPendingOrders();
-
-  Order driverGetActiveOrder(String driverId);
-
-  List<Order> driverFindPastOrders(String driverId);
-
-  List<Order> restaurantGetActiveOrders(String restaurantId);
-
-  List<Order> restaurantFindPastOrders(String restaurantId);
-
-  int addComment(String id, int rating, String content);
-
-  int deleteComment(String id);
-
-  List<Comment> restaurantGetComments(String restaurantId);
+    // Additional methods can be added here for updating, deleting, or performing other operations on orders
 }
