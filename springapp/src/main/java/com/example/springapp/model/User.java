@@ -2,7 +2,7 @@ package com.example.springapp.model;
 
 import org.springframework.data.annotation.Id;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @MappedSuperclass
 public class User {

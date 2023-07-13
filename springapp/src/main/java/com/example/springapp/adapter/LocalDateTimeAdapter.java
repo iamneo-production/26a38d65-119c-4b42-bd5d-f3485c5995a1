@@ -1,4 +1,4 @@
-package main.java.com.example.springapp.adapter;
+package com.example.springapp.adapter;
 
 
 
