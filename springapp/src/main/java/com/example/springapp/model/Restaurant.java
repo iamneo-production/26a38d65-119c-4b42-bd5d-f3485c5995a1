@@ -1,54 +1,85 @@
-package main.java.com.example.springapp.model;
+
+// Restarurant model
+
+package com.example.springapp.model;
 
 import javax.persistence.*;
 
+
+
+import java.util.List;
+
 @Entity
-public class Restaurant {
-    @Id
-    private Long id;
-    private String name;
-    private String location;
-    private Long ownerId;
+@Table(name = "restaurants")
+public class Restaurant extends User {
 
-    public Restaurant() {
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    public Restaurant(Long id, String name, String location, Long ownerId) {
-        this.id = id;
-        this.name = name;
-        this.location = location;
-        this.ownerId = ownerId;
-    }
 
-    public Long getId() {
-        return id;
-    }
+   public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  @OneToOne(cascade = CascadeType.ALL)
+  private RestaurantInfo information;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private List<Dish> menu;
 
-    public String getLocation() {
-        return location;
-    }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
+  public Restaurant() {
+    this.setType("restaurant");
+  }
 
-    public Long getOwnerId() {
-        return ownerId;
-    }
 
-    public void setOwnerId(Long ownerId) {
-        this.ownerId = ownerId;
+  public Restaurant(String userName, String password, String phoneNumber, String address,
+      String city, String state, String zip, RestaurantInfo information,
+      List<Dish> menu) {
+    super(userName, password, phoneNumber, address, city, state, zip);
+    this.setType("restaurant");
+    this.information = information;
+    this.menu = menu;
+  }
+
+  public Restaurant(String userName, String password, String phoneNumber, String address,
+      String city, String state, String zip) {
+    super(userName, password, phoneNumber, address, city, state, zip);
+    this.setType("restaurant");
+  }
+
+  public RestaurantInfo getInformation() {
+    return information;
+  }
+
+  public void setInformation(RestaurantInfo information) {
+    this.information = information;
+  }
+
+  public List<Dish> getMenu() {
+    System.out.println(menu);
+    return menu;
+  }
+
+  public void setMenu(List<Dish> menu) {
+    this.menu = menu;
+    for (Dish dish : menu) {
+      dish.setRestaurant(this);
     }
+  }
+
+  @Override
+  public String toString() {
+    return "Restaurant{" +
+        "id"+ id+
+        "information=" + information +
+        ", menu=" + menu +
+        '}';
+  }
 }
+

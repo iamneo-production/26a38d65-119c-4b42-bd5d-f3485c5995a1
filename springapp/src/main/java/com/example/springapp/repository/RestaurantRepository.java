@@ -1,11 +1,11 @@
-package main.java.com.example.springapp.repository;
+package com.example.springapp.repository;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import main.java.com.example.springapp.model.Restaurant;
-import java.util.List;
+import com.example.springapp.model.Restaurant;
 
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
-    Restaurant findByRestaurantName(String name);
 }
+

@@ -2,10 +2,9 @@ package com.example.springapp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.example.springapp.model.Order;
-
+import com.example.springapp.model.SearchEngine;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Long> {
+public interface SearchEngineRepository extends JpaRepository<SearchEngine, Long> {
 
 }

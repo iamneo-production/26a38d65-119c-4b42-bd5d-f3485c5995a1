@@ -1,100 +1,145 @@
-package main.java.com.example.springapp.model;
+package com.example.springapp.model;
 
-
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 import javax.persistence.*;
 
+
 @Entity
-@Table(name="res_order")
+@Table(name = "orders")
 public class Order {
-    @Id
-    private Long id;
-    private Long customerId;
-    private Long productId;
-    private Long quantity;
-    private Double amount;
-    private String shippingAddress;
-    private Date dateTime;
-    private String status;
 
-    public Order() {
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    public Order(Long id, Long customerId, Long productId, Long quantity, Double amount,
-                 String shippingAddress, Date dateTime, String status) {
-        this.id = id;
-        this.customerId = customerId;
-        this.productId = productId;
-        this.quantity = quantity;
-        this.amount = amount;
-        this.shippingAddress = shippingAddress;
-        this.dateTime = dateTime;
-        this.status = status;
-    }
+  private String customerId;
+  
+  private String restaurantId;
 
-    // Getters and setters
+  private String driverId;
+  private LocalDateTime startTime;
+  private boolean delivery;
+  private LocalDateTime endTime;
 
-    public Long getId() {
-        return id;
-    }
+  @OneToMany(cascade = CascadeType.ALL)
+  private List<Dish> content;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  private double price;
 
-    public Long getCustomerId() {
-        return customerId;
-    }
+  @OneToOne(cascade = CascadeType.ALL)
+  private Comment comment;
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
+  public Order() {
+  }
 
-    public Long getProductId() {
-        return productId;
-    }
+  public Order(String customerId, String restaurantId, String driverId,
+      LocalDateTime startTime, boolean delivery, LocalDateTime endTime,
+      List<Dish> content, double price, Comment comment) {
+    this.customerId = customerId;
+    this.restaurantId = restaurantId;
+    this.driverId = driverId;
+    this.startTime = startTime;
+    this.delivery = delivery;
+    this.endTime = endTime;
+    this.content = content;
+    this.price = price;
+    this.comment = comment;
+  }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public Long getQuantity() {
-        return quantity;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
+  public String getCustomerId() {
+    return customerId;
+  }
 
-    public Double getAmount() {
-        return amount;
-    }
+  public void setCustomerId(String customerId) {
+    this.customerId = customerId;
+  }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
+  public String getRestaurantId() {
+    return restaurantId;
+  }
 
-    public String getShippingAddress() {
-        return shippingAddress;
-    }
+  public void setRestaurantId(String restaurantId) {
+    this.restaurantId = restaurantId;
+  }
 
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
+  public String getDriverId() {
+    return driverId;
+  }
 
-    public Date getDateTime() {
-        return dateTime;
-    }
+  public void setDriverId(String driverId) {
+    this.driverId = driverId;
+  }
 
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
-    }
+  public LocalDateTime getStartTime() {
+    return startTime;
+  }
 
-    public String getStatus() {
-        return status;
-    }
+  public void setStartTime(LocalDateTime startTime) {
+    this.startTime = startTime;
+  }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+  public boolean isDelivery() {
+    return delivery;
+  }
+
+  public void setDelivery(boolean delivery) {
+    this.delivery = delivery;
+  }
+
+  public LocalDateTime getEndTime() {
+    return endTime;
+  }
+
+  public void setEndTime(LocalDateTime endTime) {
+    this.endTime = endTime;
+  }
+
+  public List<Dish> getContent() {
+    return content;
+  }
+
+  public void setContent(List<Dish> content) {
+    this.content = content;
+  }
+
+  public double getPrice() {
+    return price;
+  }
+
+  public void setPrice(double price) {
+    this.price = price;
+  }
+
+  public Comment getComment() {
+    return comment;
+  }
+
+  public void setComment(Comment comment) {
+    this.comment = comment;
+  }
+
+  @Override
+  public String toString() {
+    return "Order{" +
+        "id=" + id +
+        ", customerId='" + customerId + '\'' +
+        ", restaurantId='" + restaurantId + '\'' +
+        ", driverId='" + driverId + '\'' +
+        ", startTime=" + startTime +
+        ", delivery=" + delivery +
+        ", endTime=" + endTime +
+        ", content=" + content +
+        ", price=" + price +
+        ", comment=" + comment +
+        '}';
+  }
 }
