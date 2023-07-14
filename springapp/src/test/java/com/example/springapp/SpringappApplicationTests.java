@@ -57,8 +57,8 @@ class SpringappApplicationTests {
 		    }
 		 
 		 MenuItem m=new MenuItem(1L,"Abc","qwee",10.0,"tags");
-		 MenuItem m1=new MenuItem(3L,"Sound","qwee",10.0,"tags");
-		 MenuItem m2=new MenuItem(2L,"Sound","qwee",10.0,"tags");
+		  MenuItem m1=new MenuItem(3L,"Sound","qwee",10.0,"tags");
+		  MenuItem m2=new MenuItem(2L,"Sound","qwee",10.0,"tags");
 
 		  
 		  List<MenuItem> listMenu= Arrays.asList(m,m2);
