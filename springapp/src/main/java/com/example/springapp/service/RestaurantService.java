@@ -1,18 +1,39 @@
 package com.example.springapp.service;
 
-import com.example.springapp.model.Dish;
-import com.example.springapp.model.RestaurantInfo;
+import org.springframework.stereotype.Service;
+
+import com.example.springapp.model.Restaurant;
+import com.example.springapp.repository.RestaurantRepository;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public interface RestaurantService {
+@Service
+public class RestaurantService {
 
-  int addDish(String id, Dish dish);
+    private final RestaurantRepository restaurantRepository;
 
-  int removeDish(String id, Dish dish);
+    public RestaurantService(RestaurantRepository restaurantRepository) {
+        this.restaurantRepository = restaurantRepository;
+    }
 
-  List<Dish> getAllDishes(String id);
+    public void createRestaurant(Restaurant restaurant) {
+        restaurantRepository.save(restaurant);
+    }
 
-  RestaurantInfo getInformation(String id);
+    public void updateRestaurant(Restaurant restaurant) {
+        restaurantRepository.save(restaurant);
+    }
 
-  int updateInfo(String id, RestaurantInfo info);
+    public List<Restaurant> getAllRestaurant() {
+        return restaurantRepository.findAll();
+    }
+
+    public Restaurant getRestaurantById(Long id) {
+        return restaurantRepository.findById(id).orElse(null);
+    }
+
+    public Restaurant findByRestaurantName(String name) {
+        return restaurantRepository.findByRestaurantName(name);
+    }
 }
