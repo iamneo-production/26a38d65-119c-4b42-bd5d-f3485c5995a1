@@ -32,7 +32,6 @@ public class Order {
         this.status = status;
     }
 
-    // Getters and setters
 
     public Long getId() {
         return id;

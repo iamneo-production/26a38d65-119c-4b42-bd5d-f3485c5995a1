@@ -2,55 +2,77 @@ package com.example.springapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import com.example.springapp.model.Order;
-import com.example.springapp.repository.OrderRepository;
-
+import com.example.springapp.service.OrderService;
 import java.util.List;
 
 @RestController
 @RequestMapping("/order")
 public class OrderController {
-    private final OrderRepository orderRepository;
+    private final OrderService orderService;
+
 
     @Autowired
-    public OrderController(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
+    public OrderController(OrderService orderService) {
+        this.orderService=orderService;
     }
 
     @GetMapping
     public List<Order> getAllOrders() {
-        return orderRepository.findAll();
+        return orderService.getAllOrders();
     }
 
     @GetMapping("/{id}")
     public Order getOrderById(@PathVariable Long id) {
-        return orderRepository.findById(id).orElse(null);
+        return orderService.getOrderById(id);
     }
 
     @PostMapping
     public Order createOrder(@RequestBody Order order) {
-        return orderRepository.save(order);
+        return orderService.createOrder(order);
     }
 
     @PutMapping("/{id}")
     public Order updateOrder(@PathVariable Long id, @RequestBody Order updatedOrder) {
-        return orderRepository.findById(id)
-                .map(order -> {
-                    order.setCustomerId(updatedOrder.getCustomerId());
-                    order.setProductId(updatedOrder.getProductId());
-                    order.setQuantity(updatedOrder.getQuantity());
-                    order.setAmount(updatedOrder.getAmount());
-                    order.setShippingAddress(updatedOrder.getShippingAddress());
-                    order.setDateTime(updatedOrder.getDateTime());
-                    order.setStatus(updatedOrder.getStatus());
-                    return orderRepository.save(order);
-                })
-                .orElse(null);
+        return orderService.updateOrderById(id,updatedOrder);
     }
 
     @DeleteMapping("/{id}")
     public void deleteOrder(@PathVariable Long id) {
-        orderRepository.deleteById(id);
+        orderService.deleteOrderById(id);
     }
+
+    @GetMapping("/customerId")
+    public ResponseEntity<List<Order>> getCustomerOrders(@RequestParam("customerId") Long customerId) {
+        List<Order> customerOrders = orderService.getOrdersByCustomerId(customerId);
+    
+        if (!customerOrders.isEmpty()) {
+            return ResponseEntity.ok(customerOrders);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("/restaurantId")
+    public ResponseEntity<List<Order>> getRestaurantOrders(@RequestParam("restaurantId") Long restaurantId) {
+        List<Order> restaurantOrders = orderService.getOrdersByRestaurantId(restaurantId);
+    
+        if (!restaurantOrders.isEmpty()) {
+            return ResponseEntity.ok(restaurantOrders);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @PutMapping("/status")
+    public ResponseEntity<String> updateOrderStatus(@RequestParam("orderId") Long orderId, @RequestParam("status") String status) {
+        boolean updated = orderService.updateOrderStatus(orderId, status);
+    
+        if (updated) {
+            return ResponseEntity.ok("Order status updated");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update order status");
+        }
+    }
+    
 }

@@ -1,8 +1,10 @@
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/SpringappApplication.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Restaurant.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/CustomerRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/RestaurantRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/RestaurantController.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/MenuItem.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Customer.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/CustomerService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/RestaurantService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/OrderRepository.java
@@ -13,3 +15,4 @@
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/OrderService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/MenuItemService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Order.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/CustomerController.java
