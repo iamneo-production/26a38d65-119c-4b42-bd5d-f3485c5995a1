@@ -1,12 +1,16 @@
 package com.example.springapp.controller;
-import com.example.springapp.model.Customer;
+import com.example.springapp.model.Driver;
 import com.example.springapp.model.Orders;
-import com.example.springapp.service.CustomerService;
+import com.example.springapp.service.DriverServiceImpl;
 import com.example.springapp.service.OrderServiceImpl;
+import com.example.springapp.exception.OrderAlreadyDeliverException;
+import com.example.springapp.exception.OrderAlreadyFinishException;
+import com.example.springapp.exception.OrderNotExistException;
 import com.example.springapp.exception.OrderNotFinishedException;
 import com.example.springapp.exception.PasswordNotMatchException;
 import com.example.springapp.exception.UserAlreadyExistException;
 import com.example.springapp.exception.UserNotExistException;
+
 import java.util.List;
 import java.util.Optional;
 import org.json.JSONObject;
@@ -25,44 +29,46 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins="http://localhost:8081")
 @RestController
-@RequestMapping("/api/customer")
-public class CustomerController {
-  
-  private final CustomerService customerService;
+@RequestMapping("/api/driver")
+public class DriverController {
+
+  private final DriverServiceImpl driverService;
   private final OrderServiceImpl orderService;
 
   @Autowired
-  public CustomerController(CustomerService customerService, OrderServiceImpl orderService) {
-    this.customerService = customerService;
+  public DriverController(DriverServiceImpl driverService, OrderServiceImpl orderService) {
+    this.driverService = driverService;
     this.orderService = orderService;
   }
 
   @GetMapping(path = "{id}")
-  public Customer getCustomerById(@PathVariable("id") String id)
+  public Driver getDriverById(@PathVariable("id") String id)
       throws UserNotExistException {
-    return customerService.getUser(id)
+    return driverService.getUser(id)
         .orElseThrow(() -> new UserNotExistException("User doesn't exist"));
   }
 
   @PostMapping(path = "/login")
-  public Customer loginCustomer(@RequestBody String jsonUser)
+  public Driver loginDriver(@RequestBody String jsonUser)
       throws UserNotExistException, PasswordNotMatchException {
+
     JSONObject user = new JSONObject(jsonUser);
     String userName = user.getString("userName");
     String password = user.getString("password");
-    Optional<Customer> customer = customerService.getUserByName(userName);
-    if (customer.isEmpty()) {
+    Optional<Driver> driver = driverService.getUserByName(userName);
+    if (driver.isEmpty()) {
       throw new UserNotExistException("User doesn't exist");
     }
-    if (!customerService.passwordMatch(customer.get().getId()+"", password)) {
+    if (!driverService.passwordMatch(driver.get().getId()+"", password)) {
       throw new PasswordNotMatchException("Password doesn't match");
     }
-    return customer.get();
+    return driver.get();
   }
 
   @PostMapping(path = "/register")
-  public Customer registerCustomer(@RequestBody String jsonUser)
+  public Driver registerDriver(@RequestBody String jsonUser)
       throws UserAlreadyExistException {
+
     JSONObject user = new JSONObject(jsonUser);
     String userName = user.getString("userName");
     String password = user.getString("password");
@@ -71,54 +77,95 @@ public class CustomerController {
     String city = user.getString("city");
     String state = user.getString("state");
     String zip = user.getString("zip");
-    Customer customer = customerService
+    Driver driver = driverService
         .addUser(userName, password, phoneNumber, address, city, state, zip);
-    if (customer == null) {
+    if (driver == null) {
       throw new UserAlreadyExistException("User already exists, please login");
     }
-    return customer;
+    return driver;
   }
 
   @PostMapping(path = "/logout")
-  public int logoutCustomer() {
+  public int logoutDriver() {
     System.out.println("logout the user");
     return 1;
   }
 
-  @GetMapping(path = "/myCart/{id}")
-  public List<Orders> getShoppingCart(@PathVariable("id") String id)
+  @GetMapping(path = "/pendingOrders/{id}")
+  public List<Orders> getPendingOrders(@PathVariable("id") String id)
       throws UserNotExistException {
-    if (customerService.getUser(id).isEmpty()) {
+    if (driverService.getUser(id).isEmpty()) {
       throw new UserNotExistException("User doesn't exist");
     }
-    return orderService.customerCart(id);
+    if (orderService.driverGetActiveOrder(id) != null) {
+      System.out.println("Driver already has an active order");
+      return null;
+    }
+    return orderService.getAllPendingOrders();
   }
 
-  @GetMapping(path = "/myActiveOrders/{id}")
-  public List<Orders> getActiveOrders(@PathVariable("id") String id)
+  @GetMapping(path = "/myActiveOrder/{id}")
+  public Orders getActiveOrder(@PathVariable("id") String id)
       throws UserNotExistException {
-    if (customerService.getUser(id).isEmpty()) {
+    if (driverService.getUser(id).isEmpty()) {
       throw new UserNotExistException("User doesn't exist");
     }
-    return orderService.customerGetActiveOrders(id);
+    return orderService.driverGetActiveOrder(id);
   }
 
   @GetMapping(path = "/myOrderHistory/{id}")
   public List<Orders> getOrderHistory(@PathVariable("id") String id)
       throws UserNotExistException {
-    if (customerService.getUser(id).isEmpty()) {
+    if (driverService.getUser(id).isEmpty()) {
       throw new UserNotExistException("User doesn't exist");
     }
-    return orderService.customerFindPastOrders(id);
+    return orderService.driverFindPastOrders(id);
+  }
+
+  @PostMapping(path = "/accept")
+  public int acceptOrder(@RequestBody String jsonOrder)
+      throws UserNotExistException, OrderNotExistException, OrderAlreadyDeliverException {
+    JSONObject order = new JSONObject(jsonOrder);
+    System.out.println(order);
+    long Id = order.getLong("orderId");
+    String orderId = String.valueOf(Id);
+    String driverId = order.getString("driverId");
+    if (driverService.getUser(driverId).isEmpty()) {
+      throw new UserNotExistException("User doesn't exist");
+    }
+    int res = orderService.acceptOrder(orderId, driverId);
+    if (res == -1) {
+      throw new OrderNotExistException("Order doesn't exist");
+    }
+    if (res == 0) {
+      throw new OrderAlreadyDeliverException("Order in cart or already in delivery");
+    }
+    return res;
+  }
+
+  @PostMapping(path = "/finish")
+  public int finishOrder(@RequestBody String jsonOrder)
+      throws OrderNotExistException, OrderAlreadyFinishException {
+    JSONObject order = new JSONObject(jsonOrder);
+    long Id = order.getLong("orderId");
+    String id =String.valueOf(Id);
+    int res = orderService.finishOrder(id);
+    if (res == -1) {
+      throw new OrderNotExistException("Order doesn't exist");
+    }
+    if (res == 0) {
+      throw new OrderAlreadyFinishException("Order already finished");
+    }
+    return res;
   }
 
   @DeleteMapping(path = "{id}")
-  public int deleterCustomer(@PathVariable("id") String id)
+  public int deleterDriver(@PathVariable("id") String id)
       throws UserNotExistException, OrderNotFinishedException {
-    if (orderService.customerGetActiveOrders(id).size() != 0) {
+    if (orderService.driverGetActiveOrder(id) != null) {
       throw new OrderNotFinishedException("You still have active orders, please finish them first");
     }
-    int res = customerService.deleteUser(id);
+    int res = driverService.deleteUser(id);
     if (res == -1) {
       throw new UserNotExistException("User doesn't exist");
     }
@@ -131,9 +178,9 @@ public class CustomerController {
     JSONObject object = new JSONObject(jsonPassword);
     int cid=object.getInt("id");
     String id = cid+"";
-    String password = object.getString("password");
+    String oldPassword = object.getString("oldPassword");
     String newPassword = object.getString("newPassword");
-    int res = customerService.updatePassword(id, password, newPassword);
+    int res = driverService.updatePassword(id, oldPassword, newPassword);
     if (res == -1) {
       throw new UserNotExistException("User doesn't exist");
     }
@@ -150,7 +197,7 @@ public class CustomerController {
     int cid=object.getInt("id");
     String id = cid+"";
     String phoneNumber = object.getString("phoneNumber");
-    int res = customerService.updatePhoneNumber(id, phoneNumber);
+    int res = driverService.updatePhoneNumber(id, phoneNumber);
     if (res == -1) {
       throw new UserNotExistException("User doesn't exist");
     }
@@ -167,7 +214,7 @@ public class CustomerController {
     String city = object.getString("city");
     String state = object.getString("state");
     String zip = object.getString("zip");
-    int res = customerService.updateAddress(id, address, city, state, zip);
+    int res = driverService.updateAddress(id, address, city, state, zip);
     if (res == -1) {
       throw new UserNotExistException("User doesn't exist");
     }
@@ -176,8 +223,11 @@ public class CustomerController {
 
   @ResponseStatus(value = HttpStatus.BAD_REQUEST)
   @ExceptionHandler({UserNotExistException.class, PasswordNotMatchException.class,
-      UserAlreadyExistException.class, OrderNotFinishedException.class})
+      UserAlreadyExistException.class, OrderNotExistException.class,
+      OrderAlreadyDeliverException.class, OrderAlreadyFinishException.class,
+      OrderNotFinishedException.class})
   public String handleException(Exception e) {
     return e.getMessage();
   }
 }
+
