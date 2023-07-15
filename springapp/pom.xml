@@ -63,7 +63,10 @@
     <artifactId>spring-security-crypto</artifactId>
     <version>5.5.2</version>
 </dependency>
+<<<<<<< HEAD
 
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

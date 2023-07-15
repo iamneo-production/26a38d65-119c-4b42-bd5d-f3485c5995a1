@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.example.springapp.controller;
 import com.example.springapp.model.Driver;
 import com.example.springapp.model.Order;
@@ -233,6 +234,8 @@ public class DriverController {
 }
 
 =======
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 package com.example.springapp.controller;
 import com.example.springapp.model.Driver;
 import com.example.springapp.model.Orders;
@@ -465,4 +468,8 @@ public class DriverController {
     return e.getMessage();
   }
 }
+<<<<<<< HEAD
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
+=======
+
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

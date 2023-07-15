@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.example.springapp.service;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,6 +22,8 @@ public class PasswordService {
   }
 }
 =======
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 package com.example.springapp.service;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -42,4 +45,7 @@ public class PasswordService {
     return bCryptPasswordEncoder.matches(password, encodedPassword);
   }
 }
+<<<<<<< HEAD
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

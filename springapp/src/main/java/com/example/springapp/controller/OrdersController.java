@@ -155,4 +155,8 @@ public int addOrderToCart(@RequestBody String jsonOrder) {
   public String handleException(Exception e) {
     return e.getMessage();
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.example.springapp.service;
 
 
@@ -71,6 +72,8 @@ public class SearchEngineServiceImpl implements SearchEngineService {
     }
 }
 =======
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 package com.example.springapp.service;
 
 
@@ -142,4 +145,7 @@ public class SearchEngineServiceImpl implements SearchEngineService {
         this.addRestaurant(info.getTag3(), restaurantId);
     }
 }
+<<<<<<< HEAD
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

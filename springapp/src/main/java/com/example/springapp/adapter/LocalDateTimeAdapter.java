@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package main.java.com.example.springapp.adapter;
 
 
@@ -41,6 +42,8 @@ public class LocalDateTimeAdapter extends TypeAdapter<LocalDateTime> {
 
 
 =======
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 package com.example.springapp.adapter;
 
 
@@ -81,4 +84,7 @@ public class LocalDateTimeAdapter extends TypeAdapter<LocalDateTime> {
   }
 }
 
+<<<<<<< HEAD
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

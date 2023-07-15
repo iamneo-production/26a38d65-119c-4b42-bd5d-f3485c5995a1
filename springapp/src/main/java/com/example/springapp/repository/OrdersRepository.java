@@ -8,4 +8,8 @@ import com.example.springapp.model.Orders;
 @Repository
 public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

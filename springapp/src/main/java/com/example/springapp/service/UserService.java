@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.example.springapp.service;
 
 import java.util.List;
@@ -28,6 +29,8 @@ public interface UserService<T> {
   int updateAddress(String id, String address, String city, String state, String zip);
 }
 =======
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 package com.example.springapp.service;
 
 import java.util.List;
@@ -56,4 +59,7 @@ public interface UserService<T> {
 
   int updateAddress(String id, String address, String city, String state, String zip);
 }
+<<<<<<< HEAD
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

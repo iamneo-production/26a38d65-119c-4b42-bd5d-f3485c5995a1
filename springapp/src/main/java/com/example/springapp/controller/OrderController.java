@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.example.springapp.controller;
 import com.example.springapp.adapter.LocalDateTimeAdapter;
 import com.example.springapp.exception.CommentAlreadyExistException;
@@ -158,6 +159,8 @@ public int addOrderToCart(@RequestBody String jsonOrder) {
   }
 }
 =======
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 package com.example.springapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -235,5 +238,9 @@ public class OrderController {
         }
     }
     
+<<<<<<< HEAD
 }
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
+=======
+}
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

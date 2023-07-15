@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.example.springapp.service;
 
 import com.example.springapp.model.Comment;
@@ -47,6 +48,8 @@ public interface OrderService {
   List<Comment> restaurantGetComments(String restaurantId);
 }
 =======
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 package com.example.springapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,9 +87,12 @@ public class OrderService {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
 =======
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
     public Order updateOrderById(Long id,Order updatedOrder){
         return orderRepository.findById(id)
                 .map(order -> {
@@ -124,5 +130,9 @@ public class OrderService {
         return false; 
     }
    
+<<<<<<< HEAD
 }
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
+=======
+}
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

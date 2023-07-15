@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 package com.example.springapp.model;
 
 import javax.persistence.*;
@@ -78,4 +82,8 @@ public class Restaurants extends User {
         ", menu=" + menu +
         '}';
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

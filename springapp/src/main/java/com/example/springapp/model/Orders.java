@@ -142,4 +142,8 @@ public class Orders {
         ", comment=" + comment +
         '}';
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

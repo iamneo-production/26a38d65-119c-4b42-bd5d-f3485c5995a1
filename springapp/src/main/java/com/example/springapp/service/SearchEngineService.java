@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.example.springapp.service;
 
 import com.example.springapp.model.Dish;
@@ -15,6 +16,8 @@ public interface SearchEngineService {
     void updateInfo(RestaurantInfo info, String restaurantId);
 }
 =======
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 package com.example.springapp.service;
 
 import com.example.springapp.model.Dish;
@@ -30,4 +33,7 @@ public interface SearchEngineService {
     void eraseDishes(List<Dish> dishes, String restaurantId);
     void updateInfo(RestaurantInfo info, String restaurantId);
 }
+<<<<<<< HEAD
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.example.springapp.service;
 
 
@@ -213,6 +214,8 @@ public class RestaurantServiceImpl implements RestaurantService, UserService<Res
   }
 }
 =======
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 package com.example.springapp.service;
 
 
@@ -425,4 +428,7 @@ public class RestaurantServiceImpl implements UserService<Restaurants> {
     return -1;
   }
 }
+<<<<<<< HEAD
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

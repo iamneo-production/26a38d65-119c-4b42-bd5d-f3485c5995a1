@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.example.springapp.service;
 
 import com.example.springapp.model.Dish;
@@ -22,6 +23,11 @@ package com.example.springapp.service;
 
 import org.springframework.stereotype.Service;
 
+=======
+package com.example.springapp.service;
+
+import org.springframework.stereotype.Service;
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 import com.example.springapp.model.Restaurant;
 import com.example.springapp.repository.RestaurantRepository;
 
@@ -56,5 +62,9 @@ public class RestaurantService {
     public Restaurant findByRestaurantName(String name) {
         return restaurantRepository.findByRestaurantName(name);
     }
+<<<<<<< HEAD
 }
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
+=======
+}
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

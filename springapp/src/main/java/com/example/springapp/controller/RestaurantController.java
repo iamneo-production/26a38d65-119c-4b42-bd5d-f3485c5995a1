@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.example.springapp.controller;
 
 import com.example.springapp.exception.DishNotExistException;
@@ -311,6 +312,8 @@ public int updateRestaurantInformation(@RequestBody String jsonInfo)
   }
 }
 =======
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 package com.example.springapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -367,5 +370,9 @@ public class RestaurantController {
             return ResponseEntity.notFound().build();
         }
     }
+<<<<<<< HEAD
 }
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
+=======
+}
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

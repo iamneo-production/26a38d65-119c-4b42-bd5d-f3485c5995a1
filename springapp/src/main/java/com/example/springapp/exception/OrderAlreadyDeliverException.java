@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.example.springapp.exception;
 
 public class OrderAlreadyDeliverException extends Exception {
@@ -8,6 +9,8 @@ public class OrderAlreadyDeliverException extends Exception {
   }
 }
 =======
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 package com.example.springapp.exception;
 
 public class OrderAlreadyDeliverException extends Exception {
@@ -16,4 +19,7 @@ public class OrderAlreadyDeliverException extends Exception {
     super(message);
   }
 }
+<<<<<<< HEAD
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.example.springapp.model;
 
 import java.time.LocalDateTime;
@@ -145,6 +146,8 @@ public class Order {
   }
 }
 =======
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 package com.example.springapp.model;
 
 
@@ -167,11 +170,19 @@ public class Order {
     public Order() {
     }
 
+<<<<<<< HEAD
     public Order(Long id, Long customerId, Long restaurantId, Long quantity, Double amount,
                  String shippingAddress, Date dateTime, String status) {
         this.id = id;
         this.customerId = customerId;
         this.restaurantId = restaurantId;
+=======
+    public Order(Long id, Long customerId,Long restaurantId,  Long quantity, Double amount,
+                 String shippingAddress, Date dateTime, String status) {
+        this.id = id;
+        this.customerId = customerId;
+        this.restaurantId=restaurantId;
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
         this.quantity = quantity;
         this.amount = amount;
         this.shippingAddress = shippingAddress;
@@ -204,6 +215,11 @@ public class Order {
         this.restaurantId = restaurantId;
     }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
     public Long getQuantity() {
         return quantity;
     }
@@ -243,5 +259,9 @@ public class Order {
     public void setStatus(String status) {
         this.status = status;
     }
+<<<<<<< HEAD
 }
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
+=======
+}
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

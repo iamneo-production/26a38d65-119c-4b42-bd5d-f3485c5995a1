@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 // Restarurant model
 
@@ -85,6 +86,8 @@ public class Restaurant extends User {
 }
 
 =======
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 package com.example.springapp.model;
 
 import javax.persistence.*;
@@ -138,5 +141,9 @@ public class Restaurant {
     public void setOwnerId(Long ownerId) {
         this.ownerId = ownerId;
     }
+<<<<<<< HEAD
 }
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
+=======
+} 
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

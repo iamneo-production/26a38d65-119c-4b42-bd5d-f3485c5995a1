@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.example.springapp.service;
 
 import com.example.springapp.model.Driver;
@@ -133,6 +134,8 @@ public class DriverServiceImpl implements UserService<Driver> {
   }
 }
 =======
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 package com.example.springapp.service;
 
 import com.example.springapp.model.Driver;
@@ -266,4 +269,7 @@ public class DriverServiceImpl implements UserService<Driver> {
     return -1;
   }
 }
+<<<<<<< HEAD
 >>>>>>> Food-Ordering-and-Delivery-Application-malli172
+=======
+>>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
