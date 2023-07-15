@@ -6,6 +6,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@material-ui/core": "^4.12.4",
+<<<<<<< HEAD
     "@material-ui/lab": "^4.0.0-alpha.61",
     "@mui/material": "^5.13.6",
     "@testing-library/jest-dom": "^5.16.5",
@@ -20,6 +21,20 @@
     "react-dom": "^18.2.0",
     "react-geocode": "^0.2.3",
     "react-router-dom": "^5.2.0",
+=======
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.6",
+    "@mui/styled-engine": "^5.13.2",
+    "@mui/system": "^5.13.6",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.4.0",
+    "l": "^0.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.1",
+>>>>>>> 607e2d3766f60134ebda435b232a131587f005fa
     "react-scripts": "5.0.1",
     "react-static-google-map": "^0.9.0",
     "web-vitals": "^2.1.4"
