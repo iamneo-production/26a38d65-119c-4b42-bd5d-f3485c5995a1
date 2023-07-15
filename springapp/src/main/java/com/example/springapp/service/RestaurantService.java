@@ -1,7 +1,6 @@
 package com.example.springapp.service;
 
 import org.springframework.stereotype.Service;
-
 import com.example.springapp.model.Restaurant;
 import com.example.springapp.repository.RestaurantRepository;
 

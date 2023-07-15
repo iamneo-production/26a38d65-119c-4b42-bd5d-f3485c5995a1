@@ -38,7 +38,7 @@ public class OrderService {
         return orderRepository.findById(id)
                 .map(order -> {
                     order.setCustomerId(updatedOrder.getCustomerId());
-                    order.setProductId(updatedOrder.getProductId());
+                    order.setRestaurantId(updatedOrder.getRestaurantId());
                     order.setQuantity(updatedOrder.getQuantity());
                     order.setAmount(updatedOrder.getAmount());
                     order.setShippingAddress(updatedOrder.getShippingAddress());
