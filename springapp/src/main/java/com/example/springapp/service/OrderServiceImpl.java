@@ -1,10 +1,10 @@
-package com.example.backend.service;
+package com.example.springapp.service;
 
 
-import com.example.backend.model.Comment;
-import com.example.backend.model.Dish;
-import com.example.backend.model.Order;
-import com.example.backend.repository.OrderRepository;
+import com.example.springapp.model.Comment;
+import com.example.springapp.model.Dish;
+import com.example.springapp.model.Orders;
+import com.example.springapp.repository.OrdersRepository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,15 +16,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderServiceImpl implements OrderService {
+public class OrderServiceImpl {
 
   @Autowired
-  OrderRepository orderRepository;
+  OrdersRepository orderRepository;
 
-  @Override
+
   public int addOrderToCart(String customerId, String restaurantId, List<Dish> content) {
-    List<Order> currentCart = this.customerCart(customerId);
-    for (Order o : currentCart) {
+    List<Orders> currentCart = this.customerCart(customerId);
+    for (Orders o : currentCart) {
       if (o.getRestaurantId().equals(restaurantId)) {
         List<Dish> menu = o.getContent();
         menu.addAll(content);
@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
         return 1;
       }
     }
-    Order order = new Order();
+    Orders order = new Orders();
     order.setCustomerId(customerId);
     order.setRestaurantId(restaurantId);
     order.setContent(content);
@@ -52,9 +52,9 @@ public class OrderServiceImpl implements OrderService {
     return 1;
   }
 
-  @Override
+  
   public int checkoutOrder(String id) {
-    Optional<Order> order = getOrder(id);
+    Optional<Orders> order = getOrder(id);
     if (order.isEmpty()) {
       System.out.println("Order doesn't exist");
       return 0;
@@ -69,9 +69,9 @@ public class OrderServiceImpl implements OrderService {
     return -1;
   }
 
-  @Override
-  public int checkoutAll(List<Order> orders) {
-    for (Order order : orders) {
+
+  public int checkoutAll(List<Orders> orders) {
+    for (Orders order : orders) {
       String id = order.getId()+"";
       int res = checkoutOrder(id);
       if (res == 0) {
@@ -84,10 +84,10 @@ public class OrderServiceImpl implements OrderService {
     return 1;
   }
 
-  @Override
+ 
   public int cancelOrder(String id) {
     long number = Long.parseLong(id);
-    Optional<Order> order = getOrder(id);
+    Optional<Orders> order = getOrder(id);
     if (order.isEmpty()) {
       System.out.println("Order doesn't exist");
       return 0;
@@ -101,8 +101,8 @@ public class OrderServiceImpl implements OrderService {
     return -1;
   }
 
-  @Override
-  public Optional<Order> getOrder(String id) {
+
+  public Optional<Orders> getOrder(String id) {
     long number = Long.parseLong(id);
     if (id != null) {
       return orderRepository.findById(number);
@@ -110,11 +110,11 @@ public class OrderServiceImpl implements OrderService {
     return Optional.empty();
   }
 
-  @Override
+ 
   public int acceptOrder(String id, String driverId) {
-    Optional<Order> orderOrNot = getOrder(id);
+    Optional<Orders> orderOrNot = getOrder(id);
     if (orderOrNot.isPresent()) {
-      Order order = orderOrNot.get();
+      Orders order = orderOrNot.get();
       if (order.getStartTime() != null && !order.isDelivery()) {
         order.setDelivery(true);
         order.setDriverId(driverId);
@@ -130,11 +130,11 @@ public class OrderServiceImpl implements OrderService {
     return -1;
   }
 
-  @Override
+  
   public int finishOrder(String id) {
-    Optional<Order> orderOrNot = getOrder(id);
+    Optional<Orders> orderOrNot = getOrder(id);
     if (orderOrNot.isPresent()) {
-      Order order = orderOrNot.get();
+      Orders order = orderOrNot.get();
       if (order.isDelivery() && order.getEndTime() == null) {
         order.setEndTime(LocalDateTime.now());
         orderRepository.save(order);
@@ -149,38 +149,38 @@ public class OrderServiceImpl implements OrderService {
     return -1;
   }
 
-  @Override
-  public List<Order> customerCart(String customerId) {
+ 
+  public List<Orders> customerCart(String customerId) {
     return orderRepository.findAll().stream()
         .filter(order -> order.getCustomerId().equals(customerId) && order.getStartTime() == null)
         .collect(Collectors.toList());
   }
 
-  @Override
-  public List<Order> customerGetActiveOrders(String customerId) {
+ 
+  public List<Orders> customerGetActiveOrders(String customerId) {
     return orderRepository.findAll().stream().filter(
         order -> order.getCustomerId().equals(customerId) && order.getStartTime() != null
             && order.getEndTime() == null).collect(
         Collectors.toList());
   }
 
-  @Override
-  public List<Order> customerFindPastOrders(String customerId) {
+ 
+  public List<Orders> customerFindPastOrders(String customerId) {
     return orderRepository.findAll().stream()
         .filter(order -> order.getCustomerId().equals(customerId) && order.getEndTime() != null)
         .collect(Collectors.toList());
   }
 
-  @Override
-  public List<Order> getAllPendingOrders() {
+  
+  public List<Orders> getAllPendingOrders() {
     return orderRepository.findAll().stream()
         .filter(order -> order.getStartTime() != null && !order.isDelivery())
         .collect(Collectors.toList());
   }
 
-  @Override
-  public Order driverGetActiveOrder(String driverId) {
-    for (Order order : orderRepository.findAll()) {
+
+  public Orders driverGetActiveOrder(String driverId) {
+    for (Orders order : orderRepository.findAll()) {
       if (order.getDriverId() != null && order.getDriverId().equals(driverId)
           && order.getEndTime() == null) {
         return order;
@@ -189,33 +189,33 @@ public class OrderServiceImpl implements OrderService {
     return null;
   }
 
-  @Override
-  public List<Order> driverFindPastOrders(String driverId) {
+
+  public List<Orders> driverFindPastOrders(String driverId) {
     return orderRepository.findAll().stream()
         .filter(order -> order.getDriverId() != null && order.getDriverId().equals(driverId)
             && order.getEndTime() != null)
         .collect(Collectors.toList());
   }
 
-  @Override
-  public List<Order> restaurantGetActiveOrders(String restaurantId) {
+  
+  public List<Orders> restaurantGetActiveOrders(String restaurantId) {
     return orderRepository.findAll().stream().filter(
         order -> order.getRestaurantId().equals(restaurantId) && order.getStartTime() != null
             && order.getEndTime() == null).collect(Collectors.toList());
   }
 
-  @Override
-  public List<Order> restaurantFindPastOrders(String restaurantId) {
+
+  public List<Orders> restaurantFindPastOrders(String restaurantId) {
     return orderRepository.findAll().stream()
         .filter(order -> order.getRestaurantId().equals(restaurantId) && order.getEndTime() != null)
         .collect(Collectors.toList());
   }
 
-  @Override
+  
   public int addComment(String id, int rating, String content) {
-    Optional<Order> orderOrNot = getOrder(id);
+    Optional<Orders> orderOrNot = getOrder(id);
     if (orderOrNot.isPresent()) {
-      Order order = orderOrNot.get();
+      Orders order = orderOrNot.get();
       if (order.getComment() == null) {
         Comment newComment = new Comment(rating, content);
         order.setComment(newComment);
@@ -231,11 +231,11 @@ public class OrderServiceImpl implements OrderService {
     return -1;
   }
 
-  @Override
+
   public int deleteComment(String id) {
-    Optional<Order> orderOrNot = getOrder(id);
+    Optional<Orders> orderOrNot = getOrder(id);
     if (orderOrNot.isPresent()) {
-      Order order = orderOrNot.get();
+      Orders order = orderOrNot.get();
       order.setComment(null);
       orderRepository.save(order);
       System.out.println("Delete a comment");
@@ -245,11 +245,11 @@ public class OrderServiceImpl implements OrderService {
     return -1;
   }
 
-  @Override
+ 
   public List<Comment> restaurantGetComments(String restaurantId) {
-    List<Order> temp = this.restaurantFindPastOrders(restaurantId);
+    List<Orders> temp = this.restaurantFindPastOrders(restaurantId);
     List<Comment> res = new ArrayList<>();
-    for (Order o : temp) {
+    for (Orders o : temp) {
       if (o.getComment() != null) {
         res.add(o.getComment());
       }

@@ -1,10 +1,10 @@
-package com.example.backend.service;
+package com.example.springapp.service;
 
 
-import com.example.backend.model.Dish;
-import com.example.backend.model.RestaurantInfo;
-import com.example.backend.model.SearchEngine;
-import com.example.backend.repository.SearchEngineRepository;
+import com.example.springapp.model.Dish;
+import com.example.springapp.model.RestaurantInfo;
+import com.example.springapp.model.SearchEngine;
+import com.example.springapp.repository.SearchEngineRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;

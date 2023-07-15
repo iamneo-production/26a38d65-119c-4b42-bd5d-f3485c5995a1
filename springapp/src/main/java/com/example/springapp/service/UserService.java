@@ -1,4 +1,4 @@
-package com.example.backend.service;
+package com.example.springapp.service;
 
 import java.util.List;
 import java.util.Optional;

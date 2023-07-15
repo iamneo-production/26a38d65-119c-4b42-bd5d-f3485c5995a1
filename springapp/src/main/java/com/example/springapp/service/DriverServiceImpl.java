@@ -1,7 +1,7 @@
-package com.example.backend.service;
+package com.example.springapp.service;
 
-import com.example.backend.model.Driver;
-import com.example.backend.repository.DriverRepository;
+import com.example.springapp.model.Driver;
+import com.example.springapp.repository.DriverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

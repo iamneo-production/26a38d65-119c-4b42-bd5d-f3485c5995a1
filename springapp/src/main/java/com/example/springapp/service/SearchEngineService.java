@@ -1,7 +1,7 @@
-package com.example.backend.service;
+package com.example.springapp.service;
 
-import com.example.backend.model.Dish;
-import com.example.backend.model.RestaurantInfo;
+import com.example.springapp.model.Dish;
+import com.example.springapp.model.RestaurantInfo;
 import java.util.List;
 
 
