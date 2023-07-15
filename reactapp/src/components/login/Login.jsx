@@ -59,7 +59,7 @@ const Login = (props) => {
   const loginUser = (event) => {
     event.preventDefault();
 
-    axios.post("/api/" + userType + "/login", { userName, password })
+    axios.post("http://localhost:8080/api/" + userType + "/login", { userName, password })
     .then(response => {
       props.changeUser(response.data, "login");
     })
@@ -139,7 +139,8 @@ const Login = (props) => {
               </Grid>
             </form>
             {loginFailed && <p>{loginFailed}</p>}
-            <Link to="/register" style={{ marginLeft: '100px', textDecoration: 'none' }}>
+            <br/>
+            <Link to="/register" style={{ marginLeft: '40px', textDecoration: 'none' }}>
               Don't have an account? Sign Up
             </Link>
           </Paper>

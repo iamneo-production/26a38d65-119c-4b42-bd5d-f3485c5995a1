@@ -56,24 +56,18 @@ public int addOrderToCart(@RequestBody String jsonOrder) {
   String restaurantId = order.getString("restaurantId");
   JSONArray shopcart = order.getJSONArray("shopcart");
   List<Dish> list = new ArrayList<>();
-  Map<Dish, Integer> dishCountMap = new HashMap<>(); // Map to track dish counts
-  Set<Dish> dishSet = new HashSet<>(); // Set to track unique dishes
-
+  Map<Dish, Integer> dishCountMap = new HashMap<>();
+  Set<Dish> dishSet = new HashSet<>();
   for (Object object : shopcart) {
     Dish dish = gson.fromJson(object.toString(), Dish.class);
-
-    // Update dish count in the map
     dishCountMap.put(dish, dishCountMap.getOrDefault(dish, 0) + 1);
-
-    // Merge and add dish to the list if it's not already present
     if (!dishSet.contains(dish)) {
-      Dish mergedDish = entityManager.merge(dish); // Use merge instead of persist
+      Dish mergedDish = entityManager.merge(dish); 
       list.add(mergedDish);
       dishSet.add(dish);
     }
   }
 
-  // Add dishes to the list based on the dish counts
   for (Map.Entry<Dish, Integer> entry : dishCountMap.entrySet()) {
     Dish dish = entry.getKey();
     int count = entry.getValue();

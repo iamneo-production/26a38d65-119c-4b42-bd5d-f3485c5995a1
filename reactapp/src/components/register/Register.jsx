@@ -79,7 +79,7 @@ const Register = ({ changeUser }) => {
     }
     setRegisterFailed('');
     axios
-      .post(`/api/${userType}/register`, {
+      .post(`http://localhost:8080/api/${userType}/register`, {
         userName,
         password,
         phoneNumber,

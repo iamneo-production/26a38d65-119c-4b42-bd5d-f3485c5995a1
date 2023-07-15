@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins="http://localhost:8081")
 @RestController
 @RequestMapping("/api/customer")
 public class CustomerController {
@@ -37,7 +37,7 @@ public class CustomerController {
     this.orderService = orderService;
   }
 
-  // Mapping for getting customer by ID
+
   @GetMapping(path = "{id}")
   public Customer getCustomerById(@PathVariable("id") String id)
       throws UserNotExistException {
@@ -45,11 +45,10 @@ public class CustomerController {
         .orElseThrow(() -> new UserNotExistException("User doesn't exist"));
   }
 
-  // Mapping for customer login
+
   @PostMapping(path = "/login")
   public Customer loginCustomer(@RequestBody String jsonUser)
       throws UserNotExistException, PasswordNotMatchException {
-    // Parse the JSON request body
     JSONObject user = new JSONObject(jsonUser);
     String userName = user.getString("userName");
     String password = user.getString("password");
@@ -63,11 +62,10 @@ public class CustomerController {
     return customer.get();
   }
 
-  // Mapping for customer registration
+
   @PostMapping(path = "/register")
   public Customer registerCustomer(@RequestBody String jsonUser)
       throws UserAlreadyExistException {
-    // Parse the JSON request body
     JSONObject user = new JSONObject(jsonUser);
     String userName = user.getString("userName");
     String password = user.getString("password");
@@ -84,14 +82,14 @@ public class CustomerController {
     return customer;
   }
 
-  // Mapping for customer logout
+ 
   @PostMapping(path = "/logout")
   public int logoutCustomer() {
     System.out.println("logout the user");
     return 1;
   }
 
-  // Mapping for getting customer's shopping cart
+
   @GetMapping(path = "/myCart/{id}")
   public List<Order> getShoppingCart(@PathVariable("id") String id)
       throws UserNotExistException {
@@ -101,7 +99,7 @@ public class CustomerController {
     return orderService.customerCart(id);
   }
 
-  // Mapping for getting customer's active orders
+
   @GetMapping(path = "/myActiveOrders/{id}")
   public List<Order> getActiveOrders(@PathVariable("id") String id)
       throws UserNotExistException {
@@ -111,7 +109,7 @@ public class CustomerController {
     return orderService.customerGetActiveOrders(id);
   }
 
-  // Mapping for getting customer's order history
+
   @GetMapping(path = "/myOrderHistory/{id}")
   public List<Order> getOrderHistory(@PathVariable("id") String id)
       throws UserNotExistException {
@@ -121,7 +119,7 @@ public class CustomerController {
     return orderService.customerFindPastOrders(id);
   }
 
-  // Mapping for deleting a customer
+
   @DeleteMapping(path = "{id}")
   public int deleterCustomer(@PathVariable("id") String id)
       throws UserNotExistException, OrderNotFinishedException {
@@ -135,7 +133,6 @@ public class CustomerController {
     return res;
   }
 
-  // Mapping for resetting customer's password
   @PostMapping(path = "/resetPassword")
   public int resetPassword(@RequestBody String jsonPassword)
       throws UserNotExistException, PasswordNotMatchException {
@@ -155,11 +152,10 @@ public class CustomerController {
     return res;
   }
 
-  // Mapping for resetting customer's phone number
+
   @PostMapping(path = "/resetPhone")
   public int resetPhoneNumber(@RequestBody String jsonPhone)
       throws UserNotExistException {
-    // Parse the JSON request body
     JSONObject object = new JSONObject(jsonPhone);
     int cid=object.getInt("id");
     String id = cid+"";
@@ -171,11 +167,10 @@ public class CustomerController {
     return res;
   }
 
-  // Mapping for resetting customer's address
+
   @PostMapping(path = "/resetAddress")
   public int resetAddress(@RequestBody String jsonAddress)
       throws UserNotExistException {
-    // Parse the JSON request body
     JSONObject object = new JSONObject(jsonAddress);
     int cid=object.getInt("id");
     String id = cid+"";
@@ -190,7 +185,6 @@ public class CustomerController {
     return res;
   }
 
-  // Exception handler for handling custom exceptions
   @ResponseStatus(value = HttpStatus.BAD_REQUEST)
   @ExceptionHandler({UserNotExistException.class, PasswordNotMatchException.class,
       UserAlreadyExistException.class, OrderNotFinishedException.class})

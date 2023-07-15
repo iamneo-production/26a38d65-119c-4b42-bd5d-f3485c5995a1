@@ -31,7 +31,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins="http://localhost:3000")
+
+@CrossOrigin(origins="http://localhost:8081")
 @RestController
 @RequestMapping("/api/restaurant")
 public class RestaurantController {
@@ -160,7 +161,6 @@ public class RestaurantController {
     if (res == -1) {
       throw new UserNotExistException("The given restaurant doesn't exist");
     }
-    // handle search engine
     searchEngineService.addRestaurant(dishName, restaurantId);
     return res;
   }
@@ -212,7 +212,6 @@ public int updateRestaurantInformation(@RequestBody String jsonInfo)
   String tag3 = object.getString("tag3");
   RestaurantInfo newInfo = new RestaurantInfo(open, name, description, imageUrl, tag1, tag2, tag3);
 
-  // handle search engine
   RestaurantInfo oldInfo = restaurantService.getInformation(restaurantId);
   if (oldInfo != null) {
     searchEngineService.eraseInfo(oldInfo, restaurantId);
