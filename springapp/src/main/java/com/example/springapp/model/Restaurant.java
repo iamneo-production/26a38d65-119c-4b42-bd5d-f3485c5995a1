@@ -93,16 +93,16 @@ import javax.persistence.*;
 public class Restaurant {
     @Id
     private Long id;
-    private String name;
+    private String restaurantName;
     private String location;
     private Long ownerId;
 
     public Restaurant() {
     }
 
-    public Restaurant(Long id, String name, String location, Long ownerId) {
+    public Restaurant(Long id, String restaurantName, String location, Long ownerId) {
         this.id = id;
-        this.name = name;
+        this.restaurantName = restaurantName;
         this.location = location;
         this.ownerId = ownerId;
     }
@@ -115,12 +115,12 @@ public class Restaurant {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getRestaurantName() {
+        return restaurantName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
     }
 
     public String getLocation() {

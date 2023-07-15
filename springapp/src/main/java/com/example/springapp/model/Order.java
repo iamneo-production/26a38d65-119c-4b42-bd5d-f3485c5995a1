@@ -157,7 +157,7 @@ public class Order {
     @Id
     private Long id;
     private Long customerId;
-    private Long productId;
+    private Long restaurantId;
     private Long quantity;
     private Double amount;
     private String shippingAddress;
@@ -167,11 +167,11 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long id, Long customerId, Long productId, Long quantity, Double amount,
+    public Order(Long id, Long customerId, Long restaurantId, Long quantity, Double amount,
                  String shippingAddress, Date dateTime, String status) {
         this.id = id;
         this.customerId = customerId;
-        this.productId = productId;
+        this.restaurantId = restaurantId;
         this.quantity = quantity;
         this.amount = amount;
         this.shippingAddress = shippingAddress;
@@ -196,12 +196,12 @@ public class Order {
         this.customerId = customerId;
     }
 
-    public Long getProductId() {
-        return productId;
+    public Long getRestaurantId() {
+        return restaurantId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setRestaurantId(Long restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
     public Long getQuantity() {
