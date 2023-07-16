@@ -1,5 +1,5 @@
 import React from 'react';
-// import FastFoodIcon from '@material-ui/icons/Fastfood';
+import FastFoodIcon from '@material-ui/icons/Fastfood';
 import { Grid,Stack,TextField,Typography,RadioGroup
 ,Radio,Button,FormControl,FormControlLabel,FormLabel } from '@mui/material';
 const axios = require('axios').default;
@@ -29,7 +29,7 @@ class RestaurantInfo extends React.Component {
 
   getInformation() {
     let restaurantId = this.props.currentUser.id;
-    axios.get("/api/restaurant/information/" + restaurantId).then(
+    axios.get("https://8080-bbafabdbdfaeddbefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/information/" + restaurantId).then(
       response => {
         this.setState({
           information : response.data,
@@ -47,7 +47,7 @@ class RestaurantInfo extends React.Component {
 
   updateInformation(event) {
     event.preventDefault();
-    axios.post("/api/restaurant/information/", {
+    axios.post("https://8080-bbafabdbdfaeddbefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/information/", {
       restaurantId : this.props.currentUser.id,
       status : this.state.status === "open" ? true : false,
       name : this.state.name,
@@ -71,8 +71,7 @@ class RestaurantInfo extends React.Component {
         <Grid container >
             <Grid item xs={7} container justifyContent="center" alignItems="center" alignContent='center'>
             <Stack  justifyContent="center" alignItems="center">
-                {/* <FastFoodIcon className='icon'/> */}
-                Icon
+                <FastFoodIcon className='icon'/>
                 <Typography component="h1" variant="h5">
                     Update Restaurant Profile
           </Typography>

@@ -29,7 +29,7 @@ class PendingOrders extends React.Component {
   }
 
   getActiveOrder() {
-    axios.get("/api/driver/myActiveOrder/" + this.props.currentUser.id).then(
+    axios.get("https://8080-bbafabdbdfaeddbefbefebaadcfefeaeaadbdbabf.project.examly.io/driver/myActiveOrder/" + this.props.currentUser.id).then(
       response => {
         this.setState({order: response.data});
       }

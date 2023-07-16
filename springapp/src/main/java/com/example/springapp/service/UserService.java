@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 package com.example.springapp.service;
 
 import java.util.List;
@@ -28,38 +26,3 @@ public interface UserService<T> {
 
   int updateAddress(String id, String address, String city, String state, String zip);
 }
-=======
-=======
->>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
-package com.example.springapp.service;
-
-import java.util.List;
-import java.util.Optional;
-
-public interface UserService<T> {
-
-  T addUser(String userName, String password, String phoneNumber, String address,
-      String city, String state, String zip);
-
-  int deleteUser(String id);
-
-  Optional<T> getUser(String id);
-
-  String getUserIdByName(String userName);
-
-  Optional<T> getUserByName(String userName);
-
-  List<T> getUsers();
-
-  boolean passwordMatch(String id, String password);
-
-  int updatePassword(String id, String oldPassword, String newPassword);
-
-  int updatePhoneNumber(String id, String newNumber);
-
-  int updateAddress(String id, String address, String city, String state, String zip);
-}
-<<<<<<< HEAD
->>>>>>> Food-Ordering-and-Delivery-Application-malli172
-=======
->>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

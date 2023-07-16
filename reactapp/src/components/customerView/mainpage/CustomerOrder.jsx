@@ -17,7 +17,7 @@ class CustomerOrder extends React.Component {
   }
 
   getActiveOrders() {
-    axios.get("/api/customer/myActiveOrders/" + this.props.currentUser.id).then(
+    axios.get("https://8080-bbafabdbdfaeddbefbefebaadcfefeaeaadbdbabf.project.examly.io/customer/myActiveOrders/" + this.props.currentUser.id).then(
       response => {
         this.setState({orders: response.data});
       }
@@ -32,11 +32,7 @@ class CustomerOrder extends React.Component {
             <Grid item key={order.id} xs={4}>
               <OrderCard order={order} userType={this.props.currentUser.type} getOrders={this.getActiveOrders} />
             </Grid>
-<<<<<<< HEAD
-          )) : <Typography variant="h5"><i>You don't have any active orders...</i></Typography>}
-=======
-          )) : <Typography variant="h5"   style={{marginTop:'150px',marginLeft:'200px'}}><i>You don't have any active orders...</i></Typography>}
->>>>>>> Food-Ordering-and-Delivery-Application-malli172
+          )) : <Typography variant="h5"  style={{marginTop:'150px',marginLeft:'200px'}}><i>You don't have any active orders...</i></Typography>}
         </Grid>
       </div>
     ) : <div />

@@ -2,7 +2,7 @@ import { Grid, Typography, Button } from '@material-ui/core';
 import React from 'react';
 import OrderCard from "../../card/OrderCard";
 // import PaymentGateway from '../../card/PaymentGateway';
-const axios = require('axios').default;
+import axios  from 'axios';
 
 class ShopCart extends React.Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class ShopCart extends React.Component {
   }
 
   getCartOrders() {
-    axios.get("/api/customer/myCart/" + this.props.currentUser.id).then(
+    axios.get("https://8080-bbafabdbdfaeddbefbefebaadcfefeaeaadbdbabf.project.examly.io/customer/myCart/" + this.props.currentUser.id).then(
       response => {
         this.setState({orders: response.data});
       }
@@ -27,7 +27,7 @@ class ShopCart extends React.Component {
   }
 
   checkout() {
-    axios.post("/api/order/checkoutAll", {orders: this.state.orders}).then(
+    axios.post("https://8080-bbafabdbdfaeddbefbefebaadcfefeaeaadbdbabf.project.examly.io/order/checkoutAll", {orders: this.state.orders}).then(
       response => {
         this.getCartOrders();
       }

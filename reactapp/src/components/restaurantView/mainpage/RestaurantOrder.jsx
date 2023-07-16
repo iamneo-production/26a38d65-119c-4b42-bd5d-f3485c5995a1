@@ -18,7 +18,7 @@ class RestaurantOrder extends React.Component {
   }
 
   getRestaurantOrders() {
-    axios.get("/api/restaurant/myActiveOrders/" + this.props.currentUser.id).then(
+    axios.get("https://8080-bbafabdbdfaeddbefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/myActiveOrders/" + this.props.currentUser.id).then(
       response => {
         this.setState({orders: response.data});
       }

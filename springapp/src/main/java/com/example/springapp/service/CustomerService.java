@@ -139,8 +139,4 @@ public class CustomerService implements UserService<Customer> {
       return password.equals(hashedPassword);
     }
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

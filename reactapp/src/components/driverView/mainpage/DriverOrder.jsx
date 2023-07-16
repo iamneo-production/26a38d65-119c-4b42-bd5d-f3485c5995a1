@@ -28,7 +28,7 @@ class DriverOrder extends React.Component {
   }
 
   getPendingOrders() {
-    axios.get("/api/driver/pendingOrders/" + this.props.currentUser.id).then(
+    axios.get("https://8080-bbafabdbdfaeddbefbefebaadcfefeaeaadbdbabf.project.examly.io/driver/pendingOrders/" + this.props.currentUser.id).then(
       response => {
         this.setState({orders: response.data});
       }

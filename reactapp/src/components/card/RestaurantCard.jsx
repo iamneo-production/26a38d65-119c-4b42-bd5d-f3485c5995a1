@@ -12,8 +12,9 @@ import {
     Button
         } from "@material-ui/core";
 import Rating from '@material-ui/lab/Rating';
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import './../../styles/commonclasses.css';
 import './../../styles/variable.css';
 
@@ -40,7 +41,7 @@ class RestaurantCard extends React.Component {
   }
 
   findComments() {
-    axios.get("/api/restaurant/getComments/" + this.props.restaurantId).then(
+    axios.get("https://8080-bbafabdbdfaeddbefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/getComments/" + this.props.restaurantId).then(
       response => {
         this.setState({comments : response.data, maxSteps: response.data.length});
       }
@@ -84,12 +85,7 @@ class RestaurantCard extends React.Component {
         aria-expanded={this.state.expanded}
       >
       <Typography><b>See Comments</b></Typography>
-        {/* <ExpandMoreIcon /> */}
-<<<<<<< HEAD
-        Expand
-=======
-        
->>>>>>> Food-Ordering-and-Delivery-Application-malli172
+        <ExpandMoreIcon />
       </IconButton>
       <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
         <CardContent>
