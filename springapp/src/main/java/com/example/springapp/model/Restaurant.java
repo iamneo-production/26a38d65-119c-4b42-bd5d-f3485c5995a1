@@ -51,4 +51,4 @@ public class Restaurant {
     public void setOwnerId(Long ownerId) {
         this.ownerId = ownerId;
     }
-} 
+}

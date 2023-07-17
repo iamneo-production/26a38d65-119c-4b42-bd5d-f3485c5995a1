@@ -31,4 +31,3 @@ public class Driver extends User {
     this.id = id;
   }
 }
-

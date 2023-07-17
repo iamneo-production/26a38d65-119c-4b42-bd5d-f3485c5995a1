@@ -37,4 +37,3 @@ public class LocalDateTimeAdapter extends TypeAdapter<LocalDateTime> {
     return null;
   }
 }
-
