@@ -7,9 +7,9 @@ import {
   CardActions,
   Grid
       } from "@material-ui/core";
-// import AddIcon from '@material-ui/icons/Add';
-// import RemoveIcon from '@material-ui/icons/Remove';
-// import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import './../../styles/commonclasses.css';
 import './../../styles/variable.css';
@@ -38,7 +38,7 @@ class DishCard extends React.Component {
   }
 
   removeDish() {
-    axios.post("/api/restaurant/removeDish", {
+    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/removeDish", {
       restaurantId : this.props.currentUser.id,
       dish : this.props.dish
     }).then(
@@ -72,19 +72,16 @@ class DishCard extends React.Component {
 
           <Grid container justify="center" alignItems="center">
             <IconButton disabled={this.state.number === 0} onClick={this.handleMinus}>
-              {/* <RemoveIcon /> */}
-              Remove
+              <RemoveIcon />
             </IconButton>
             <Typography variant="h5">{this.state.number}</Typography>
             <IconButton onClick={this.handleAdd}>
-              {/* <AddIcon /> */}
-              Add
+              <AddIcon />
             </IconButton>
           </Grid> : 
           <Grid container justify="center" alignItems="center">
             <IconButton onClick={this.removeDish}>
-              {/* <DeleteIcon /> */}
-              Delete
+              <DeleteIcon />
             </IconButton>
           </Grid>
           }

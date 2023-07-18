@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface OrderService {
 
-  int addOrderToCart(String customerId, String restaurantId, List<Dish> content);
+  // int addOrderToCart(String customerId, String restaurantId, List<Dish> content);
 
   int checkoutOrder(String id);
 

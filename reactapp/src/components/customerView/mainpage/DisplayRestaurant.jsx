@@ -26,7 +26,7 @@ class DisplayRestaurant extends React.Component {
   }
 
   getRestaurant() {
-    axios.get("/api/restaurant/" + this.state.restaurantId).then(
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/" + this.state.restaurantId).then(
       response => {
         this.setState({restaurant: response.data});
       }
@@ -45,7 +45,7 @@ class DisplayRestaurant extends React.Component {
   }
 
   addToCart() {
-    axios.post("/api/order/addToCart", {
+    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/order/addToCart", {
       customerId: this.props.currentUser.id,
       restaurantId: this.state.restaurantId,
       shopcart: this.state.shopcart
@@ -87,7 +87,7 @@ class DisplayRestaurant extends React.Component {
 
 
         <div className="checkoutBox">
-          <Grid container justify="center">
+          <Grid container justifyContent="center">
               <Grid item>
                 <Typography variant="h5"><i>Subtotal : $ {this.state.subtotal}</i></Typography>
               </Grid>

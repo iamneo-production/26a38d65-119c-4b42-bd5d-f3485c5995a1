@@ -1,4 +1,4 @@
-package main.java.com.example.springapp.adapter;
+package com.example.springapp.adapter;
 
 
 
@@ -37,5 +37,3 @@ public class LocalDateTimeAdapter extends TypeAdapter<LocalDateTime> {
     return null;
   }
 }
-
-

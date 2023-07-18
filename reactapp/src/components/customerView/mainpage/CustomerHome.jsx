@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
-// import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from '@material-ui/icons/Search';
 import {
   Grid, Typography
 } from '@material-ui/core';
@@ -29,7 +29,7 @@ const CustomerHome = ({ currentUser }) => {
           setRestaurants(temp);
         })
     } else {
-      axios.get("/api/restaurant/all")
+      axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/all")
         .then(response => {
           const temp = response.data.filter(
             restaurant => restaurant.information != null && restaurant.menu != null
@@ -52,7 +52,7 @@ const CustomerHome = ({ currentUser }) => {
 
   return currentUser ? (
     <div>
-      <Grid container justify="center">
+      <Grid container justifyContent="center">
         <Grid>
           <Paper component="form" onSubmit={handleSearch} style={{ width: 500, padding: '2px 4px', display: "flex", marginLeft: '550px' }}>
             <InputBase
@@ -62,7 +62,7 @@ const CustomerHome = ({ currentUser }) => {
               onChange={handleChange}
             />
             <IconButton type="submit" aria-label="search" style={{ marginLeft: '50px' }}>
-              {/* <SearchIcon /> */}Search
+              <SearchIcon />
             </IconButton>
           </Paper>
         </Grid>
@@ -74,7 +74,7 @@ const CustomerHome = ({ currentUser }) => {
           <Typography variant="h4" align='center' style={{ marginLeft: '45%' }}>Top Brands</Typography></div>):<Grid/>}
 
           <div className="cardbody">
-            <Grid container justify="space-evenly" spacing={2}>
+            <Grid container justifyContent="space-evenly" spacing={2}>
               {restaurants && restaurants.length !== 0 ? restaurants.map(restaurant => (
                 <Grid xs={5} key={restaurant.id}>
                   <RestaurantCard userId={currentUser.id} restaurantId={restaurant.id} restaurantInfo={restaurant.information} />

@@ -32,9 +32,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@CrossOrigin(origins="http://localhost:8081")
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/restaurant")
+@RequestMapping("/restaurant")
 public class RestaurantController {
 
   private final RestaurantServiceImpl restaurantService;
@@ -149,8 +149,6 @@ public class RestaurantController {
   public int addDishToMenu(@RequestBody String jsonDish)
       throws UserNotExistException {
     JSONObject dish = new JSONObject(jsonDish);
-    
-   
     long Id = dish.getLong("restaurantId");
     String restaurantId = Id+"";
     String dishName = dish.getString("dishName");
@@ -161,6 +159,7 @@ public class RestaurantController {
     if (res == -1) {
       throw new UserNotExistException("The given restaurant doesn't exist");
     }
+    // handle search engine
     searchEngineService.addRestaurant(dishName, restaurantId);
     return res;
   }
@@ -185,6 +184,28 @@ public class RestaurantController {
     searchEngineService.removeRestaurant(newDish.getDishName(), restaurantId);
     return res;
   }
+
+  @PostMapping(path = "/updateDishPrice")
+public int updateDishPrice(@RequestBody String jsonDish)
+    throws UserNotExistException, DishNotExistException {
+  JSONObject dish = new JSONObject(jsonDish);
+  long restaurantId = dish.getLong("restaurantId");
+  String dishName = dish.getString("dishName");
+  double newPrice = dish.getDouble("newPrice");
+
+  Optional<Restaurant> restaurant = restaurantService.getUser(String.valueOf(restaurantId));
+  if (restaurant.isEmpty()) {
+    throw new UserNotExistException("The given restaurant doesn't exist");
+  }
+
+  int res = restaurantService.updateDishPrice(String.valueOf(restaurantId), dishName, newPrice);
+  if (res == -1) {
+    throw new DishNotExistException("The given dish doesn't exist");
+  }
+  
+  return res;
+}
+
 
   @GetMapping(path = "/information/" + "{id}")
   public RestaurantInfo getRestaurantInformation(@PathVariable("id") String id)

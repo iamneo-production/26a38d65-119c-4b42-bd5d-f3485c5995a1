@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import {
   TextField,
@@ -11,33 +10,38 @@ import {
   Radio,
   RadioGroup,
   FormControlLabel,
+  Snackbar,
 } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import './login.css';
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   root: {
     width: '100%',
     height: '100%',
-    padding: theme.spacing(4),
-    marginTop: theme.spacing(10),
+    padding: '1rem',
+    marginTop: '10rem',
   },
   form: {
     width: '100%',
-    marginTop: theme.spacing(4),
+    marginTop: '1rem',
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: '1rem 0 2rem',
     backgroundColor: '#1a73e8',
     color: '#fff',
     '&:hover': {
       backgroundColor: '#0f64d8',
     },
   },
-}));
+  errorText: {
+    color: 'red',
+  },
+  userTypeLabel: {
+    marginLeft: '200px',
+  },
+};
 
 const Register = ({ changeUser }) => {
-  const classes = useStyles();
   const history = useHistory();
 
   const [userName, setUserName] = useState('');
@@ -51,6 +55,8 @@ const Register = ({ changeUser }) => {
   const [zip, setZip] = useState('');
   const [userType, setUserType] = useState('customer');
   const [registerFailed, setRegisterFailed] = useState('');
+  const [isUsernameTaken, setIsUsernameTaken] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -71,6 +77,17 @@ const Register = ({ changeUser }) => {
     setPasswordDifferent(value !== password);
   };
 
+  const checkUsernameAvailability = () => {
+    axios
+      .get(`https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/customer/username/${userName}`)
+      .then((response) => {
+        setIsUsernameTaken(response.data);
+      })
+      .catch((err) => {
+        setIsUsernameTaken(true);
+      });
+  };
+
   const registerUser = (event) => {
     event.preventDefault();
     if (passwordDifferent) {
@@ -79,7 +96,7 @@ const Register = ({ changeUser }) => {
     }
     setRegisterFailed('');
     axios
-      .post(`http://localhost:8080/api/${userType}/register`, {
+      .post(`https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/${userType}/register`, {
         userName,
         password,
         phoneNumber,
@@ -98,15 +115,21 @@ const Register = ({ changeUser }) => {
       });
   };
 
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    checkUsernameAvailability();
+    registerUser(event);
+  };
+
   return (
-    <Grid container justify="center" style={{ marginBottom: '40px' }}>
+    <Grid container justifyContent="center" style={{ marginBottom: '40px' }}>
       <Grid item xs={12} sm={8} md={6} lg={4}>
         <div className="box">
-          <Paper className={classes.root}>
+          <Paper style={styles.root}>
             <Typography component="h1" variant="h5" align="center">
               Sign Up
             </Typography>
-            <form className={classes.form} noValidate onSubmit={registerUser}>
+            <form style={styles.form} onSubmit={handleFormSubmit}>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <TextField
@@ -120,9 +143,10 @@ const Register = ({ changeUser }) => {
                     autoComplete="username"
                     value={userName}
                     onChange={handleChange}
+                    error={isUsernameTaken}
+                    helperText={isUsernameTaken ? 'Username already exists' : ''}
                   />
                 </Grid>
-
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"
@@ -135,12 +159,15 @@ const Register = ({ changeUser }) => {
                     autoComplete="new-password"
                     value={password}
                     onChange={handleChange}
+                    inputProps={{
+                      pattern: "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}",
+                      title: "Password must contain at least one uppercase letter, one lowercase letter, and one digit. Minimum length is 6 characters.",
+                    }}
                   />
                 </Grid>
-                <Typography variant="body2" color="error">
+                <Typography variant="body2" style={styles.errorText}>
                   {passwordDifferent && <i>Passwords don't match</i>}
                 </Typography>
-
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"
@@ -176,7 +203,7 @@ const Register = ({ changeUser }) => {
                     fullWidth
                     name="phoneNumber"
                     label="Phone number"
-                    type="text"
+                    type="number"
                     id="phoneNumber"
                     autoComplete="tel"
                     value={phoneNumber}
@@ -218,22 +245,16 @@ const Register = ({ changeUser }) => {
                     fullWidth
                     name="zip"
                     label="Zip Code"
-                    type="text"
+                    type="number"
                     id="zip"
                     autoComplete="postal-code"
                     value={zip}
                     onChange={handleChange}
                   />
                 </Grid>
-
-                <Typography
-                  variant="h6"
-                  align="center"
-                  style={{ marginLeft: '200px' }}
-                >
+                <Typography variant="h6" align="center" style={styles.userTypeLabel}>
                   Register as
                 </Typography>
-
                 <FormControl>
                   <RadioGroup
                     row
@@ -260,12 +281,11 @@ const Register = ({ changeUser }) => {
                     />
                   </RadioGroup>
                 </FormControl>
-
                 <Button
                   type="submit"
                   fullWidth
                   variant="contained"
-                  className={classes.submit}
+                  style={styles.submit}
                 >
                   Submit
                 </Button>

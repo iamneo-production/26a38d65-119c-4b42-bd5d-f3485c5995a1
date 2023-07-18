@@ -13,8 +13,12 @@ import org.springframework.stereotype.Service;
 public class CustomerServiceImpl implements UserService<Customer> {
 
   @Autowired
-  CustomerRepository customerRepository;
-  PasswordService passwordService = new PasswordService();
+  private CustomerRepository customerRepository;
+
+  @Autowired
+  private PasswordService passwordService ;
+
+
 
   @Override
   public Customer addUser(String userName, String password, String phoneNumber, String address,
@@ -127,16 +131,4 @@ public class CustomerServiceImpl implements UserService<Customer> {
     return -1;
   }
 
-  private static class PasswordService {
-    // Password-related operations
-    public String generatePassword(String password) {
-      // Implementation logic to generate a password
-      return password;
-    }
-
-    public boolean passwordMatch(String password, String hashedPassword) {
-      // Implementation logic to check if the password matches the hashed password
-      return password.equals(hashedPassword);
-    }
-  }
 }

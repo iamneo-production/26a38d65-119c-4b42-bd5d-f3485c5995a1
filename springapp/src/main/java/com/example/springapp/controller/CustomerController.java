@@ -23,19 +23,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins="http://localhost:8081")
 @RestController
-@RequestMapping("/api/customer")
+@RequestMapping("/customer")
+@CrossOrigin(origins="*")
 public class CustomerController {
   
-  private final CustomerServiceImpl customerService;
-  private final OrderServiceImpl orderService;
-
   @Autowired
-  public CustomerController(CustomerServiceImpl customerService, OrderServiceImpl orderService) {
-    this.customerService = customerService;
-    this.orderService = orderService;
-  }
+  private  CustomerServiceImpl customerService;
+  @Autowired
+  private  OrderServiceImpl orderService;
 
 
   @GetMapping(path = "{id}")
@@ -45,6 +41,12 @@ public class CustomerController {
         .orElseThrow(() -> new UserNotExistException("User doesn't exist"));
   }
 
+
+  @GetMapping(path = "/username/{username}")
+  public boolean doesUsernameExist(@PathVariable("username") String username) {
+    Optional<Customer> customer = customerService.getUserByName(username);
+      return customer.isPresent();
+  }
 
   @PostMapping(path = "/login")
   public Customer loginCustomer(@RequestBody String jsonUser)
@@ -61,7 +63,6 @@ public class CustomerController {
     }
     return customer.get();
   }
-
 
   @PostMapping(path = "/register")
   public Customer registerCustomer(@RequestBody String jsonUser)
@@ -82,13 +83,11 @@ public class CustomerController {
     return customer;
   }
 
- 
   @PostMapping(path = "/logout")
   public int logoutCustomer() {
     System.out.println("logout the user");
     return 1;
   }
-
 
   @GetMapping(path = "/myCart/{id}")
   public List<Order> getShoppingCart(@PathVariable("id") String id)
@@ -99,7 +98,6 @@ public class CustomerController {
     return orderService.customerCart(id);
   }
 
-
   @GetMapping(path = "/myActiveOrders/{id}")
   public List<Order> getActiveOrders(@PathVariable("id") String id)
       throws UserNotExistException {
@@ -109,7 +107,6 @@ public class CustomerController {
     return orderService.customerGetActiveOrders(id);
   }
 
-
   @GetMapping(path = "/myOrderHistory/{id}")
   public List<Order> getOrderHistory(@PathVariable("id") String id)
       throws UserNotExistException {
@@ -118,7 +115,6 @@ public class CustomerController {
     }
     return orderService.customerFindPastOrders(id);
   }
-
 
   @DeleteMapping(path = "{id}")
   public int deleterCustomer(@PathVariable("id") String id)
@@ -136,7 +132,6 @@ public class CustomerController {
   @PostMapping(path = "/resetPassword")
   public int resetPassword(@RequestBody String jsonPassword)
       throws UserNotExistException, PasswordNotMatchException {
-    // Parse the JSON request body
     JSONObject object = new JSONObject(jsonPassword);
     int cid=object.getInt("id");
     String id = cid+"";
@@ -152,7 +147,6 @@ public class CustomerController {
     return res;
   }
 
-
   @PostMapping(path = "/resetPhone")
   public int resetPhoneNumber(@RequestBody String jsonPhone)
       throws UserNotExistException {
@@ -166,7 +160,6 @@ public class CustomerController {
     }
     return res;
   }
-
 
   @PostMapping(path = "/resetAddress")
   public int resetAddress(@RequestBody String jsonAddress)

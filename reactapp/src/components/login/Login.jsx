@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -15,35 +14,30 @@ import {
   FormControl,
 } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   root: {
-    padding: theme.spacing(4),
-    marginTop: theme.spacing(10),
+    padding: '1rem',
+    marginTop: '10rem',
   },
   form: {
     width: '100%',
-    marginTop: theme.spacing(4),
-  },
-  Grid: {
-    marginTop: theme.spacing(4),
+    marginTop: '1rem',
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: '1rem 0',
     backgroundColor: '#1a73e8',
     color: '#fff',
     '&:hover': {
       backgroundColor: '#0f64d8',
     },
   },
-}));
+};
 
 const Login = (props) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [userType, setUserType] = useState('customer');
   const [loginFailed, setLoginFailed] = useState('');
-
-  const classes = useStyles();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -59,10 +53,11 @@ const Login = (props) => {
   const loginUser = (event) => {
     event.preventDefault();
 
-    axios.post("http://localhost:8080/api/" + userType + "/login", { userName, password })
-    .then(response => {
-      props.changeUser(response.data, "login");
-    })
+    axios
+      .post(`https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/${userType}/login`, { userName, password })
+      .then((response) => {
+        props.changeUser(response.data, 'login');
+      })
       .catch((err) => {
         console.log(err.response.data);
         setUserName('');
@@ -71,16 +66,15 @@ const Login = (props) => {
       });
   };
 
-  document.body.style.backgroundImage = 'none';
   return (
-    <Grid container justify="center">
+    <Grid container justifyContent="center">
       <Grid item xs={12} sm={8} md={6} lg={4}>
         <div className="box">
-          <Paper className={classes.root}>
+          <Paper style={styles.root}>
             <Typography component="h1" variant="h5" align="center">
               Sign In
             </Typography>
-            <form className={classes.form} noValidate onSubmit={loginUser}>
+            <form style={styles.form} onSubmit={loginUser}>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <TextField
@@ -128,19 +122,16 @@ const Login = (props) => {
                     <FormControlLabel value="restaurant" control={<Radio />} label="Restaurant" />
                   </RadioGroup>
                 </FormControl>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  className={classes.submit}
-                >
+                <Button type="submit" fullWidth variant="contained" style={styles.submit}>
                   Submit
                 </Button>
               </Grid>
             </form>
+
             {loginFailed && <p>{loginFailed}</p>}
-            <br/>
-            <Link to="/register" style={{ marginLeft: '40px', textDecoration: 'none' }}>
+            <br />
+            <br />
+            <Link to="/register" style={{ marginLeft: '0px', textDecoration: 'none' }}>
               Don't have an account? Sign Up
             </Link>
           </Paper>

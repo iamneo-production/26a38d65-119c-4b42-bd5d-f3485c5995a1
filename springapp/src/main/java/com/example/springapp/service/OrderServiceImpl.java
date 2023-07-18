@@ -21,7 +21,6 @@ public class OrderServiceImpl implements OrderService {
   @Autowired
   OrderRepository orderRepository;
 
-  @Override
   public int addOrderToCart(String customerId, String restaurantId, List<Dish> content) {
     List<Order> currentCart = this.customerCart(customerId);
     for (Order o : currentCart) {

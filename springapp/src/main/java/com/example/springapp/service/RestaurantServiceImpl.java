@@ -17,8 +17,10 @@ import org.springframework.stereotype.Service;
 public class RestaurantServiceImpl implements RestaurantService, UserService<Restaurant> {
 
   @Autowired
-  RestaurantRepository restaurantRepository;
-  PasswordService passwordService = new PasswordService();
+  private RestaurantRepository restaurantRepository;
+
+  @Autowired
+  private PasswordService passwordService ;
 
 
   @Override

@@ -6,14 +6,14 @@ import com.example.springapp.exception.OrderAlreadyDeliverException;
 import com.example.springapp.exception.OrderNotExistException;
 import com.example.springapp.model.Dish;
 import com.example.springapp.model.Order;
-import com.example.springapp.service.OrderService;
+import com.example.springapp.service.OrderServiceImpl;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,19 +27,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
-@CrossOrigin(origins="http://localhost:8081")
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/order")
+@RequestMapping("/order")
 public class OrderController {
 
   @PersistenceContext
   private EntityManager entityManager;
 
-  private final OrderService orderService;
+  private final OrderServiceImpl orderService;
 
   @Autowired
-  public OrderController(OrderService orderService) {
+  public OrderController(OrderServiceImpl orderService) {
     this.orderService = orderService;
   }
 
@@ -57,30 +56,33 @@ public int addOrderToCart(@RequestBody String jsonOrder) {
   JSONArray shopcart = order.getJSONArray("shopcart");
   List<Dish> list = new ArrayList<>();
   Map<Dish, Integer> dishCountMap = new HashMap<>(); 
-  Set<Dish> dishSet = new HashSet<>();
+  Set<Dish> dishSet = new HashSet<>(); 
 
   for (Object object : shopcart) {
     Dish dish = gson.fromJson(object.toString(), Dish.class);
 
-  
     dishCountMap.put(dish, dishCountMap.getOrDefault(dish, 0) + 1);
+
     if (!dishSet.contains(dish)) {
       Dish mergedDish = entityManager.merge(dish); 
       list.add(mergedDish);
       dishSet.add(dish);
     }
   }
+
+  
   for (Map.Entry<Dish, Integer> entry : dishCountMap.entrySet()) {
     Dish dish = entry.getKey();
     int count = entry.getValue();
 
     for (int i = 0; i < count - 1; i++) {
-      if (!list.contains(dish)) { 
+      if (!list.contains(dish)) {
         Dish mergedDish = entityManager.merge(dish); 
         list.add(mergedDish);
       }
     }
   }
+
   return orderService.addOrderToCart(customerId, restaurantId, list);
 }
 

@@ -10,15 +10,12 @@ import java.util.Optional;
 
 @Service
 public class DriverServiceImpl implements UserService<Driver> {
-
-  private final DriverRepository driverRepository;
-  private final PasswordService passwordService;
+  
+  @Autowired
+  private DriverRepository driverRepository;
 
   @Autowired
-  public DriverServiceImpl(DriverRepository driverRepository, PasswordService passwordService) {
-    this.driverRepository = driverRepository;
-    this.passwordService = passwordService;
-  }
+  private  PasswordService passwordService;
 
   @Override
   public Driver addUser(String userName, String password, String phoneNumber, String address,

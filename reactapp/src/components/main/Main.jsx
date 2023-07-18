@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TopBar from '../topbar/Topbar';
 import Login from '../login/Login';
 import Register from '../register/Register';
@@ -10,110 +10,97 @@ import {
   Grid
 } from '@material-ui/core';
 import './Main.css';
-const axios = require('axios').default;
+import axios from 'axios';
 
-class Main extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userId: sessionStorage.getItem("userId"),
-      userType: sessionStorage.getItem("userType"),
-      currentUser: undefined,
-      view: "Home"
-    }
-    this.getCurrentUser = this.getCurrentUser.bind(this);
-    this.changeUser = this.changeUser.bind(this);
-    this.changeView = this.changeView.bind(this);
-  }
+const Main = () => {
+  const [userId, setUserId] = useState(sessionStorage.getItem("userId"));
+  const [userType, setUserType] = useState(sessionStorage.getItem("userType"));
+  const [currentUser, setCurrentUser] = useState(undefined);
+  const [view, setView] = useState("Home");
 
-  componentDidMount() {
-    this.getCurrentUser();
-  }
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
 
-  getCurrentUser() {
-    if (this.state.userId && this.state.userType) {
-      axios.get("/api/" + this.state.userType + "/" + this.state.userId).then(
+  const getCurrentUser = () => {
+    if (userId && userType) {
+      axios.get(`/api/${userType}/${userId}`).then(
         response => {
-          this.setState({currentUser: response.data})
+          setCurrentUser(response.data);
         }
       ).catch(err => console.log(err));
     }
   }
 
-  changeUser(newUser, action) {
-    this.setState({currentUser: newUser});
+  const changeUser = (newUser, action) => {
+    setCurrentUser(newUser);
     if (action === "login") {
-      this.setState({userId: newUser.id, userType: newUser.type});
+      setUserId(newUser.id);
+      setUserType(newUser.type);
       sessionStorage.setItem("userId", newUser.id);
       sessionStorage.setItem("userType", newUser.type);
     } else if (action === "logout") {
       sessionStorage.clear();
-      this.setState({userId: undefined, userType: undefined});
+      setUserId(undefined);
+      setUserType(undefined);
     }
   }
 
-  changeView(type) {
-    this.setState({view: type + "'s View"});
+  const changeView = (type) => {
+    setView(`${type}'s View`);
   }
 
-  render() {
-    return (
-      <Router>
-        <Grid container justify="flex-start">
-          <Grid item xs={12}>
-          </Grid>
-          <Grid item xs={12}>
-            <div className="grid-main">
-            <Switch>
-                {this.state.userType && this.state.userType === "customer" ? (
-            <TopBar changeUser={this.changeUser} view={this.state.view} currentUser={this.state.currentUser}  userType={this.state.userType}/>
-                  
-                ) : (  ""
-                )}
-                {this.state.userType && this.state.userType === "driver" ? (
-            <TopBar changeUser={this.changeUser} view={this.state.view} currentUser={this.state.currentUser} userType={this.state.userType}/>
-            ) : (""
-                )}
-                {this.state.userType && this.state.userType === "restaurant" ? (
-            <TopBar changeUser={this.changeUser} view={this.state.view} currentUser={this.state.currentUser}  userType={this.state.userType}/>
-            ) : (""
-                )}
-
-              </Switch>
-              <Switch>
-                {this.state.userType && this.state.userType === "customer" ? (
-                  <Route path="/customer" render={props => <CustomerView {...props} currentUser={this.state.currentUser} changeView={this.changeView}  />} />
-                ) : (
-                  <Redirect path="/customer" to="/login" />
-                )}
-                {this.state.userType && this.state.userType === "driver" ? (
-                  <Route path="/driver" render={props => <DriverView {...props} currentUser={this.state.currentUser} changeView={this.changeView} />} />
-                ) : (
-                  <Redirect path="/driver" to="/login" />
-                )}
-                {this.state.userType && this.state.userType === "restaurant" ? (
-                  <Route path="/restaurant" render={props => <RestaurantView {...props} currentUser={this.state.currentUser} changeView={this.changeView} />} />
-                ) : (
-                  <Redirect path="/restaurant" to="/login" />
-                )}
-                {!this.state.userType ? (
-                  <Route path="/login" render={props => <Login {...props} changeUser={this.changeUser} />} />
-                ) : (
-                  <Redirect path="/login" to={"/" + this.state.userType} />
-                )}
-                {!this.state.userType ? (
-                  <Route path="/register" render={props => <Register {...props} changeUser={this.changeUser} />} />
-                ) : (
-                  <Redirect path="/register" to={"/" + this.state.userType} />
-                )}
-                <Redirect path="/" to={"/login"} />
-              </Switch>
-            </div>
-          </Grid>
+  return (
+    <Router>
+      <Grid container justifyContent="flex-start">
+        <Grid item xs={12}>
         </Grid>
-      </Router>
-    );
-  }
+        <Grid item xs={12}>
+          <div className="grid-main">
+            <Switch>
+              {userType && userType === "customer" && (
+                <TopBar changeUser={changeUser} view={view} currentUser={currentUser} userType={userType} />
+              )}
+              {userType && userType === "driver" && (
+                <TopBar changeUser={changeUser} view={view} currentUser={currentUser} userType={userType} />
+              )}
+              {userType && userType === "restaurant" && (
+                <TopBar changeUser={changeUser} view={view} currentUser={currentUser} userType={userType} />
+              )}
+            </Switch>
+            <Switch>
+              {userType && userType === "customer" ? (
+                <Route path="/customer" render={props => <CustomerView {...props} currentUser={currentUser} changeView={changeView} />} />
+              ) : (
+                <Redirect path="/customer" to="/login" />
+              )}
+              {userType && userType === "driver" ? (
+                <Route path="/driver" render={props => <DriverView {...props} currentUser={currentUser} changeView={changeView} />} />
+              ) : (
+                <Redirect path="/driver" to="/login" />
+              )}
+              {userType && userType === "restaurant" ? (
+                <Route path="/restaurant" render={props => <RestaurantView {...props} currentUser={currentUser} changeView={changeView} />} />
+              ) : (
+                <Redirect path="/restaurant" to="/login" />
+              )}
+              {!userType ? (
+                <Route path="/login" render={props => <Login {...props} changeUser={changeUser} />} />
+              ) : (
+                <Redirect path="/login" to={`/${userType}`} />
+              )}
+              {!userType ? (
+                <Route path="/register" render={props => <Register {...props} changeUser={changeUser} />} />
+              ) : (
+                <Redirect path="/register" to={`/${userType}`} />
+              )}
+              <Redirect path="/" to="/login" />
+            </Switch>
+          </div>
+        </Grid>
+      </Grid>
+    </Router>
+  );
 }
 
 export default Main;

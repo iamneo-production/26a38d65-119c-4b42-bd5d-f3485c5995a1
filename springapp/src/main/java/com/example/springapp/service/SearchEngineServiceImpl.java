@@ -18,7 +18,7 @@ public class SearchEngineServiceImpl implements SearchEngineService {
 
     @Override
     public void addRestaurant(String word, String restaurantId) {
-        long number=1;
+        long number=Long.parseLong(restaurantId);
         Optional<SearchEngine> optionalSearchEngine = searchEngineRepository.findById(number);
         if (optionalSearchEngine.isEmpty()) return;
         SearchEngine searchEngine = optionalSearchEngine.get();
@@ -38,7 +38,7 @@ public class SearchEngineServiceImpl implements SearchEngineService {
 
     @Override
     public void removeRestaurant(String word, String restaurantId) {
-        long number=1;
+        long number=Long.parseLong(restaurantId);
         Optional<SearchEngine> optionalSearchEngine = searchEngineRepository.findById(number);
         if (optionalSearchEngine.isEmpty()) return;
         SearchEngine searchEngine = optionalSearchEngine.get();
@@ -54,7 +54,7 @@ public class SearchEngineServiceImpl implements SearchEngineService {
         this.removeRestaurant(info.getTag3(), restaurantId);
     }
 
-    @Override
+    
     public void eraseDishes(List<Dish> dishes, String restaurantId) {
         for (Dish dish : dishes) {
             this.removeRestaurant(dish.getDishName(), restaurantId);

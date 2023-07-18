@@ -29,7 +29,7 @@ class PendingOrders extends React.Component {
   }
 
   getActiveOrder() {
-    axios.get("/api/driver/myActiveOrder/" + this.props.currentUser.id).then(
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/api/driver/myActiveOrder/" + this.props.currentUser.id).then(
       response => {
         this.setState({order: response.data});
       }
@@ -39,7 +39,7 @@ class PendingOrders extends React.Component {
   render() {
     return this.props.currentUser && this.state.order ? (
       <div className= 'styling'>
-        <Grid container justify="space-evenly" spacing={3}>
+        <Grid container justifyContent="space-evenly" spacing={3}>
           <Grid item xs={5}>
             <OrderCard order={this.state.order} userType={this.props.currentUser.type} getOrders={this.getActiveOrder} />
           </Grid>

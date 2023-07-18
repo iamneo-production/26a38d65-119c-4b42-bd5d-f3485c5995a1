@@ -18,6 +18,7 @@ class RestaurantView extends React.Component {
   render() {
     return this.props.currentUser ? (
       <Router>
+            {/* <RestaurantBar /> */}
               <Switch>
                 <Route path="/restaurant/home" render={props => <RestaurantHome {...props} currentUser={this.props.currentUser} />} />
                 <Route path="/restaurant/information" render={props => <RestaurantInfo {...props} currentUser={this.props.currentUser} />} />

@@ -21,7 +21,7 @@ class RestaurantMenu extends React.Component {
   }
 
   getAllDishes() {
-    axios.get("/api/restaurant/menu/" + this.props.currentUser.id).then(
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/menu/" + this.props.currentUser.id).then(
       response => {
         this.setState({menu: response.data});
       }
