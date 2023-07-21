@@ -308,8 +308,4 @@ public int updateRestaurantInformation(@RequestBody String jsonInfo)
   public String handleException(Exception e) {
     return e.getMessage();
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
