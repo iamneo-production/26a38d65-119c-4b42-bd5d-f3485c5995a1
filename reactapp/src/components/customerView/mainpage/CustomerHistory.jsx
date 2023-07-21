@@ -17,7 +17,7 @@ class CustomerHistory extends React.Component {
   }
 
   getPastOrders() {
-    axios.get("http://localhost:8080/customer/myOrderHistory/" + this.props.currentUser.id).then(
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/customer/myOrderHistory/" + this.props.currentUser.id).then(
       response => {
         this.setState({orders: response.data});
       }

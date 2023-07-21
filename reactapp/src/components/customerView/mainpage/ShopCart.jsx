@@ -19,7 +19,7 @@ class ShopCart extends React.Component {
   }
 
   getCartOrders() {
-    axios.get("/api/customer/myCart/" + this.props.currentUser.id).then(
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/customer/myCart/" + this.props.currentUser.id).then(
       response => {
         this.setState({orders: response.data});
       }
@@ -27,7 +27,7 @@ class ShopCart extends React.Component {
   }
 
   checkout() {
-    axios.post("/api/order/checkoutAll", {orders: this.state.orders}).then(
+    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/order/checkoutAll", {orders: this.state.orders}).then(
       response => {
         this.getCartOrders();
       }

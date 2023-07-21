@@ -25,7 +25,7 @@ const Main = () => {
 
   const getCurrentUser = () => {
     if (userId && userType) {
-      axios.get(`http://localhost:8080/${userType}/${userId}`).then(
+      axios.get(`https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/${userType}/${userId}`).then(
         response => {
           setCurrentUser(response.data);
         }
@@ -83,9 +83,9 @@ const Main = () => {
                 <Redirect from="/restaurant" to="/login" />
               )}
               {/* Route for /welcome */}
-              <Route path="/welcome">
+              {/* <Route path="/welcome">
                 <Welcome />
-              </Route>
+              </Route> */}
               {/* Route for /login */}
               {!userType ? (
                 <Route path="/login">
@@ -103,7 +103,7 @@ const Main = () => {
                 <Redirect from="/register" to={`/${userType}`} />
               )}
               {/* Redirect for the root URL */}
-              <Redirect exact from="/" to="/welcome" />
+              <Redirect exact from="/" to="/login" />
             </Switch>
           </div>
         </Grid>

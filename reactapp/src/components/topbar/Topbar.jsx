@@ -27,7 +27,7 @@ const Topbar = (props) => {
   const logoutUser = () => {
     const type = props.currentUser.type;
     props.changeUser(undefined, "logout");
-    axios.post("http://localhost:8080/" + type + "/logout", {}).then(
+    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/" + type + "/logout", {}).then(
       () => {
         console.log("Successfully log out");
       }

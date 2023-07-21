@@ -17,7 +17,7 @@ class CustomerOrder extends React.Component {
   }
 
   getActiveOrders() {
-    axios.get("http://localhost:8080/customer/myActiveOrders/" + this.props.currentUser.id).then(
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/customer/myActiveOrders/" + this.props.currentUser.id).then(
       response => {
         this.setState({orders: response.data});
       }

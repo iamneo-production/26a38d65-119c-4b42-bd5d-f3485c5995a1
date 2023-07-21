@@ -26,7 +26,7 @@ const RestaurantCard = (props) => {
   const [maxSteps, setMaxSteps] = useState(0);
 
   const findComments = () => {
-    axios.get("http://localhost:8080/restaurant/getComments/" + props.restaurantId)
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/getComments/" + props.restaurantId)
       .then(response => {
         setComments(response.data);
         setMaxSteps(response.data.length);

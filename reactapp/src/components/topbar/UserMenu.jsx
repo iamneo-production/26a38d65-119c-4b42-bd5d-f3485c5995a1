@@ -154,7 +154,7 @@ const UserMenu = (props) => {
   const dropAccount = (event) => {
     event.preventDefault();
     let type = props.currentUser.type;
-    axios.delete("http://localhost:8080/" + type + "/" + props.currentUser.id).then(
+    axios.delete("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/" + type + "/" + props.currentUser.id).then(
       response => {
         closeWarn();
         logout();
@@ -169,7 +169,7 @@ const UserMenu = (props) => {
   const resetPassword = (event) => {
     event.preventDefault();
     let type = props.currentUser.type;
-    axios.post("http://localhost:8080/" + type + "/resetPassword", {
+    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/" + type + "/resetPassword", {
       id: props.currentUser.id,
       password: oldPassword,
       newPassword: newPassword
@@ -187,7 +187,7 @@ const UserMenu = (props) => {
   const resetPhone = (event) => {
     event.preventDefault();
     let type = props.currentUser.type;
-    axios.post("http://localhost:8080/" + type + "/resetPhone", {
+    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/" + type + "/resetPhone", {
       id: props.currentUser.id,
       phoneNumber: phoneNumber
     }).then(
@@ -203,7 +203,7 @@ const UserMenu = (props) => {
   const resetAddress = (event) => {
     event.preventDefault();
     let type = props.currentUser.type;
-    axios.post("http://localhost:8080/" + type + "/resetAddress", {
+    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/" + type + "/resetAddress", {
       id: props.currentUser.id,
       address: address,
       city: city,

@@ -77,7 +77,7 @@ class OrderCard extends React.Component {
   }
 
   orderInfo() {
-    axios.get("http://localhost:8080/restaurant/" + this.props.order.restaurantId).then(
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/" + this.props.order.restaurantId).then(
       response => {
         this.setState({restaurant: response.data});
         let resAddress = response.data.address + "," + response.data.city;
@@ -92,7 +92,7 @@ class OrderCard extends React.Component {
         );
       }
     ).catch(err => console.log(err));
-    axios.get("http://localhost:8080/customer/" + this.props.order.customerId).then(
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/customer/" + this.props.order.customerId).then(
       response => {
         this.setState({customer: response.data});
         let cusAddress = response.data.address + "," + response.data.city;
@@ -108,7 +108,7 @@ class OrderCard extends React.Component {
       }
     ).catch(err => console.log(err));
     if (this.props.order.driverId) {
-      axios.get("http://localhost:8080/driver/" + this.props.order.driverId).then(
+      axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/driver/" + this.props.order.driverId).then(
         response => {
           this.setState({driver: response.data});
         }
@@ -117,7 +117,7 @@ class OrderCard extends React.Component {
   }
 
   deleteOrder() {
-    axios.delete("http://localhost:8080/order/" + this.props.order.id).then(
+    axios.delete("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/order/" + this.props.order.id).then(
       response => {
         this.props.getOrders();
       }
@@ -125,7 +125,7 @@ class OrderCard extends React.Component {
   }
 
   acceptOrder() {
-    axios.post("http://localhost:8080/driver/accept", {
+    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/driver/accept", {
       orderId : this.props.order.id,
       driverId : sessionStorage.getItem("userId")
     }).then(
@@ -136,7 +136,7 @@ class OrderCard extends React.Component {
   }
 
   finishOrder() {
-    axios.post("http://localhost:8080/driver/finish", {
+    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/driver/finish", {
       orderId : this.props.order.id
     }).then(
       response => {
@@ -146,7 +146,7 @@ class OrderCard extends React.Component {
   }
 
   deleteComment() {
-    axios.delete("http://localhost:8080/order/deleteComment/" + this.props.order.id).then(
+    axios.delete("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/order/deleteComment/" + this.props.order.id).then(
       response => {
         this.props.getOrders();
       }
@@ -154,7 +154,7 @@ class OrderCard extends React.Component {
   }
 
   addComment() {
-    axios.post("http://localhost:8080/order/addComment", {
+    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/order/addComment", {
       orderId : this.props.order.id,
       rating : this.state.rating,
       content : this.state.comment

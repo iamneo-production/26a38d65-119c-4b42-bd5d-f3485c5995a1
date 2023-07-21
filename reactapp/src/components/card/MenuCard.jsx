@@ -84,7 +84,7 @@ class MenuCard extends React.Component {
 
 
   // removeDish() {
-  //   axios.post("http://localhost:8080/restaurant/removeDish", {
+  //   axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/removeDish", {
   //     restaurantId : this.props.currentUser.id,
   //     dish : this.props.dish
   //   }).then(
@@ -95,7 +95,7 @@ class MenuCard extends React.Component {
   // }
 
   removeDish() {
-    axios.delete(`http://localhost:8080/restaurant/removeDish/${this.props.currentUser.id}/${this.props.dish.id}`)
+    axios.delete(`https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/removeDish/${this.props.currentUser.id}/${this.props.dish.id}`)
       .then(response => {
         this.props.getAllDishes();
       })

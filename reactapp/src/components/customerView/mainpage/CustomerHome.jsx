@@ -20,7 +20,7 @@ const CustomerHome = ({ currentUser }) => {
 
   const findRestaurants = (query) => {
     if (query !== undefined && query !== "") {
-      axios.get("http://localhost:8080/restaurant/all")
+      axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/all")
         .then(response => {
           const temp = response.data.filter(
             restaurant => restaurant.information.restaurantName===searchText
@@ -29,7 +29,7 @@ const CustomerHome = ({ currentUser }) => {
           setRestaurants(temp);
         })
     } else {
-      axios.get("http://localhost:8080/restaurant/all")
+      axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/all")
         .then(response => {
           const temp = response.data.filter(
             restaurant => restaurant.information != null && restaurant.menu != null

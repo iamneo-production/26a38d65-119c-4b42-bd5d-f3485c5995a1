@@ -17,7 +17,7 @@ class DriverHome extends React.Component {
   }
 
   getPendingOrders() {
-    axios.get("http://localhost:8080/driver/pendingOrders/" + this.props.currentUser.id).then(
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/driver/pendingOrders/" + this.props.currentUser.id).then(
       response => {
         this.setState({orders: response.data});
       }

@@ -81,7 +81,7 @@ const Register = ({ changeUser }) => {
 
   const checkUsernameAvailability = () => {
     axios
-      .get(`http://localhost:8080/customer/username/${userName}`)
+      .get(`https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/customer/username/${userName}`)
       .then((response) => {
         setIsUsernameTaken(response.data);
       })
@@ -98,7 +98,7 @@ const Register = ({ changeUser }) => {
     }
     setRegisterFailed('');
     axios
-      .post(`http://localhost:8080/${userType}/register`, {
+      .post(`https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/${userType}/register`, {
         userName,
         password,
         phoneNumber,
@@ -125,10 +125,9 @@ const Register = ({ changeUser }) => {
 
   return (
     <Grid container justifyContent="center">
-      {/* <Grid item xs={12} sm={8} md={6} lg={4}> */}
+
       <Grid item xs={7} justifyContent="center" alignItems="center">
         <div className="box">
-          {/* <Paper style={styles.root}> */}
             <Typography component="h1" variant="h5" align="center">
               Sign Up
             </Typography>
@@ -295,11 +294,10 @@ const Register = ({ changeUser }) => {
                 </Button>
               </Grid>
             </form>
-          {/* </Paper> */}
         </div>
       </Grid>
-      <Grid item xs={5} container style={{marginBottom:"100px"}}>
-            <img style={{marginBottom:"100px"}} alt="restuarant" height="675" width="630" src="https://images.pexels.com/photos/541216/pexels-photo-541216.jpeg?auto=compress&cs=tinysrgb&w=600"/>
+      <Grid item xs={5} container>
+            <img alt="restuarant" height="660" width="630" src="https://images.pexels.com/photos/541216/pexels-photo-541216.jpeg?auto=compress&cs=tinysrgb&w=600"/>
       </Grid>
     </Grid>
   );

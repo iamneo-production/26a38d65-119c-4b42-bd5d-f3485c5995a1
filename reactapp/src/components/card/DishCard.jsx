@@ -30,7 +30,7 @@ const DishCard = (props) => {
 
   const removeDish = () => {
     axios
-      .post('http://localhost:8080/restaurant/removeDish', {
+      .post('https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/removeDish', {
         restaurantId: props.currentUser.id,
         dish: props.dish,
       })

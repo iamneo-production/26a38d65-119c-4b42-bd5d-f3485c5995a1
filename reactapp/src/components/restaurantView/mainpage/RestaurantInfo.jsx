@@ -29,7 +29,7 @@ class RestaurantInfo extends React.Component {
 
   getInformation() {
     let restaurantId = this.props.currentUser.id;
-    axios.get("http://localhost:8080/restaurant/information/" + restaurantId).then(
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/information/" + restaurantId).then(
       response => {
         this.setState({
           information : response.data,
@@ -47,7 +47,7 @@ class RestaurantInfo extends React.Component {
 
   updateInformation(event) {
     event.preventDefault();
-    axios.post("http://localhost:8080/restaurant/information/", {
+    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/information/", {
       restaurantId : this.props.currentUser.id,
       status : this.state.status === "open" ? true : false,
       name : this.state.name,

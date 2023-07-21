@@ -26,7 +26,7 @@ class DisplayRestaurant extends React.Component {
   }
 
   getRestaurant() {
-    axios.get("http://localhost:8080/restaurant/" + this.state.restaurantId).then(
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/" + this.state.restaurantId).then(
       response => {
         this.setState({restaurant: response.data});
       }
@@ -45,7 +45,7 @@ class DisplayRestaurant extends React.Component {
   }
 
   addToCart() {
-    axios.post("http://localhost:8080/order/addToCart", {
+    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/order/addToCart", {
       customerId: this.props.currentUser.id,
       restaurantId: this.state.restaurantId,
       shopcart: this.state.shopcart

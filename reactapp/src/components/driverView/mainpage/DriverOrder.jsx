@@ -17,7 +17,7 @@ class DriverOrder extends React.Component {
   }
 
   getActiveOrder() {
-    axios.get("http://localhost:8080/driver/myActiveOrder/" + this.props.currentUser.id).then(
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/driver/myActiveOrder/" + this.props.currentUser.id).then(
       response => {
         this.setState({order: response.data});
       }

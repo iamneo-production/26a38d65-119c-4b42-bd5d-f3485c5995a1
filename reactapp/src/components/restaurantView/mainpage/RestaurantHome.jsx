@@ -19,7 +19,7 @@ class RestaurantHome extends React.Component {
 
   getRestaurant() {
     let restaurantId = this.props.currentUser.id;
-    axios.get("http://localhost:8080/restaurant/" + restaurantId).then(
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/" + restaurantId).then(
       response => {
         this.setState({restaurant : response.data});
       }
