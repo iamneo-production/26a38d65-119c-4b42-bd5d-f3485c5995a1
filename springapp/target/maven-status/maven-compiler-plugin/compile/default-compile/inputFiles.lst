@@ -1,59 +1,27 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/SpringappApplication.java
-<<<<<<< HEAD
-=======
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Restaurant.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/RestaurantRepository.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/RestaurantController.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/RestaurantService.java
->>>>>>> ef4759bcb382ee555b2b01a7b42934318819102b
-=======
-=======
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/UserService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/SearchEngineRepository.java
->>>>>>> Food-Ordering-and-Delivery-Application-malli172
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/SpringappApplication.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/RestaurantsController.java
-=======
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/SearchEngineRepository.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/UserService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/RestaurantsController.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/SpringappApplication.java
->>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/UserNotExistException.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/CustomerRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/RestaurantController.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/DriverController.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/DriverServiceImpl.java
-<<<<<<< HEAD
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Comment.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/OrdersController.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/PasswordService.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/CustomerController.java
-=======
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/OrdersController.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Comment.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/CustomerController.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/PasswordService.java
->>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/RestaurantInfo.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/PasswordNotMatchException.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/User.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/CommentAlreadyExistException.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/adapter/LocalDateTimeAdapter.java
-<<<<<<< HEAD
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/OrderServiceImpl.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/UserAlreadyExistException.java
-=======
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/UserAlreadyExistException.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/OrderServiceImpl.java
->>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/MenuItem.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Customer.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/OrderRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/OrderAlreadyCheckoutException.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/OrderRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/SearchEngine.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/MenuItemController.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Restaurants.java
@@ -62,13 +30,8 @@
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/MenuItemRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Orders.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/SearchEngineServiceImpl.java
-<<<<<<< HEAD
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Restaurant.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Dish.java
-=======
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Dish.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Restaurant.java
->>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/RestaurantRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/OrderAlreadyDeliverException.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Driver.java
@@ -76,7 +39,6 @@
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Order.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/OrderAlreadyFinishException.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/OrdersRepository.java
-<<<<<<< HEAD
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/RestaurantService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/CustomerService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/OrderNotFinishedException.java
@@ -86,21 +48,4 @@
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/OrderController.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/OrderService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/MenuItemService.java
-<<<<<<< HEAD
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Order.java
->>>>>>> Food-Ordering-and-Delivery-Application-malli172
-=======
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/DriverRepository.java
->>>>>>> Food-Ordering-and-Delivery-Application-malli172
-=======
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/CustomerService.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/RestaurantService.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/OrderNotFinishedException.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/SearchEngineService.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/RestaurantsRepository.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/AddressService.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/OrderController.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/OrderService.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/DriverRepository.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/MenuItemService.java
->>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

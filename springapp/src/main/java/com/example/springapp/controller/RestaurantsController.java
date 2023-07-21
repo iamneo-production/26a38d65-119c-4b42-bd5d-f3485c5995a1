@@ -31,9 +31,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins="http://localhost:8081")
+
+
 @RestController
-@RequestMapping("/api/restaurant")
+@RequestMapping("/restaurant")
+@CrossOrigin(origins="*")
 public class RestaurantsController {
 
   private final RestaurantServiceImpl restaurantService;
@@ -110,6 +112,19 @@ public class RestaurantsController {
     }
     return restaurant;
   }
+
+  @GetMapping(path = "/allDishes")
+public List<Dish> getAllDishesFromAllRestaurants() {
+  List<Dish> allDishes = new ArrayList<>();
+  List<Restaurants> restaurants = restaurantService.getUsers();
+
+  for (Restaurants restaurant : restaurants) {
+    List<Dish> dishes = restaurantService.getAllDishes(restaurant.getId()+"");
+    allDishes.addAll(dishes);
+  }
+
+  return allDishes;
+}
 
   @PostMapping(path = "/logout")
   public int logoutRestaurant() {

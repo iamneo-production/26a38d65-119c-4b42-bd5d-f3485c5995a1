@@ -7,9 +7,5 @@ import com.example.springapp.model.Restaurants;
 @Repository
 public interface RestaurantsRepository extends JpaRepository<Restaurants, Long> {
 
-<<<<<<< HEAD
-}
-=======
 }
 
->>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

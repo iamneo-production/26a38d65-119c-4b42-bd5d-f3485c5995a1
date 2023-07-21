@@ -1,33 +1,8 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-package com.example.springapp.service;
 
-import com.example.springapp.model.Dish;
-import com.example.springapp.model.RestaurantInfo;
-import java.util.List;
-
-public interface RestaurantService {
-
-  int addDish(String id, Dish dish);
-
-  int removeDish(String id, Dish dish);
-
-  List<Dish> getAllDishes(String id);
-
-  RestaurantInfo getInformation(String id);
-
-  int updateInfo(String id, RestaurantInfo info);
-}
-=======
 package com.example.springapp.service;
 
 import org.springframework.stereotype.Service;
 
-=======
-package com.example.springapp.service;
-
-import org.springframework.stereotype.Service;
->>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
 import com.example.springapp.model.Restaurant;
 import com.example.springapp.repository.RestaurantRepository;
 
@@ -62,9 +37,4 @@ public class RestaurantService {
     public Restaurant findByRestaurantName(String name) {
         return restaurantRepository.findByRestaurantName(name);
     }
-<<<<<<< HEAD
 }
->>>>>>> Food-Ordering-and-Delivery-Application-malli172
-=======
-}
->>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002

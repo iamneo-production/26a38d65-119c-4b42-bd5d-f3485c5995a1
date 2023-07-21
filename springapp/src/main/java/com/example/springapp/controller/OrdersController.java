@@ -28,9 +28,10 @@ import java.util.HashMap;
 import java.util.List;
 
 
-@CrossOrigin(origins="http://localhost:8081")
+
 @RestController
-@RequestMapping("/api/order")
+@RequestMapping("/order")
+@CrossOrigin(origins="*")
 public class OrdersController {
 
   @PersistenceContext
@@ -155,8 +156,4 @@ public int addOrderToCart(@RequestBody String jsonOrder) {
   public String handleException(Exception e) {
     return e.getMessage();
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> Food-Ordering-and-Delivery-Application-anjalisingh11062002
