@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-// import ClearIcon from '@material-ui/icons/Clear';
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ClearIcon from '@material-ui/icons/Clear';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Geocode from "react-geocode";
 import {
   Typography,
@@ -16,7 +16,7 @@ import {
   TextField
       } from "@material-ui/core";
 import Rating from '@material-ui/lab/Rating';
-// import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@material-ui/icons/Delete';
 import "./Card.css";
 import MapCard from "./MapCard";
 const axios = require('axios').default;
@@ -77,7 +77,7 @@ class OrderCard extends React.Component {
   }
 
   orderInfo() {
-    axios.get("/api/restaurant/" + this.props.order.restaurantId).then(
+    axios.get("http://localhost:8080/restaurant/" + this.props.order.restaurantId).then(
       response => {
         this.setState({restaurant: response.data});
         let resAddress = response.data.address + "," + response.data.city;
@@ -92,7 +92,7 @@ class OrderCard extends React.Component {
         );
       }
     ).catch(err => console.log(err));
-    axios.get("/api/customer/" + this.props.order.customerId).then(
+    axios.get("http://localhost:8080/customer/" + this.props.order.customerId).then(
       response => {
         this.setState({customer: response.data});
         let cusAddress = response.data.address + "," + response.data.city;
@@ -108,7 +108,7 @@ class OrderCard extends React.Component {
       }
     ).catch(err => console.log(err));
     if (this.props.order.driverId) {
-      axios.get("/api/driver/" + this.props.order.driverId).then(
+      axios.get("http://localhost:8080/driver/" + this.props.order.driverId).then(
         response => {
           this.setState({driver: response.data});
         }
@@ -117,7 +117,7 @@ class OrderCard extends React.Component {
   }
 
   deleteOrder() {
-    axios.delete("/api/order/" + this.props.order.id).then(
+    axios.delete("http://localhost:8080/order/" + this.props.order.id).then(
       response => {
         this.props.getOrders();
       }
@@ -125,7 +125,7 @@ class OrderCard extends React.Component {
   }
 
   acceptOrder() {
-    axios.post("/api/driver/accept", {
+    axios.post("http://localhost:8080/driver/accept", {
       orderId : this.props.order.id,
       driverId : sessionStorage.getItem("userId")
     }).then(
@@ -136,7 +136,7 @@ class OrderCard extends React.Component {
   }
 
   finishOrder() {
-    axios.post("/api/driver/finish", {
+    axios.post("http://localhost:8080/driver/finish", {
       orderId : this.props.order.id
     }).then(
       response => {
@@ -146,7 +146,7 @@ class OrderCard extends React.Component {
   }
 
   deleteComment() {
-    axios.delete("/api/order/deleteComment/" + this.props.order.id).then(
+    axios.delete("http://localhost:8080/order/deleteComment/" + this.props.order.id).then(
       response => {
         this.props.getOrders();
       }
@@ -154,7 +154,7 @@ class OrderCard extends React.Component {
   }
 
   addComment() {
-    axios.post("/api/order/addComment", {
+    axios.post("http://localhost:8080/order/addComment", {
       orderId : this.props.order.id,
       rating : this.state.rating,
       content : this.state.comment
@@ -178,8 +178,7 @@ class OrderCard extends React.Component {
             <i><b>Order from {this.state.restaurant.information.restaurantName}</b></i>
             {this.props.userType === "customer" && !this.props.order.delivery ? (
               <IconButton size="small" style={{position : "absolute", right : "0"}} onClick={this.deleteOrder}>
-                {/* <ClearIcon /> */}
-                Clear
+                <ClearIcon />
               </IconButton>
             ) : null}
           </Typography>
@@ -216,8 +215,7 @@ class OrderCard extends React.Component {
             aria-expanded={this.state.expanded}
           >
           <Typography><b>Check Order Status</b></Typography>
-            {/* <ExpandMoreIcon /> */}
-            Expand
+            <ExpandMoreIcon />
           </IconButton>
           <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
             <CardContent>
@@ -250,8 +248,7 @@ class OrderCard extends React.Component {
                   <Rating name="read-only" value={this.props.order.comment.rating} readOnly />
                   <Typography color="textSecondary" variant="body2"><i>{this.props.order.comment.content}</i></Typography>
                   <IconButton onClick={this.deleteComment}>
-                    {/* <DeleteIcon /> */}
-                    Delete
+                    <DeleteIcon />
                   </IconButton>
                 </Box>
               ) : null}

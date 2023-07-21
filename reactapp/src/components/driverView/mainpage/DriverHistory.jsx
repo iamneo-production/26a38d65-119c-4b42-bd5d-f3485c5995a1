@@ -1,18 +1,7 @@
 import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
-import './DriverHomes.css';
 import OrderCard from "../../card/OrderCard";
 const axios = require('axios').default;
-
-// const styles = {
-//   container: {
-//     display: 'flex',
-//     justifyContent: 'flex-end',
-//     alignItems: 'center',
-//     minHeight: '100vh',
-//     paddingRight: '20px',
-//   },
-// };
 
 class DriverHistory extends React.Component {
   constructor(props) {
@@ -28,7 +17,7 @@ class DriverHistory extends React.Component {
   }
 
   getDriverHistory() {
-    axios.get("/api/driver/myOrderHistory/" + this.props.currentUser.id).then(
+    axios.get("http://localhost:8080/driver/myOrderHistory/" + this.props.currentUser.id).then(
       response => {
         this.setState({orders: response.data});
       }
@@ -37,13 +26,13 @@ class DriverHistory extends React.Component {
 
   render() {
     return this.props.currentUser && this.state.orders ? (
-      <div className= 'styling'>
+      <div>
         <Grid container justify="space-evenly" spacing={3}>
           {this.state.orders.length > 0 ? this.state.orders.map(order => (
             <Grid item key={order.id} xs={5}>
               <OrderCard order={order} userType={this.props.currentUser.type} />
             </Grid>
-          )) : <Typography variant="h5"  style = {{marginBottom: '100px' }} className="styling"><i>You don't have any past orders...</i></Typography>}
+          )) : <Typography variant="h5"><i>You don't have any past orders...</i></Typography>}
         </Grid>
       </div>
     ) : <div />

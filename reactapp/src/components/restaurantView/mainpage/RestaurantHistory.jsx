@@ -18,7 +18,7 @@ class RestaurantHistory extends React.Component {
   }
 
   getRestaurantHistory() {
-    axios.get("/api/restaurant/myOrderHistory/" + this.props.currentUser.id).then(
+    axios.get("http://localhost:8080/restaurant/myOrderHistory/" + this.props.currentUser.id).then(
       response => {
         this.setState({orders: response.data});
       }

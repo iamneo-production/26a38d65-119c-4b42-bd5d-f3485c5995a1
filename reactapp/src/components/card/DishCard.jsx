@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Typography,
   Card,
@@ -6,95 +6,83 @@ import {
   IconButton,
   CardActions,
   Grid
-      } from "@material-ui/core";
-// import AddIcon from '@material-ui/icons/Add';
-// import RemoveIcon from '@material-ui/icons/Remove';
-// import DeleteIcon from '@material-ui/icons/Delete';
-
+} from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import DeleteIcon from '@material-ui/icons/Delete';
 import './../../styles/commonclasses.css';
 import './../../styles/variable.css';
 
 const axios = require('axios').default;
 
-class DishCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      number : 0
-    }
-    this.handleAdd = this.handleAdd.bind(this);
-    this.handleMinus = this.handleMinus.bind(this);
-    this.removeDish = this.removeDish.bind(this);
-  }
+const DishCard = (props) => {
+  const [number, setNumber] = useState(0);
 
-  handleAdd() {
-    this.setState({number: this.state.number + 1});
-    this.props.addDish("add", this.props.dish);
-  }
+  const handleAdd = () => {
+    setNumber(number + 1);
+    props.addDish('add', props.dish);
+  };
 
-  handleMinus() {
-    this.setState({number: this.state.number - 1});
-    this.props.addDish("minus", this.props.dish);
-  }
+  const handleMinus = () => {
+    setNumber(number - 1);
+    props.addDish('minus', props.dish);
+  };
 
-  removeDish() {
-    axios.post("/api/restaurant/removeDish", {
-      restaurantId : this.props.currentUser.id,
-      dish : this.props.dish
-    }).then(
-      response => {
-        this.props.getAllDishes();
-      }
-    ).catch(err => console.log(err));
-  }
+  const removeDish = () => {
+    axios
+      .post('http://localhost:8080/restaurant/removeDish', {
+        restaurantId: props.currentUser.id,
+        dish: props.dish,
+      })
+      .then((response) => {
+        props.getAllDishes();
+      })
+      .catch((err) => console.log(err));
+  };
 
-  render() {
-    return this.props.dish && this.props.currentUser ? (
-        <div className='max-width explore-section'>
-
-         <div className='explore-grid'>
-            <div className='explore-card cur-po'>
-             <div className='explore-card-cover'>
-              <img className="explore-card-image" src= {this.props.dish.imageUrl} alt={this.props.dish.dishName} />
-              </div>
-              <Typography style={{marginTop:'10px'}}>{this.props.dish.dishName}</Typography>
-              <Typography style={{marginTop:'10px'}}>{"$ " + this.props.dish.price}</Typography>
-
-              
-              
-              </div>
-              
+  return props.dish && props.currentUser ? (
+    <div className='max-width explore-section'>
+      <div className='explore-grid'>
+        <div className='explore-card cur-po'>
+          <div className='explore-card-cover'>
+            <img
+              className='explore-card-image'
+              src={props.dish.imageUrl}
+              alt={props.dish.dishName}
+            />
+          </div>
+          <Typography style={{ marginTop: '10px' }}>
+            {props.dish.dishName}
+          </Typography>
+          <Typography style={{ marginTop: '10px' }}>
+            {'$ ' + props.dish.price}
+          </Typography>
         </div>
+      </div>
 
-           <CardActions style={{backgroundColor: "#e6f7ff"}}>
-          {this.props.currentUser.type !== "restaurant" ?
-
-
-          <Grid container justify="center" alignItems="center">
-            <IconButton disabled={this.state.number === 0} onClick={this.handleMinus}>
-              {/* <RemoveIcon /> */}
-              Remove
+      <CardActions style={{ backgroundColor: '#e6f7ff' }}>
+        {props.currentUser.type !== 'restaurant' ? (
+          <Grid container justifyContent='center' alignItems='center'>
+            <IconButton disabled={number === 0} onClick={handleMinus}>
+              <RemoveIcon />
             </IconButton>
-            <Typography variant="h5">{this.state.number}</Typography>
-            <IconButton onClick={this.handleAdd}>
-              {/* <AddIcon /> */}
-              Add
-            </IconButton>
-          </Grid> : 
-          <Grid container justify="center" alignItems="center">
-            <IconButton onClick={this.removeDish}>
-              {/* <DeleteIcon /> */}
-              Delete
+            <Typography variant='h5'>{number}</Typography>
+            <IconButton onClick={handleAdd}>
+              <AddIcon />
             </IconButton>
           </Grid>
-          }
-        </CardActions>
-
-
-   
-      </div>
-    ) : <div />;
-  }
-}
+        ) : (
+          <Grid container justifyContent='center' alignItems='center'>
+            <IconButton onClick={removeDish}>
+              <DeleteIcon />
+            </IconButton>
+          </Grid>
+        )}
+      </CardActions>
+    </div>
+  ) : (
+    <div />
+  );
+};
 
 export default DishCard;

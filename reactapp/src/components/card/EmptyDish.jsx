@@ -23,7 +23,7 @@ class EmptyDish extends React.Component {
 
   addToMenu(event) {
     event.preventDefault();
-    axios.post("/api/restaurant/addToMenu", {
+    axios.post("http://localhost:8080/restaurant/addToMenu", {
       restaurantId : this.props.currentUser.id,
       dishName : this.state.dishName,
       imageUrl : this.state.imageUrl,

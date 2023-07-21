@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import {
   TextField,
@@ -11,33 +10,40 @@ import {
   Radio,
   RadioGroup,
   FormControlLabel,
+  Snackbar,
 } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import './login.css';
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   root: {
     width: '100%',
     height: '100%',
-    padding: theme.spacing(4),
-    marginTop: theme.spacing(10),
+    padding: '1rem',
+    marginTop: '10rem',
   },
   form: {
     width: '100%',
-    marginTop: theme.spacing(4),
+    marginTop: '1rem',
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    // margin: '1rem 0 2rem',
+    marginLeft:'220px',
+    width:"450px",
     backgroundColor: '#1a73e8',
     color: '#fff',
     '&:hover': {
       backgroundColor: '#0f64d8',
     },
   },
-}));
+  errorText: {
+    color: 'red',
+  },
+  userTypeLabel: {
+    marginLeft: '250px',
+  },
+};
 
 const Register = ({ changeUser }) => {
-  const classes = useStyles();
   const history = useHistory();
 
   const [userName, setUserName] = useState('');
@@ -51,6 +57,8 @@ const Register = ({ changeUser }) => {
   const [zip, setZip] = useState('');
   const [userType, setUserType] = useState('customer');
   const [registerFailed, setRegisterFailed] = useState('');
+  const [isUsernameTaken, setIsUsernameTaken] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -71,6 +79,17 @@ const Register = ({ changeUser }) => {
     setPasswordDifferent(value !== password);
   };
 
+  const checkUsernameAvailability = () => {
+    axios
+      .get(`http://localhost:8080/customer/username/${userName}`)
+      .then((response) => {
+        setIsUsernameTaken(response.data);
+      })
+      .catch((err) => {
+        setIsUsernameTaken(true);
+      });
+  };
+
   const registerUser = (event) => {
     event.preventDefault();
     if (passwordDifferent) {
@@ -79,7 +98,7 @@ const Register = ({ changeUser }) => {
     }
     setRegisterFailed('');
     axios
-      .post(`/api/${userType}/register`, {
+      .post(`http://localhost:8080/${userType}/register`, {
         userName,
         password,
         phoneNumber,
@@ -98,21 +117,28 @@ const Register = ({ changeUser }) => {
       });
   };
 
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    checkUsernameAvailability();
+    registerUser(event);
+  };
+
   return (
-    <Grid container justify="center" style={{ marginBottom: '40px' }}>
-      <Grid item xs={12} sm={8} md={6} lg={4}>
+    <Grid container justifyContent="center">
+      {/* <Grid item xs={12} sm={8} md={6} lg={4}> */}
+      <Grid item xs={7} justifyContent="center" alignItems="center">
         <div className="box">
-          <Paper className={classes.root}>
+          {/* <Paper style={styles.root}> */}
             <Typography component="h1" variant="h5" align="center">
               Sign Up
             </Typography>
-            <form className={classes.form} noValidate onSubmit={registerUser}>
+            <form style={styles.form} onSubmit={handleFormSubmit}>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"
                     required
-                    fullWidth
+                    style={{width:"450px"}}
                     id="userName"
                     type="text"
                     label="Username"
@@ -120,14 +146,15 @@ const Register = ({ changeUser }) => {
                     autoComplete="username"
                     value={userName}
                     onChange={handleChange}
+                    error={isUsernameTaken}
+                    helperText={isUsernameTaken ? 'Username already exists' : ''}
                   />
                 </Grid>
-
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"
                     required
-                    fullWidth
+                    style={{width:"450px"}}
                     name="password"
                     label="Password"
                     type="password"
@@ -135,17 +162,20 @@ const Register = ({ changeUser }) => {
                     autoComplete="new-password"
                     value={password}
                     onChange={handleChange}
+                    inputProps={{
+                      pattern: "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}",
+                      title: "Password must contain at least one uppercase letter, one lowercase letter, and one digit. Minimum length is 6 characters.",
+                    }}
                   />
                 </Grid>
-                <Typography variant="body2" color="error">
+                <Typography variant="body2" style={styles.errorText}>
                   {passwordDifferent && <i>Passwords don't match</i>}
                 </Typography>
-
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"
                     required
-                    fullWidth
+                    style={{width:"450px"}}
                     name="validatePassword"
                     label="Confirm Password"
                     type="password"
@@ -159,7 +189,7 @@ const Register = ({ changeUser }) => {
                   <TextField
                     variant="outlined"
                     required
-                    fullWidth
+                    style={{width:"450px"}}
                     name="address"
                     label="Address"
                     type="text"
@@ -169,14 +199,14 @@ const Register = ({ changeUser }) => {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                   <TextField
                     variant="outlined"
                     required
-                    fullWidth
+                    style={{width:"225px",marginLeft:"205px"}}
                     name="phoneNumber"
                     label="Phone number"
-                    type="text"
+                    type="number"
                     id="phoneNumber"
                     autoComplete="tel"
                     value={phoneNumber}
@@ -187,7 +217,7 @@ const Register = ({ changeUser }) => {
                   <TextField
                     variant="outlined"
                     required
-                    fullWidth
+                    style={{width:"215px",marginRight:"250px"}}
                     name="city"
                     label="City"
                     type="text"
@@ -201,7 +231,7 @@ const Register = ({ changeUser }) => {
                   <TextField
                     variant="outlined"
                     required
-                    fullWidth
+                    style={{width:"225px",marginLeft:"205px"}}
                     name="state"
                     label="State"
                     type="text"
@@ -211,14 +241,14 @@ const Register = ({ changeUser }) => {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                   <TextField
                     variant="outlined"
                     required
-                    fullWidth
+                    style={{width:"215px",marginRight:"250px"}}
                     name="zip"
                     label="Zip Code"
-                    type="text"
+                    type="number"
                     id="zip"
                     autoComplete="postal-code"
                     value={zip}
@@ -226,14 +256,10 @@ const Register = ({ changeUser }) => {
                   />
                 </Grid>
 
-                <Typography
-                  variant="h6"
-                  align="center"
-                  style={{ marginLeft: '200px' }}
-                >
+                <Typography variant="h6" style={styles.userTypeLabel}>
                   Register as
                 </Typography>
-
+                
                 <FormControl>
                   <RadioGroup
                     row
@@ -241,7 +267,7 @@ const Register = ({ changeUser }) => {
                     name="userType"
                     value={userType}
                     onChange={handleChange}
-                    style={{ marginLeft: '80px', marginTop: '10px' }}
+                    style={{ marginLeft: '20px', marginTop: '5px' }}
                   >
                     <FormControlLabel
                       value="customer"
@@ -260,19 +286,20 @@ const Register = ({ changeUser }) => {
                     />
                   </RadioGroup>
                 </FormControl>
-
                 <Button
                   type="submit"
-                  fullWidth
                   variant="contained"
-                  className={classes.submit}
+                  style={styles.submit}
                 >
                   Submit
                 </Button>
               </Grid>
             </form>
-          </Paper>
+          {/* </Paper> */}
         </div>
+      </Grid>
+      <Grid item xs={5} container style={{marginBottom:"100px"}}>
+            <img style={{marginBottom:"100px"}} alt="restuarant" height="675" width="630" src="https://images.pexels.com/photos/541216/pexels-photo-541216.jpeg?auto=compress&cs=tinysrgb&w=600"/>
       </Grid>
     </Grid>
   );

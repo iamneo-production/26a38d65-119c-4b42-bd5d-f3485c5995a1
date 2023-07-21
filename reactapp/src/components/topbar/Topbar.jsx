@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import {
   AppBar, Toolbar, Typography, Grid
 } from '@material-ui/core';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import './TopBar.css';
 import UserMenu from "./UserMenu"
 import axios from 'axios';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     secondary: {
       main: '#ef5350'
@@ -27,7 +27,7 @@ const Topbar = (props) => {
   const logoutUser = () => {
     const type = props.currentUser.type;
     props.changeUser(undefined, "logout");
-    axios.post("/api/" + type + "/logout", {}).then(
+    axios.post("http://localhost:8080/" + type + "/logout", {}).then(
       () => {
         console.log("Successfully log out");
       }

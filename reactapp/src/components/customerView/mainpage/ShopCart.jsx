@@ -1,7 +1,7 @@
 import { Grid, Typography, Button } from '@material-ui/core';
 import React from 'react';
 import OrderCard from "../../card/OrderCard";
-// import PaymentGateway from '../../card/PaymentGateway';
+import PaymentGateway from '../../card/PaymentGateway';
 const axios = require('axios').default;
 
 class ShopCart extends React.Component {
@@ -51,11 +51,11 @@ class ShopCart extends React.Component {
               <div className="checkoutBox">
                 <Grid container justify="flex-end">
                   <Grid item>
-                    {/* <PaymentGateway price={totalSum}> */}
+                    <PaymentGateway price={totalSum}>
                       <Button variant="outlined" color="secondary" size="medium" onClick={this.checkout}>
                         Check out all orders
                       </Button>
-                    {/* </PaymentGateway> */}
+                    </PaymentGateway>
                   </Grid>
                 </Grid>
               </div>
