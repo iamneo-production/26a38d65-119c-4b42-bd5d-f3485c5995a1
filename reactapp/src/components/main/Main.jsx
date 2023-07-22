@@ -25,7 +25,11 @@ const Main = () => {
 
   const getCurrentUser = () => {
     if (userId && userType) {
+<<<<<<< HEAD
       axios.get(`https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/${userType}/${userId}`).then(
+=======
+      axios.get(`/api/${userType}/${userId}`).then(
+>>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
         response => {
           setCurrentUser(response.data);
         }
@@ -55,6 +59,7 @@ const Main = () => {
     <Router>
       <Grid container justifyContent="flex-start">
         <Grid item xs={12}>
+<<<<<<< HEAD
           <div className="grid-main">
             {userType && (
               <TopBar changeUser={changeUser} view={view} currentUser={currentUser} userType={userType} />
@@ -104,6 +109,49 @@ const Main = () => {
               )}
               {/* Redirect for the root URL */}
               <Redirect exact from="/" to="/login" />
+=======
+        </Grid>
+        <Grid item xs={12}>
+          <div className="grid-main">
+            <Switch>
+              {userType && userType === "customer" && (
+                <TopBar changeUser={changeUser} view={view} currentUser={currentUser} userType={userType} />
+              )}
+              {userType && userType === "driver" && (
+                <TopBar changeUser={changeUser} view={view} currentUser={currentUser} userType={userType} />
+              )}
+              {userType && userType === "restaurant" && (
+                <TopBar changeUser={changeUser} view={view} currentUser={currentUser} userType={userType} />
+              )}
+            </Switch>
+            <Switch>
+              {userType && userType === "customer" ? (
+                <Route path="/customer" render={props => <CustomerView {...props} currentUser={currentUser} changeView={changeView} />} />
+              ) : (
+                <Redirect path="/customer" to="/login" />
+              )}
+              {userType && userType === "driver" ? (
+                <Route path="/driver" render={props => <DriverView {...props} currentUser={currentUser} changeView={changeView} />} />
+              ) : (
+                <Redirect path="/driver" to="/login" />
+              )}
+              {userType && userType === "restaurant" ? (
+                <Route path="/restaurant" render={props => <RestaurantView {...props} currentUser={currentUser} changeView={changeView} />} />
+              ) : (
+                <Redirect path="/restaurant" to="/login" />
+              )}
+              {!userType ? (
+                <Route path="/login" render={props => <Login {...props} changeUser={changeUser} />} />
+              ) : (
+                <Redirect path="/login" to={`/${userType}`} />
+              )}
+              {!userType ? (
+                <Route path="/register" render={props => <Register {...props} changeUser={changeUser} />} />
+              ) : (
+                <Redirect path="/register" to={`/${userType}`} />
+              )}
+              <Redirect path="/" to="/login" />
+>>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
             </Switch>
           </div>
         </Grid>

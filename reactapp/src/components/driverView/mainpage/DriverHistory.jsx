@@ -17,7 +17,11 @@ class DriverHistory extends React.Component {
   }
 
   getDriverHistory() {
+<<<<<<< HEAD
     axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/driver/myOrderHistory/" + this.props.currentUser.id).then(
+=======
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/api/driver/myOrderHistory/" + this.props.currentUser.id).then(
+>>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
       response => {
         this.setState({orders: response.data});
       }
@@ -26,8 +30,13 @@ class DriverHistory extends React.Component {
 
   render() {
     return this.props.currentUser && this.state.orders ? (
+<<<<<<< HEAD
       <div>
         <Grid container justify="space-evenly" spacing={3}>
+=======
+      <div className= 'styling'>
+        <Grid container justifyContent="space-evenly" spacing={3}>
+>>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
           {this.state.orders.length > 0 ? this.state.orders.map(order => (
             <Grid item key={order.id} xs={5}>
               <OrderCard order={order} userType={this.props.currentUser.type} />
