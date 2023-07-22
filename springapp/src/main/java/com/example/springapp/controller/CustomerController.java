@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
 @CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/customer")
@@ -38,18 +37,6 @@ public class CustomerController {
     this.customerService = customerService;
     this.orderService = orderService;
   }
-=======
-@RestController
-@RequestMapping("/customer")
-@CrossOrigin(origins="*")
-public class CustomerController {
-  
-  @Autowired
-  private  CustomerServiceImpl customerService;
-  @Autowired
-  private  OrderServiceImpl orderService;
-
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
 
   @GetMapping(path = "{id}")
   public Customer getCustomerById(@PathVariable("id") String id)
@@ -58,16 +45,6 @@ public class CustomerController {
         .orElseThrow(() -> new UserNotExistException("User doesn't exist"));
   }
 
-<<<<<<< HEAD
-=======
-
-  @GetMapping(path = "/username/{username}")
-  public boolean doesUsernameExist(@PathVariable("username") String username) {
-    Optional<Customer> customer = customerService.getUserByName(username);
-      return customer.isPresent();
-  }
-
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
   @PostMapping(path = "/login")
   public Customer loginCustomer(@RequestBody String jsonUser)
       throws UserNotExistException, PasswordNotMatchException {

@@ -27,11 +27,7 @@ const styles = {
   },
   submit: {
     margin: '1rem 0',
-<<<<<<< HEAD
     backgroundColor: '#fc8019',
-=======
-    backgroundColor: '#1a73e8',
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
     color: '#fff',
     '&:hover': {
       backgroundColor: '#0f64d8',
@@ -74,7 +70,6 @@ const Login = (props) => {
 
   return (
     <Grid container justifyContent="center">
-<<<<<<< HEAD
       <Grid item xs={6} style={{marginRight:"60px"}} alignItems="center" justifyContent="center">
       <img style={{borderRadius:"50px",marginRight:"60px"}}alt="restuarant" width="630" height="600" src="https://fooddesk.dexignlab.com/react/demo/static/media/pic-5.7dba4fa4b2b813e643ad.jpg"/>
       </Grid>
@@ -89,12 +84,6 @@ const Login = (props) => {
           </Typography>
             <br/>
             <Typography component="h5" variant="body1" align="center">
-=======
-      <Grid item xs={12} sm={8} md={6} lg={4}>
-        <div className="box">
-          <Paper style={styles.root}>
-            <Typography component="h1" variant="h5" align="center">
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
               Sign In
             </Typography>
             <form style={styles.form} onSubmit={loginUser}>

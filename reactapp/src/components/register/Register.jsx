@@ -26,13 +26,9 @@ const styles = {
     marginTop: '1rem',
   },
   submit: {
-<<<<<<< HEAD
     // margin: '1rem 0 2rem',
     marginLeft:'220px',
     width:"450px",
-=======
-    margin: '1rem 0 2rem',
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
     backgroundColor: '#1a73e8',
     color: '#fff',
     '&:hover': {
@@ -43,11 +39,7 @@ const styles = {
     color: 'red',
   },
   userTypeLabel: {
-<<<<<<< HEAD
     marginLeft: '250px',
-=======
-    marginLeft: '200px',
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
   },
 };
 
@@ -132,17 +124,10 @@ const Register = ({ changeUser }) => {
   };
 
   return (
-<<<<<<< HEAD
     <Grid container justifyContent="center">
 
       <Grid item xs={7} justifyContent="center" alignItems="center">
         <div className="box">
-=======
-    <Grid container justifyContent="center" style={{ marginBottom: '40px' }}>
-      <Grid item xs={12} sm={8} md={6} lg={4}>
-        <div className="box">
-          <Paper style={styles.root}>
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
             <Typography component="h1" variant="h5" align="center">
               Sign Up
             </Typography>
@@ -269,17 +254,11 @@ const Register = ({ changeUser }) => {
                     onChange={handleChange}
                   />
                 </Grid>
-<<<<<<< HEAD
 
                 <Typography variant="h6" style={styles.userTypeLabel}>
                   Register as
                 </Typography>
                 
-=======
-                <Typography variant="h6" align="center" style={styles.userTypeLabel}>
-                  Register as
-                </Typography>
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
                 <FormControl>
                   <RadioGroup
                     row

@@ -95,16 +95,8 @@ class MenuCard extends React.Component {
   // }
 
   removeDish() {
-<<<<<<< HEAD
     axios.delete(`https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/removeDish/${this.props.currentUser.id}/${this.props.dish.id}`)
       .then(response => {
-=======
-    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/removeDish", {
-      restaurantId : this.props.currentUser.id,
-      dish : this.props.dish
-    }).then(
-      response => {
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
         this.props.getAllDishes();
       })
       .catch(err => console.log(err));
