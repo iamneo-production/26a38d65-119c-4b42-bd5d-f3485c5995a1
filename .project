@@ -22,16 +22,61 @@
 	</natures>
 	<filteredResources>
 		<filter>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 			<id>1685346161646</id>
 =======
 			<id>1690005975857</id>
 >>>>>>> Stashed changes
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+			<id>1688393279677</id>
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+			<id>1688284749683</id>
+=======
+			<id>1688121008619</id>
+>>>>>>> ef4759bcb382ee555b2b01a7b42934318819102b
+=======
+			<id>1688121008619</id>
+=======
+			<id>1683031559876</id>
+>>>>>>> 4c1ad5b7b044d1089657e638e562649e073e05b1
+>>>>>>> 6712330dd81ca34459d1eb621a2b5e1e81e8b4a8
+>>>>>>> f81b0f10ca7bee010422e23aaef042e694251d6a
+=======
+			<id>1688289292206</id>
+=======
+			<id>1688206039319</id>
+>>>>>>> 6dd47980f109c81b048f55b82149b96836fae67c
+>>>>>>> Food-Ordering-and-Delivery-Application-malli172
+>>>>>>> a0144665cb1237fa8d2c4205f13b8456ad3d2bff
 			<name></name>
 			<type>30</type>
 			<matcher>
 				<id>org.eclipse.core.resources.regexFilterMatcher</id>
+<<<<<<< HEAD
 				<arguments>node_modules|.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+				<arguments>node_modules|\.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+=======
+<<<<<<< HEAD
+				<arguments>node_modules|\.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+=======
+				<arguments>node_modules|.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+>>>>>>> ef4759bcb382ee555b2b01a7b42934318819102b
+>>>>>>> f81b0f10ca7bee010422e23aaef042e694251d6a
+=======
+				<arguments>node_modules|.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+=======
+				<arguments>node_modules|\.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+>>>>>>> 6dd47980f109c81b048f55b82149b96836fae67c
+>>>>>>> Food-Ordering-and-Delivery-Application-malli172
+>>>>>>> a0144665cb1237fa8d2c4205f13b8456ad3d2bff
 			</matcher>
 		</filter>
 	</filteredResources>

@@ -1,0 +1,64 @@
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/controller/DriverController.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/service/CustomerServiceImpl.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/model/Customer.java
+<<<<<<< HEAD
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/exception/PasswordNotMatchException.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/model/Order.java
+=======
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/model/Order.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/exception/PasswordNotMatchException.java
+>>>>>>> Food-Ordering-and-Delivery-Application-malli172
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/model/User.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/service/RestaurantServiceImpl.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/service/OrderService.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/service/PasswordService.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/exception/OrderAlreadyDeliverException.java
+<<<<<<< HEAD
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/exception/OrderAlreadyCheckoutException.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/exception/UserAlreadyExistException.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/model/Driver.java
+=======
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/model/Driver.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/exception/OrderAlreadyCheckoutException.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/exception/UserAlreadyExistException.java
+>>>>>>> Food-Ordering-and-Delivery-Application-malli172
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/repository/OrderRepository.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/exception/OrderNotFinishedException.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/service/DriverServiceImpl.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/exception/OrderAlreadyFinishException.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/service/SearchEngineServiceImpl.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/service/RestaurantService.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/BackendApplication.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/model/SearchEngine.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/controller/OrderController.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/exception/UserNotExistException.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/model/Comment.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/adapter/LocalDateTimeAdapter.java
+<<<<<<< HEAD
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/service/OrderServiceImpl.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/model/Dish.java
+=======
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/model/Dish.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/service/OrderServiceImpl.java
+>>>>>>> Food-Ordering-and-Delivery-Application-malli172
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/exception/OrderNotExistException.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/model/Restaurant.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/repository/DriverRepository.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/repository/SearchEngineRepository.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/exception/CommentAlreadyExistException.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/exception/DishNotExistException.java
+<<<<<<< HEAD
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/repository/RestaurantRepository.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/service/UserService.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/controller/RestaurantController.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/service/SearchEngineService.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/model/RestaurantInfo.java
+=======
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/service/UserService.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/repository/RestaurantRepository.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/controller/RestaurantController.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/model/RestaurantInfo.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/service/SearchEngineService.java
+>>>>>>> Food-Ordering-and-Delivery-Application-malli172
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/controller/CustomerController.java
+/home/coder/project/workspace/backend/src/main/java/com/example/backend/repository/CustomerRepository.java
