@@ -73,8 +73,6 @@ class DisplayRestaurant extends React.Component {
         <br />
         <br />
 
-
-
         <Grid container spacing={3} justifyContent="space-evenly" style={{marginLeft:'-150px'}}>
           {this.state.restaurant.menu.map((dish, index) => (
             <Grid item xs={3} key={index}>
@@ -98,7 +96,7 @@ class DisplayRestaurant extends React.Component {
 
 
 
-          <Grid container justify="center">
+          <Grid container justifyContent="center">
               <Grid item>
                 <Link to={"/customer/home"} style={{textDecoration: "none"}}>
                   <Button variant="outlined" color="primary" size="large" disabled={!this.state.restaurant.information.open || this.state.subtotal === 0} onClick={this.addToCart}>
