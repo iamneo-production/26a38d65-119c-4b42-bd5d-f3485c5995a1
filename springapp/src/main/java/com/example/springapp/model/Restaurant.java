@@ -1,4 +1,3 @@
-
 package com.example.springapp.model;
 
 import javax.persistence.*;
@@ -52,6 +51,4 @@ public class Restaurant {
     public void setOwnerId(Long ownerId) {
         this.ownerId = ownerId;
     }
-
 }
-

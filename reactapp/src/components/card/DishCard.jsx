@@ -6,18 +6,10 @@ import {
   IconButton,
   CardActions,
   Grid
-<<<<<<< HEAD
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import DeleteIcon from '@material-ui/icons/Delete';
-=======
-      } from "@material-ui/core";
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
-import DeleteIcon from '@material-ui/icons/Delete';
-
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
 import './../../styles/commonclasses.css';
 import './../../styles/variable.css';
 
@@ -26,23 +18,10 @@ const axios = require('axios').default;
 const DishCard = (props) => {
   const [number, setNumber] = useState(0);
 
-<<<<<<< HEAD
   const handleAdd = () => {
     setNumber(number + 1);
     props.addDish('add', props.dish);
   };
-=======
-  removeDish() {
-    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/removeDish", {
-      restaurantId : this.props.currentUser.id,
-      dish : this.props.dish
-    }).then(
-      response => {
-        this.props.getAllDishes();
-      }
-    ).catch(err => console.log(err));
-  }
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
 
   const handleMinus = () => {
     setNumber(number - 1);
@@ -81,7 +60,6 @@ const DishCard = (props) => {
         </div>
       </div>
 
-<<<<<<< HEAD
       <CardActions style={{ backgroundColor: '#e6f7ff' }}>
         {props.currentUser.type !== 'restaurant' ? (
           <Grid container justifyContent='center' alignItems='center'>
@@ -96,23 +74,6 @@ const DishCard = (props) => {
         ) : (
           <Grid container justifyContent='center' alignItems='center'>
             <IconButton onClick={removeDish}>
-=======
-           <CardActions style={{backgroundColor: "#e6f7ff"}}>
-          {this.props.currentUser.type !== "restaurant" ?
-
-
-          <Grid container justify="center" alignItems="center">
-            <IconButton disabled={this.state.number === 0} onClick={this.handleMinus}>
-              <RemoveIcon />
-            </IconButton>
-            <Typography variant="h5">{this.state.number}</Typography>
-            <IconButton onClick={this.handleAdd}>
-              <AddIcon />
-            </IconButton>
-          </Grid> : 
-          <Grid container justify="center" alignItems="center">
-            <IconButton onClick={this.removeDish}>
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
               <DeleteIcon />
             </IconButton>
           </Grid>

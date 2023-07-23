@@ -1,23 +1,4 @@
-
 package com.example.springapp.controller;
-<<<<<<< HEAD
-=======
-import com.example.springapp.adapter.LocalDateTimeAdapter;
-import com.example.springapp.exception.CommentAlreadyExistException;
-import com.example.springapp.exception.OrderAlreadyCheckoutException;
-import com.example.springapp.exception.OrderAlreadyDeliverException;
-import com.example.springapp.exception.OrderNotExistException;
-import com.example.springapp.model.Dish;
-import com.example.springapp.model.Order;
-import com.example.springapp.service.OrderServiceImpl;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,20 +8,11 @@ import com.example.springapp.model.Order;
 import com.example.springapp.service.OrderService;
 import java.util.List;
 
-<<<<<<< HEAD
-
-@RestController
-@RequestMapping("/res_order")
-@CrossOrigin(origins="*")
-=======
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/order")
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
 public class OrderController {
     private final OrderService orderService;
 
-<<<<<<< HEAD
 
     @Autowired
     public OrderController(OrderService orderService) {
@@ -50,56 +22,6 @@ public class OrderController {
     @GetMapping
     public List<Order> getAllOrders() {
         return orderService.getAllOrders();
-=======
-  @PersistenceContext
-  private EntityManager entityManager;
-
-  private final OrderServiceImpl orderService;
-
-  @Autowired
-  public OrderController(OrderServiceImpl orderService) {
-    this.orderService = orderService;
-  }
-
-@PostMapping(path = "/addToCart")
-@Transactional
-public int addOrderToCart(@RequestBody String jsonOrder) {
-  Gson gson = new GsonBuilder()
-      .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
-      .create();
-
-  JSONObject order = new JSONObject(jsonOrder);
-  long Id = order.getLong("customerId");
-  String customerId = String.valueOf(Id);
-  String restaurantId = order.getString("restaurantId");
-  JSONArray shopcart = order.getJSONArray("shopcart");
-  List<Dish> list = new ArrayList<>();
-  Map<Dish, Integer> dishCountMap = new HashMap<>(); 
-  Set<Dish> dishSet = new HashSet<>(); 
-
-  for (Object object : shopcart) {
-    Dish dish = gson.fromJson(object.toString(), Dish.class);
-
-    dishCountMap.put(dish, dishCountMap.getOrDefault(dish, 0) + 1);
-
-    if (!dishSet.contains(dish)) {
-      Dish mergedDish = entityManager.merge(dish); 
-      list.add(mergedDish);
-      dishSet.add(dish);
-    }
-  }
-
-  
-  for (Map.Entry<Dish, Integer> entry : dishCountMap.entrySet()) {
-    Dish dish = entry.getKey();
-    int count = entry.getValue();
-
-    for (int i = 0; i < count - 1; i++) {
-      if (!list.contains(dish)) {
-        Dish mergedDish = entityManager.merge(dish); 
-        list.add(mergedDish);
-      }
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
     }
 
     @GetMapping("/{id}")
@@ -153,5 +75,4 @@ public int addOrderToCart(@RequestBody String jsonOrder) {
         }
     }
     
-
 }

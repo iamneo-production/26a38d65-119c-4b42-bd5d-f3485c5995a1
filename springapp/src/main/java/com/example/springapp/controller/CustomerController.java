@@ -1,4 +1,3 @@
-
 package com.example.springapp.controller;
 import com.example.springapp.model.Customer;
 import com.example.springapp.model.Orders;
@@ -8,6 +7,7 @@ import com.example.springapp.exception.OrderNotFinishedException;
 import com.example.springapp.exception.PasswordNotMatchException;
 import com.example.springapp.exception.UserAlreadyExistException;
 import com.example.springapp.exception.UserNotExistException;
+import com.example.springapp.exception.DishNotExistException;
 import java.util.List;
 import java.util.Optional;
 import org.json.JSONObject;
@@ -24,10 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="http://localhost:8081")
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/api/customer")
 public class CustomerController {
   
   private final CustomerService customerService;
@@ -38,18 +37,6 @@ public class CustomerController {
     this.customerService = customerService;
     this.orderService = orderService;
   }
-=======
-@RestController
-@RequestMapping("/customer")
-@CrossOrigin(origins="*")
-public class CustomerController {
-  
-  @Autowired
-  private  CustomerServiceImpl customerService;
-  @Autowired
-  private  OrderServiceImpl orderService;
-
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
 
   @GetMapping(path = "{id}")
   public Customer getCustomerById(@PathVariable("id") String id)
@@ -58,16 +45,11 @@ public class CustomerController {
         .orElseThrow(() -> new UserNotExistException("User doesn't exist"));
   }
 
-<<<<<<< HEAD
-=======
-
   @GetMapping(path = "/username/{username}")
   public boolean doesUsernameExist(@PathVariable("username") String username) {
     Optional<Customer> customer = customerService.getUserByName(username);
       return customer.isPresent();
   }
-
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
   @PostMapping(path = "/login")
   public Customer loginCustomer(@RequestBody String jsonUser)
       throws UserNotExistException, PasswordNotMatchException {
@@ -149,6 +131,8 @@ public class CustomerController {
     return res;
   }
 
+
+
   @PostMapping(path = "/resetPassword")
   public int resetPassword(@RequestBody String jsonPassword)
       throws UserNotExistException, PasswordNotMatchException {
@@ -200,7 +184,8 @@ public class CustomerController {
 
   @ResponseStatus(value = HttpStatus.BAD_REQUEST)
   @ExceptionHandler({UserNotExistException.class, PasswordNotMatchException.class,
-      UserAlreadyExistException.class, OrderNotFinishedException.class})
+      UserAlreadyExistException.class, DishNotExistException.class,
+      OrderNotFinishedException.class})
   public String handleException(Exception e) {
     return e.getMessage();
   }

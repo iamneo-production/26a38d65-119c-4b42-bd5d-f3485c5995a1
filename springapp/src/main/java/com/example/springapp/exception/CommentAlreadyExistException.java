@@ -1,4 +1,3 @@
-
 package com.example.springapp.exception;
 
 public class CommentAlreadyExistException extends Exception {
