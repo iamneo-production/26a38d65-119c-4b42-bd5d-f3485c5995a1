@@ -7,7 +7,7 @@ const PaymentGateway = ({ price }) => {
   const stripePrice = price * 100;
 
   const onToken = (token) => {
-    axios.post('https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/payment', {
+    axios.post('http://localhost:8080/payment', {
       amount: stripePrice,
       token,
     })

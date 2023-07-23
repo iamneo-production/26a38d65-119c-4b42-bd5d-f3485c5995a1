@@ -4,16 +4,6 @@ import './DriverHomes.css';
 import OrderCard from "../../card/OrderCard";
 const axios = require('axios').default;
 
-// const styles = {
-//   container: {
-//     display: 'flex',
-//     justifyContent: 'flex-end',
-//     alignItems: 'center',
-//     minHeight: '100vh',
-//     paddingRight: '20px',
-//     margin: '40px',
-//   },
-// };
 
 class PendingOrders extends React.Component {
   constructor(props) {

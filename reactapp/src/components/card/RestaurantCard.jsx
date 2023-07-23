@@ -26,7 +26,7 @@ const RestaurantCard = (props) => {
   const [maxSteps, setMaxSteps] = useState(0);
 
   const findComments = () => {
-    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/getComments/" + props.restaurantId)
+    axios.get("http://localhost:8080/restaurant/getComments/" + props.restaurantId)
       .then(response => {
         setComments(response.data);
         setMaxSteps(response.data.length);
@@ -34,19 +34,9 @@ const RestaurantCard = (props) => {
       .catch(err => console.log(err));
   };
 
-<<<<<<< HEAD
   useEffect(() => {
     findComments();
   }, []);
-=======
-  findComments() {
-    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/getComments/" + this.props.restaurantId).then(
-      response => {
-        this.setState({comments : response.data, maxSteps: response.data.length});
-      }
-    ).catch(err => console.log(err));
-  }
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -104,36 +94,6 @@ const RestaurantCard = (props) => {
             </CardContent>
           </Collapse>
         </div>
-<<<<<<< HEAD
-=======
-        <IconButton
-        onClick={this.handleExpandClick}
-        aria-expanded={this.state.expanded}
-      >
-      <Typography><b>See Comments</b></Typography>
-        <ExpandMoreIcon />
-      </IconButton>
-      <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          {this.state.comments.length > 0 ? 
-            <Grid container justify="center">
-              <Box component="fieldset" mb={3} borderColor="transparent">
-                <Rating name="read-only" value={this.state.comments[this.state.activeStep].rating} readOnly />
-                <Typography color="textSecondary" variant="body2"><i>{this.state.comments[this.state.activeStep].content}</i></Typography>
-              </Box>
-              <Grid item xs={12}>
-              
-              </Grid>
-            </Grid> 
-            : <Typography variant="body1" color="primary"><i>This restaurant doesn't have any comments</i></Typography>}
-        </CardContent>
-      </Collapse>
-           </div>
-           
-      </div>
-    
-      
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
       </div>
     </div>
   ) : <div />;
