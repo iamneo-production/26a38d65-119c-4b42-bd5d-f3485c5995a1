@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { Grid, Typography, Button } from '@material-ui/core';
-<<<<<<< HEAD
 import React from 'react';
 import OrderCard from "../../card/OrderCard";
 import PaymentGateway from '../../card/PaymentGateway';
 const axios = require('axios').default;
-=======
-import axios from 'axios';
-import OrderCard from '../../card/OrderCard';
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
 
 class ShopCart extends Component {
   constructor(props) {
@@ -25,7 +20,6 @@ class ShopCart extends Component {
   }
 
   getCartOrders() {
-<<<<<<< HEAD
     axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/customer/myCart/" + this.props.currentUser.id).then(
       response => {
         this.setState({orders: response.data});
@@ -36,20 +30,6 @@ class ShopCart extends Component {
   checkout() {
     axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/order/checkoutAll", {orders: this.state.orders}).then(
       response => {
-=======
-    axios
-      .get(`https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/customer/myCart/${this.props.currentUser.id}`)
-      .then(response => {
-        this.setState({ orders: response.data });
-      })
-      .catch(err => console.log(err));
-  }
-
-  checkout() {
-    axios
-      .post('https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/order/checkoutAll', { orders: this.state.orders })
-      .then(response => {
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
         this.getCartOrders();
       })
       .catch(err => console.log(err));
@@ -82,19 +62,11 @@ class ShopCart extends Component {
               <div className="checkoutBox">
                 <Grid container justify="flex-end">
                   <Grid item>
-<<<<<<< HEAD
-                    <PaymentGateway price={totalSum}>
-                      <Button variant="outlined" color="secondary" size="medium" onClick={this.checkout}>
-                        Check out all orders
-                      </Button>
-                    </PaymentGateway>
-=======
                     {/* <PaymentGateway price={totalSum}> */}
                     <Button variant="outlined" color="secondary" size="medium" onClick={this.checkout}>
                       Check out all orders
                     </Button>
                     {/* </PaymentGateway> */}
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c
                   </Grid>
                 </Grid>
               </div>
