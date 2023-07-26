@@ -1,4 +1,3 @@
-
 package com.example.springapp.service;
 
 
@@ -171,10 +170,12 @@ public class RestaurantServiceImpl implements UserService<Restaurants> {
     return null;
   }
 
+  
   @Override
   public Optional<Restaurants> getUserByName(String userName) {
     return this.getUser(getUserIdByName(userName));
   }
+
   @Override
   public List<Restaurants> getUsers() {
     return restaurantRepository.findAll();

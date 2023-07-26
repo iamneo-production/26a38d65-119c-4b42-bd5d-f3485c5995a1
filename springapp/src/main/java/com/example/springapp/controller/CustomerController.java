@@ -1,4 +1,3 @@
-
 package com.example.springapp.controller;
 import com.example.springapp.model.Customer;
 import com.example.springapp.model.Orders;
@@ -8,6 +7,7 @@ import com.example.springapp.exception.OrderNotFinishedException;
 import com.example.springapp.exception.PasswordNotMatchException;
 import com.example.springapp.exception.UserAlreadyExistException;
 import com.example.springapp.exception.UserNotExistException;
+import com.example.springapp.exception.DishNotExistException;
 import java.util.List;
 import java.util.Optional;
 import org.json.JSONObject;
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins="*")
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/api/customer")
 public class CustomerController {
   
   private final CustomerService customerService;
@@ -136,6 +136,8 @@ public class CustomerController {
     return res;
   }
 
+
+
   @PostMapping(path = "/resetPassword")
   public int resetPassword(@RequestBody String jsonPassword)
       throws UserNotExistException, PasswordNotMatchException {
@@ -187,7 +189,8 @@ public class CustomerController {
 
   @ResponseStatus(value = HttpStatus.BAD_REQUEST)
   @ExceptionHandler({UserNotExistException.class, PasswordNotMatchException.class,
-      UserAlreadyExistException.class, OrderNotFinishedException.class})
+      UserAlreadyExistException.class, DishNotExistException.class,
+      OrderNotFinishedException.class})
   public String handleException(Exception e) {
     return e.getMessage();
   }

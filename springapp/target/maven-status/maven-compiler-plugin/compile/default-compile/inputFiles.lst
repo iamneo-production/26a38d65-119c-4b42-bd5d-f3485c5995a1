@@ -8,42 +8,59 @@
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/DriverController.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/AdminController.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/DriverServiceImpl.java
+<<<<<<< HEAD
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/AdminService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Comment.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/OrdersController.java
+=======
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/OrdersController.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Comment.java
+>>>>>>> 423df4bc1b90a5e8f3c1ad1db8652d3eb97f8d36
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/CustomerController.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/PasswordService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/RestaurantInfo.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/PasswordNotMatchException.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Support.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/User.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/CommentAlreadyExistException.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/adapter/LocalDateTimeAdapter.java
+<<<<<<< HEAD
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/UserAlreadyExistException.java
+=======
+>>>>>>> 423df4bc1b90a5e8f3c1ad1db8652d3eb97f8d36
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/OrderServiceImpl.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/UserAlreadyExistException.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/MenuItem.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Customer.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/OrderAlreadyCheckoutException.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/OrderRepository.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/OrderAlreadyCheckoutException.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/SearchEngine.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/MenuItemController.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Restaurants.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/RestaurantServiceImpl.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Restaurants.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/OrderNotExistException.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/MenuItemRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Orders.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/SearchEngineServiceImpl.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Restaurant.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Dish.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/SupportService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/RestaurantRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/OrderAlreadyDeliverException.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/SupportRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Driver.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/DishNotExistException.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Order.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/OrderAlreadyFinishException.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/SupportController.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/OrdersRepository.java
+<<<<<<< HEAD
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Admin.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/RestaurantService.java
+=======
+>>>>>>> 423df4bc1b90a5e8f3c1ad1db8652d3eb97f8d36
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/CustomerService.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/RestaurantService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exception/OrderNotFinishedException.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/SearchEngineService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/AddressService.java
@@ -52,4 +69,7 @@
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/OrderService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/MenuItemService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/DriverRepository.java
+<<<<<<< HEAD
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/AdminRepository.java
+=======
+>>>>>>> 423df4bc1b90a5e8f3c1ad1db8652d3eb97f8d36

@@ -28,10 +28,9 @@ import java.util.HashMap;
 import java.util.List;
 
 
-
+@CrossOrigin(origins="http://localhost:8081")
 @RestController
-@RequestMapping("/order")
-@CrossOrigin(origins="*")
+@RequestMapping("/api/order")
 public class OrdersController {
 
   @PersistenceContext

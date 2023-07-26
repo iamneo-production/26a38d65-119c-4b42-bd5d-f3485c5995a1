@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Grid, Typography, Button } from '@material-ui/core';
 import OrderCard from "../../card/OrderCard";
 import PaymentGateway from '../../card/PaymentGateway';
 const axios = require('axios').default;
 
-class ShopCart extends Component {
+class ShopCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       orders: undefined
-    };
+    }
     this.getCartOrders = this.getCartOrders.bind(this);
     this.checkout = this.checkout.bind(this);
   }
@@ -27,36 +27,26 @@ class ShopCart extends Component {
   }
 
   checkout() {
-    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/order/checkoutAll", {orders: this.state.orders}).then(
+    axios.post("http://localhost:8080/order/checkoutAll", {orders: this.state.orders}).then(
       response => {
         this.getCartOrders();
-      })
-      .catch(err => console.log(err));
+      }
+    ).catch(err => console.log(err));
   }
 
   render() {
     const { orders } = this.state;
     const totalSum = orders && orders.length > 0 ? orders.reduce((sum, order) => sum + order.price, 0) : 0;
 
-    if (!this.props.currentUser || !orders) {
-      return <div />;
-    }
-
-    return (
+    return this.props.currentUser && orders ? (
       <div>
-        <Grid container justifyContent="space-evenly" spacing={5}>
+        <Grid container justify="space-evenly" spacing={5}>
+          {orders.length > 0 ? orders.map(order => (
+            <Grid item key={order.id} xs={5}>
+              <OrderCard order={order} userType={this.props.currentUser.type} getOrders={this.getCartOrders} />
+            </Grid>
+          )) : <Typography variant="h5" style={{marginLeft: '45%', marginTop: '15%'}}><i>Your Shopping Cart is Empty...</i></Typography>}
           {orders.length > 0 ? (
-            orders.map(order => (
-              <Grid item key={order.id} xs={5}>
-                <OrderCard order={order} userType={this.props.currentUser.type} getOrders={this.getCartOrders} />
-              </Grid>
-            ))
-          ) : (
-            <Typography variant="h5" style={{ marginLeft: '45%', marginTop: '15%' }}>
-              <i>Your Shopping Cart is Empty...</i>
-            </Typography>
-          )}
-          {orders.length > 0 && (
             <Grid item xs={12}>
               <div className="checkoutBox">
                 <Grid container justifyContent="flex-end">
@@ -70,10 +60,10 @@ class ShopCart extends Component {
                 </Grid>
               </div>
             </Grid>
-          )}
+          ) : null}
         </Grid>
       </div>
-    );
+    ) : <div />;
   }
 }
 

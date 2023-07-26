@@ -1,3 +1,4 @@
+com/example/springapp/controller/SupportController.class
 com/example/springapp/service/UserService.class
 com/example/springapp/repository/DriverRepository.class
 com/example/springapp/service/OrderService.class
@@ -15,6 +16,7 @@ com/example/springapp/controller/RestaurantController.class
 com/example/springapp/model/MenuItem.class
 com/example/springapp/exception/OrderAlreadyFinishException.class
 com/example/springapp/model/Orders.class
+com/example/springapp/repository/SupportRepository.class
 com/example/springapp/model/Driver.class
 com/example/springapp/model/RestaurantInfo.class
 com/example/springapp/repository/OrderRepository.class
@@ -45,9 +47,11 @@ com/example/springapp/service/SearchEngineServiceImpl.class
 com/example/springapp/service/RestaurantService.class
 com/example/springapp/service/OrderServiceImpl.class
 com/example/springapp/model/Admin.class
+com/example/springapp/model/Support.class
 com/example/springapp/exception/OrderNotExistException.class
 com/example/springapp/model/SearchEngine$Node.class
 com/example/springapp/service/CustomerService.class
+com/example/springapp/service/SupportService.class
 com/example/springapp/exception/CommentAlreadyExistException.class
 com/example/springapp/exception/OrderAlreadyDeliverException.class
 com/example/springapp/repository/CustomerRepository.class

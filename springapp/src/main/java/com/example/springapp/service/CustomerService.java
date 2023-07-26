@@ -3,6 +3,8 @@ package com.example.springapp.service;
 
 
 import com.example.springapp.model.Customer;
+import com.example.springapp.model.Dish;
+
 import com.example.springapp.repository.CustomerRepository;
 import java.util.List;
 import java.util.Optional;
@@ -78,6 +80,7 @@ public class CustomerService implements UserService<Customer> {
     return this.getUser(getUserIdByName(userName));
   }
 
+ 
   @Override
   public List<Customer> getUsers() {
     return customerRepository.findAll();

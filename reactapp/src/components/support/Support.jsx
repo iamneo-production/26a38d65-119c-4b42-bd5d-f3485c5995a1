@@ -8,6 +8,7 @@ import {
   Typography,
   MenuItem,
 } from '@material-ui/core';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,27 +41,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Support = (props) => {
-  const [fullName, setFullName] = useState('');
+  const [userName, setuserName] = useState('');
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
   const [message, setMessage] = useState('');
-  const [personName, setPersonName] = useState('');
+  const [query, setquery] = useState('');
 
   const classes = useStyles();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'fullName') {
-      setFullName(value);
+    if (name === 'userName') {
+      setuserName(value);
     } else if (name === 'email') {
       setEmail(value);
     } else if (name === 'mobile') {
       setMobile(value);
     } else if (name === 'message') {
       setMessage(value);
-    } else if (name === 'personName') {
-      setPersonName(value);
+    } else if (name === 'query') {
+      setquery(value);
     }
   };
 
@@ -93,12 +94,12 @@ const Support = (props) => {
                     variant="outlined"
                     required
                     fullWidth
-                    id="fullName"
+                    id="userName"
                     type="text"
-                    label="Full Name"
-                    name="fullName"
-                    autoComplete="fullName"
-                    value={fullName}
+                    label="UserName"
+                    name="userName"
+                    autoComplete="userName"
+                    value={userName}
                     onChange={handleChange}
                   />
                 </Grid>
@@ -155,10 +156,10 @@ const Support = (props) => {
                     required
                     fullWidth
                     select
-                    name="personName"
+                    name="query"
                     label="How can I help you?"
-                    id="personName"
-                    value={personName}
+                    id="query"
+                    value={query}
                     onChange={handleChange}
                     className={classes.textField}
                   >
