@@ -55,6 +55,11 @@ public class RestaurantsController {
     return restaurantService.getUsers();
   }
 
+  @GetMapping("/count")
+  public int getTotalNumberOfRestaurants() {
+    return restaurantService.getTotalNumberOfRestaurants();
+  }
+
   @GetMapping(path = "/search/" + "{query}")
   public List<Restaurants> SearchRestaurants(@PathVariable("query") String query) {
     List<Restaurants> res = new ArrayList<>();
@@ -307,6 +312,27 @@ public int updateRestaurantInformation(@RequestBody String jsonInfo)
     }
     return res;
   }
+
+  @PostMapping(path = "/updateDishPrice")
+  public int updateDishPrice(@RequestBody String jsonDish)
+      throws UserNotExistException, DishNotExistException {
+    JSONObject dish = new JSONObject(jsonDish);
+    long restaurantId = dish.getLong("restaurantId");
+    String dishName = dish.getString("dishName");
+    double newPrice = dish.getDouble("newPrice");
+  
+    Optional<Restaurants> restaurant = restaurantService.getUser(String.valueOf(restaurantId));
+    if (restaurant.isEmpty()) {
+      throw new UserNotExistException("The given restaurant doesn't exist");
+    }
+  
+    int res = restaurantService.updateDishPrice(String.valueOf(restaurantId), dishName, newPrice);
+    if (res == -1) {
+      throw new DishNotExistException("The given dish doesn't exist");
+    }
+    
+    return res;
+    }
 
   @GetMapping(path = "/getComments/" + "{id}")
   public List<Comment> findCommentsByRestaurant(@PathVariable("id") String id)

@@ -55,55 +55,35 @@ class DisplayRestaurant extends React.Component {
   render() {
     return this.props.currentUser && this.state.restaurant ? (
       <div>
-        <Typography variant="h4"  style={{marginLeft:'550px'}}>
+        <Typography variant="h4"  style={{marginLeft:'450px'}}>
         <img className="littleImage" src= {this.state.restaurant.information.imageUrl} alt={this.state.restaurant.information.restaurantName} />
         <i><b>Welcome to {this.state.restaurant.information.restaurantName}</b></i>
         </Typography>
-
-
-
         {!this.state.restaurant.information.open ? (
           <Typography variant="body1" color="error">Closed, will go back soon...</Typography>
         ) : null}
-        <br />
-        <Typography variant="body1" color="textSecondary" component="p">
-          {/* <i>{this.state.restaurant.information.description}</i> */}
-        </Typography>
-        <br />
-        <br />
-        <br />
-
-        <Grid container spacing={3} justifyContent="space-evenly" style={{marginLeft:'-150px'}}>
+      <br/>
+      <br/>
+        <Grid container spacing={7} justifyContent="space-evenly" style={{marginLeft:"200px"}}>
           {this.state.restaurant.menu.map((dish, index) => (
-            <Grid item xs={3} key={index}>
+            <Grid item xs={6} key={index}>
               <DishCard dish={dish} addDish={this.addDish} currentUser={this.props.currentUser} />
             </Grid>
           ))}
         </Grid>
 
-
-
-
         <div className="checkoutBox">
-          <Grid container justifyContent="center">
-              <Grid item>
+          <Grid container justifyContent="center" style={{marginLeft:"200px"}}>
                 <Typography variant="h5"><i>Subtotal : $ {this.state.subtotal}</i></Typography>
-              </Grid>
           </Grid>
           <br />
 
-
-
-
-
-          <Grid container justifyContent="center">
-              <Grid item>
+          <Grid container justifyContent="center" style={{marginLeft:"200px"}}>
                 <Link to={"/customer/home"} style={{textDecoration: "none"}}>
                   <Button variant="outlined" color="primary" size="large" disabled={!this.state.restaurant.information.open || this.state.subtotal === 0} onClick={this.addToCart}>
                     Add to Cart
                   </Button>
                 </Link>
-              </Grid>
           </Grid>
         </div>
       </div>

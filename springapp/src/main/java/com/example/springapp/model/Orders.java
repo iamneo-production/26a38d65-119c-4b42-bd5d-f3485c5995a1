@@ -22,7 +22,10 @@ public class Orders {
   private boolean delivery;
   private LocalDateTime endTime;
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "order_dish",
+      joinColumns = @JoinColumn(name = "order_id"),
+      inverseJoinColumns = @JoinColumn(name = "dish_id"))
   private List<Dish> content;
 
   private double price;

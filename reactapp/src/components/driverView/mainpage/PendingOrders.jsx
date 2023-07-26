@@ -4,17 +4,6 @@ import './DriverHomes.css';
 import OrderCard from "../../card/OrderCard";
 const axios = require('axios').default;
 
-// const styles = {
-//   container: {
-//     display: 'flex',
-//     justifyContent: 'flex-end',
-//     alignItems: 'center',
-//     minHeight: '100vh',
-//     paddingRight: '20px',
-//     margin: '40px',
-//   },
-// };
-
 class PendingOrders extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +18,7 @@ class PendingOrders extends React.Component {
   }
 
   getActiveOrder() {
-    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/api/driver/myActiveOrder/" + this.props.currentUser.id).then(
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/driver/myActiveOrder/" + this.props.currentUser.id).then(
       response => {
         this.setState({order: response.data});
       }

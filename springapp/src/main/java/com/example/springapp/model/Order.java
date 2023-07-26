@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Table(name="res_order")
 public class Order {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long customerId;
     private Long restaurantId;

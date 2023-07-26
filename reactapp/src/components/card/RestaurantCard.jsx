@@ -61,12 +61,7 @@ const RestaurantCard = (props) => {
           </div>
           <Typography style={{ marginTop: '10px' }}>{props.restaurantInfo.restaurantName}</Typography>
 
-          <div className='res-row '>
-            <div className='card-separator'></div>
-            <div className='explore-bottom'>
-              {/* <div className='res-bottom-text'>{props.restaurantInfo.description}</div> */}
-            </div>
-          </div>
+         
           <IconButton
             onClick={handleExpandClick}
             aria-expanded={expanded}

@@ -66,7 +66,6 @@ const Support = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission logic
   };
 
   const names = [

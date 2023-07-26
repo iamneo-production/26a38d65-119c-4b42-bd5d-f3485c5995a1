@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.example.springapp;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -199,19 +198,3 @@ class SpringappApplicationTests {
 		    }
 
 }
-=======
-package com.example.springapp;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
-class SpringappApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
-
-}
->>>>>>> 7af54b8d64aa4f001f5a2c79ea927fc2fba69d2c

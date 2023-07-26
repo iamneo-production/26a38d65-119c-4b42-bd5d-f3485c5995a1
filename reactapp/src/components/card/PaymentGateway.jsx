@@ -15,7 +15,7 @@ const PaymentGateway = ({ price }) => {
       alert('Payment success');
     })
     .catch((error) => {
-    //   alert('Payment success');
+   
     });
   };
 

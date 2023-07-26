@@ -20,7 +20,7 @@ class CustomerView extends React.Component {
     return this.props.currentUser ? (
       <Router>
 
-        <Grid container justify="flex-start">
+        <Grid container justifyContent="flex-start">
          
           <Grid  sm={9}>
             <div className="grid">
