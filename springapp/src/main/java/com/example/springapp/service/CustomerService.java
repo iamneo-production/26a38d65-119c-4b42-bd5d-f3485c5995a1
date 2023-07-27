@@ -1,10 +1,7 @@
 package com.example.springapp.service;
 
-
-
 import com.example.springapp.model.Customer;
 import com.example.springapp.model.Dish;
-
 import com.example.springapp.repository.CustomerRepository;
 import java.util.List;
 import java.util.Optional;
@@ -27,10 +24,8 @@ public class CustomerService implements UserService<Customer> {
       String newPassword = passwordService.generatePassword(password);
       Customer customer = new Customer(userName, newPassword, phoneNumber, address, city, state, zip);
       customerRepository.save(customer);
-      System.out.println("Customer added to the database");
       return customer;
     }
-    System.out.println("Customer can't be added to the database");
     return null;
   }
 
@@ -39,10 +34,8 @@ public class CustomerService implements UserService<Customer> {
     long number = Long.parseLong(id);
     if (this.getUser(id).isPresent()) {
       customerRepository.deleteById(number);
-      System.out.println("Customer deleted from the database");
       return 1;
     }
-    System.out.println("Customer can't be deleted from the database");
     return -1;
   }
 
@@ -63,7 +56,6 @@ public class CustomerService implements UserService<Customer> {
         return customer.getId()+"";
       }
     }
-    System.out.println("Given userName doesn't found in customer database");
     return null;
   }
 
@@ -99,14 +91,11 @@ public class CustomerService implements UserService<Customer> {
       if (this.passwordMatch(id, oldPassword)) {
         customer.get().setPassword(passwordService.generatePassword(newPassword));
         customerRepository.save(customer.get());
-        System.out.println("Update the password");
         return 1;
       } else {
-        System.out.println("Password doesn't match");
         return 0;
       }
     }
-    System.out.println("Can't update the password");
     return -1;
   }
 
@@ -116,10 +105,8 @@ public class CustomerService implements UserService<Customer> {
     if (customer.isPresent()) {
       customer.get().setPhoneNumber(newNumber);
       customerRepository.save(customer.get());
-      System.out.println("Update the phone number");
       return 1;
     }
-    System.out.println("Can't update the phone number");
     return -1;
   }
 
@@ -133,10 +120,8 @@ public class CustomerService implements UserService<Customer> {
       customer.get().setState(state);
       customer.get().setZip(zip);
       customerRepository.save(customer.get());
-      System.out.println("Update the address");
       return 1;
     }
-    System.out.println("Can't update the address");
     return -1;
   }
 

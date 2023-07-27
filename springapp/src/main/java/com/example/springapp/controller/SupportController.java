@@ -8,7 +8,7 @@ import com.example.springapp.service.SupportService;
 
 import org.json.JSONObject;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://8081-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io")
 @RestController
 @RequestMapping("/support")
 public class SupportController {

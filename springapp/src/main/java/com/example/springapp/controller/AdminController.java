@@ -20,7 +20,7 @@ import com.example.springapp.service.AdminService;
 
 import java.util.Optional;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://8081-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io")
 @RestController
 @RequestMapping("/admin")
 public class AdminController {

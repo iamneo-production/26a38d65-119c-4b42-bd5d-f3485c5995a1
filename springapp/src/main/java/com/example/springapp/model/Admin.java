@@ -15,7 +15,6 @@ public class Admin {
     public Admin() {
     }
 
-    // Parameterized constructor
     public Admin(String userName, String password,String type) {
         this.userName = userName;
         this.password = password;
@@ -55,7 +54,6 @@ public class Admin {
         this.type = type;
     }
 
-    // Override toString() (optional, for better logging or debugging)
     @Override
     public String toString() {
         return "Admin{" +

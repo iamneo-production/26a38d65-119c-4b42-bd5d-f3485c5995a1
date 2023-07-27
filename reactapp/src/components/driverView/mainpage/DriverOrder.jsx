@@ -27,19 +27,22 @@ class DriverOrder extends React.Component {
 
   render() {
     return this.props.currentUser && this.state.orders ? (
+      <>
       <div className= 'styling'>
         <Grid container justifyContent="space-evenly" spacing={3}>
           {this.state.orders.length > 0 ? this.state.orders.map(order => (
             <Grid item key={order.id} xs={5}>
               <OrderCard order={order} userType={this.props.currentUser.type} getOrders={this.getPendingOrders} />
             </Grid>
-          )) : <Typography variant="h5"  style = {{marginBottom: '100px' }}><i>There is no available order...</i></Typography>}
+          )) :
+          ""}
         </Grid>
        
       </div>
-      
+       <div>{this.state.orders.length > 0 ?"":<Typography variant="h5"  component="h2" style={{marginBottom:"200px"}} ><i>There is no available order...</i></Typography>}</div>
+       </>
     ) :
-    <div className='styling'> <Typography variant="h5" style = {{marginBottom: '100px' }} className="styling"><i>You already have an pending order in delivery...</i></Typography></div>
+    <div > <Typography variant="h5"  component="h2"  style={{marginTop:"200px"}}><i>You already have an pending order in delivery...</i></Typography></div>
   }
 }
 

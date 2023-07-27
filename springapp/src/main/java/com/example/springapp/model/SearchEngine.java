@@ -1,10 +1,6 @@
 package com.example.springapp.model;
 
-
 import javax.persistence.*;
-
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +39,6 @@ public class SearchEngine {
         nodes.removeIf(node -> node.getWord().equalsIgnoreCase(word) && node.getRestaurantId().equals(restaurantId));
     }
 
-    // Other getters, setters, and methods
-
     @Entity
     @Table(name = "node")
     public static class Node {
@@ -63,8 +57,6 @@ public class SearchEngine {
             this.word = word;
             this.restaurantId = restaurantId;
         }
-
-        // Getters and setters
 
         public String getWord() {
             return word;

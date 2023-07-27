@@ -20,6 +20,7 @@ public class Dish {
   private double price;
   @Column(name = "image_url", length = 100000000)
   private String imageUrl;
+  
 
   public Dish() {
   } 
@@ -37,6 +38,7 @@ public class Dish {
   public void setId(Long id) {
     this.id = id;
   }
+  
 
 
   public String getDishName() {

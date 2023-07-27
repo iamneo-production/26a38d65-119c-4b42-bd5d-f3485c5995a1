@@ -27,9 +27,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins="http://localhost:8081")
+@CrossOrigin(origins="https://8081-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io")
 @RestController
-@RequestMapping("/api/driver")
+@RequestMapping("/driver")
 public class DriverController {
 
   private final DriverServiceImpl driverService;
@@ -136,7 +136,6 @@ public class DriverController {
   public int acceptOrder(@RequestBody String jsonOrder)
       throws UserNotExistException, OrderNotExistException, OrderAlreadyDeliverException {
     JSONObject order = new JSONObject(jsonOrder);
-    System.out.println(order);
     long Id = order.getLong("orderId");
     String orderId = String.valueOf(Id);
     String driverId = order.getString("driverId");

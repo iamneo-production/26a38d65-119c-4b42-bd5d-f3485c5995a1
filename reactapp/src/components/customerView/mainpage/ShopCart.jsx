@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid, Typography, Button } from '@material-ui/core';
 import OrderCard from "../../card/OrderCard";
-import PaymentGateway from '../../card/PaymentGateway';
 const axios = require('axios').default;
 
 class ShopCart extends React.Component {
@@ -27,7 +26,7 @@ class ShopCart extends React.Component {
   }
 
   checkout() {
-    axios.post("http://localhost:8080/order/checkoutAll", {orders: this.state.orders}).then(
+    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/order/checkoutAll", {orders: this.state.orders}).then(
       response => {
         this.getCartOrders();
       }
@@ -36,7 +35,6 @@ class ShopCart extends React.Component {
 
   render() {
     const { orders } = this.state;
-    const totalSum = orders && orders.length > 0 ? orders.reduce((sum, order) => sum + order.price, 0) : 0;
 
     return this.props.currentUser && orders ? (
       <div>
@@ -51,11 +49,9 @@ class ShopCart extends React.Component {
               <div className="checkoutBox">
                 <Grid container justifyContent="flex-end">
                   <Grid item>
-                    {/* <PaymentGateway price={totalSum}> */}
                     <Button variant="outlined" color="secondary" size="medium" onClick={this.checkout}>
                       Check out all orders
                     </Button>
-                    {/* </PaymentGateway> */}
                   </Grid>
                 </Grid>
               </div>

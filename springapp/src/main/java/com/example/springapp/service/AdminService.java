@@ -32,7 +32,6 @@ public class AdminService {
 
         Admin admin = adminOptional.get();
 
-        // Compare the provided password with the stored password as plain strings
         return providedPassword.equals(admin.getPassword());
     }
   

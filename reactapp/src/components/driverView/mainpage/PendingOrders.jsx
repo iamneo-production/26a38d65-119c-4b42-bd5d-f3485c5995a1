@@ -35,7 +35,7 @@ class PendingOrders extends React.Component {
         </Grid>
       </div>
     ) :
-    <div className= 'styling'> <Typography variant="h5"  style = {{marginBottom: '100px' }} className="styling"><i>You don't have any pending order...</i></Typography></div>
+    <div > <Typography variant="h5"  component="h2"  style={{marginTop:"200px"}}><i>You don't have any pending order...</i></Typography></div>
   }
 }
 

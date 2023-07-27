@@ -87,7 +87,7 @@ class DisplayRestaurant extends React.Component {
           </Grid>
         </div>
       </div>
-    ) : <div>This restaurant is not available</div>
+    ) : <Typography variant="h5" component="h2" style={{marginTop:"200px",marginLeft:"500px"}}><i>This restaurant is not available</i></Typography>
   }
 }
 

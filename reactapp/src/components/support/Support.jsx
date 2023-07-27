@@ -70,7 +70,7 @@ const Support = (props) => {
   };
 
   const names = [
-    'I need help with my foodcourt online order.',
+    'I need help with my foodDesk online order.',
     'I found incorrect/outdated information on a page.',
     'There is a photo/review that is bothering me and I would like to report it.',
     'The website/app are not working the way they should.',
@@ -80,7 +80,7 @@ const Support = (props) => {
   ];
 
   return (
-    <Grid container justify="center" style={{ marginBottom: '40px', marginLeft: '-80px' }}>
+    <Grid container justifyContent="center" style={{ marginBottom: '40px', marginLeft: '-80px' }}>
       <Grid item xs={12} sm={8} md={6} lg={4}>
         <div className="box">
           <Paper className={classes.root}>

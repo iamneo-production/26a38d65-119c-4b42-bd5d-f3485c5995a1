@@ -28,7 +28,7 @@ class DriverHistory extends React.Component {
   render() {
     return this.props.currentUser && this.state.orders ? (
       <div className= 'styling'>
-        <Grid container justify="space-evenly" spacing={3}>
+        <Grid container justifyContent="space-evenly" spacing={3}>
           {this.state.orders.length > 0 ? this.state.orders.map(order => (
             <Grid item key={order.id} xs={5}>
               <OrderCard order={order} userType={this.props.currentUser.type} />

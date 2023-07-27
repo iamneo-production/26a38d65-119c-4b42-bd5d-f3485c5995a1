@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/res_order")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="https://8081-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io")
 public class OrderController {
     private final OrderService orderService;
 

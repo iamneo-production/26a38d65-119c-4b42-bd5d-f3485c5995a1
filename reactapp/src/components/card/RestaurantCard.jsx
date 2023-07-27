@@ -6,14 +6,10 @@ import {
   Collapse,
   IconButton,
   Grid,
-  Box,
-  MobileStepper,
-  Button
+  Box
 } from "@material-ui/core";
 import Rating from '@material-ui/lab/Rating';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import './../../styles/commonclasses.css';
 import './../../styles/variable.css';
 

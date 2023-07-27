@@ -24,7 +24,6 @@ public class Support {
     @Column(nullable = false)
     private String query;
 
-    // Constructors
     public Support() {
     }
 

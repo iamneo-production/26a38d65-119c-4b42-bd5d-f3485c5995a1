@@ -24,13 +24,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
-@CrossOrigin(origins="http://localhost:8081")
+@CrossOrigin(origins="https://8081-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io")
 @RestController
-@RequestMapping("/api/order")
+@RequestMapping("/order")
 public class OrdersController {
 
   @PersistenceContext
@@ -46,47 +45,46 @@ public class OrdersController {
   @PostMapping(path = "/addToCart")
   @Transactional
   public int addOrderToCart(@RequestBody String jsonOrder) {
-    Gson gson = new GsonBuilder()
-        .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
-        .create();
+      Gson gson = new GsonBuilder()
+              .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+              .create();
   
-    JSONObject order = new JSONObject(jsonOrder);
-    long Id = order.getLong("customerId");
-    String customerId = String.valueOf(Id);
-    String restaurantId = order.getString("restaurantId");
-    JSONArray shopcart = order.getJSONArray("shopcart");
-    List<Dish> list = new ArrayList<>();
-    Map<Dish, Integer> dishCountMap = new HashMap<>(); 
-    Set<Dish> dishSet = new HashSet<>(); 
+      JSONObject order = new JSONObject(jsonOrder);
+      long Id = order.getLong("customerId");
+      String customerId = String.valueOf(Id);
+      String restaurantId = order.getString("restaurantId");
+      JSONArray shopcart = order.getJSONArray("shopcart");
+      List<Dish> list= new ArrayList<>();
+      Map<Dish, Integer> dishCountMap = new HashMap<>();
+      Set<Dish> dishSet = new HashSet<>();
   
-    for (Object object : shopcart) {
-      Dish dish = gson.fromJson(object.toString(), Dish.class);
+      for (Object object : shopcart) {
+          Dish dish = gson.fromJson(object.toString(), Dish.class);
   
-      dishCountMap.put(dish, dishCountMap.getOrDefault(dish, 0) + 1);
+          dishCountMap.put(dish, dishCountMap.getOrDefault(dish, 0) + 1);
   
-      if (!dishSet.contains(dish)) {
-        Dish mergedDish = entityManager.merge(dish); 
-        list.add(mergedDish);
-        dishSet.add(dish);
+          if (!dishSet.contains(dish)) {
+              Dish existingDish = entityManager.find(Dish.class, dish.getId());
+              if (existingDish != null) {
+                  list.add(existingDish);
+              } else {
+                  Dish mergedDish = entityManager.merge(dish);
+                  list.add(mergedDish);
+              }
+              dishSet.add(dish);
+          }
       }
-    }
   
-    
-    for (Map.Entry<Dish, Integer> entry : dishCountMap.entrySet()) {
-      Dish dish = entry.getKey();
-      int count = entry.getValue();
-  
-      for (int i = 0; i < count - 1; i++) {
-        if (!list.contains(dish)) {
-          Dish mergedDish = entityManager.merge(dish); 
-          list.add(mergedDish);
-        }
+      for (Map.Entry<Dish, Integer> entry : dishCountMap.entrySet()) {
+          Dish dish = entry.getKey();
+          int count = entry.getValue();
+          for (int i = 0; i < count - 1; i++) {
+              list.add(entityManager.merge(dish));
+          }
       }
-    }
   
-    return orderService.addOrderToCart(customerId, restaurantId, list);
+      return orderService.addOrderToCart(customerId, restaurantId, list);
   }
-  
 
 
   @DeleteMapping(path = "{id}")

@@ -79,7 +79,7 @@ const CustomerHome = ({ currentUser }) => {
                 <Grid xs={4} key={restaurant.id}>
                   <RestaurantCard userId={currentUser.id} restaurantId={restaurant.id} restaurantInfo={restaurant.information} />
                 </Grid>
-              )) : <Typography variant="h5" style={{ marginLeft: '45%' }}><i>No result matches your search, please try again...</i></Typography>}
+              )) : <Typography variant="h5" component="h2" style={{marginLeft:"100px"}} ><i>No result matches your search, please try again...</i></Typography>}
             </Grid>
           </div>
         </Grid>
