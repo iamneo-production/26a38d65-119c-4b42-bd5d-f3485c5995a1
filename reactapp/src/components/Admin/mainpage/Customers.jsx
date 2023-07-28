@@ -33,41 +33,41 @@ const Customers = (props) => {
 
   return (
     props.currentUser ? (
-    <div className="table-container">
-      {customers.length === 0 ? (
-        <h1 align="center" style={{marginTop:"170px"}}>No customers found</h1>
+      <div className="table-container">
+        {customers.length === 0 ? (
+          <h1 align="center" style={{ marginTop: "170px" }}>No customers found</h1>
 
-      ) : (
-        <table className="styled-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>User name</th>
-              <th>Phone number</th>
-              <th>City</th>
-              <th>State</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {customers.map((customer) => (
-              <tr key={customer.id}>
-                <td>{customer.id}</td>
-                <td>{customer.userName}</td>
-                <td>{customer.phoneNumber}</td>
-                <td>{customer.city}</td>
-                <td>{customer.state}</td>
-                <td>
-                  <button onClick={() => handleDelete(customer.id)}>Delete</button>
-                </td>
+        ) : (
+          <table className="styled-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>User name</th>
+                <th>Phone number</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
-   ) : <div />
-   );
+            </thead>
+            <tbody>
+              {customers.map((customer) => (
+                <tr key={customer.id}>
+                  <td>{customer.id}</td>
+                  <td>{customer.userName}</td>
+                  <td>{customer.phoneNumber}</td>
+                  <td>{customer.city}</td>
+                  <td>{customer.state}</td>
+                  <td>
+                    <button onClick={() => handleDelete(customer.id)}>Delete</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+    ) : <div />
+  );
 };
 
 export default Customers;
