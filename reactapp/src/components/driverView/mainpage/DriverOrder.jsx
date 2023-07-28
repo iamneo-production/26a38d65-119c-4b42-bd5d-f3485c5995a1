@@ -1,5 +1,6 @@
 import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
+import './DriverHomes.css';
 import OrderCard from "../../card/OrderCard";
 const axios = require('axios').default;
 
@@ -7,33 +8,41 @@ class DriverOrder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      order: undefined
+      orders: undefined
     }
-    this.getActiveOrder = this.getActiveOrder.bind(this);
+    this.getPendingOrders = this.getPendingOrders.bind(this);
   }
 
   componentDidMount() {
-    this.getActiveOrder();
+    this.getPendingOrders();
   }
 
-  getActiveOrder() {
-    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/driver/myActiveOrder/" + this.props.currentUser.id).then(
+  getPendingOrders() {
+    axios.get("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/driver/pendingOrders/" + this.props.currentUser.id).then(
       response => {
-        this.setState({order: response.data});
+        this.setState({orders: response.data});
       }
     ).catch(err => console.log(err));
   }
 
   render() {
-    return this.props.currentUser && this.state.order ? (
-      <div>
-        <Grid container justify="space-evenly" spacing={3}>
-          <Grid item xs={5}>
-            <OrderCard order={this.state.order} userType={this.props.currentUser.type} getOrders={this.getActiveOrder} />
-          </Grid>
+    return this.props.currentUser && this.state.orders ? (
+      <>
+      <div className= 'styling'>
+        <Grid container justifyContent="space-evenly" spacing={3}>
+          {this.state.orders.length > 0 ? this.state.orders.map(order => (
+            <Grid item key={order.id} xs={5}>
+              <OrderCard order={order} userType={this.props.currentUser.type} getOrders={this.getPendingOrders} />
+            </Grid>
+          )) :
+          ""}
         </Grid>
+       
       </div>
-    ) : <Typography variant="h5"><i>You don't have any active order...</i></Typography>
+       <div>{this.state.orders.length > 0 ?"":<Typography variant="h5"  component="h2" style={{marginBottom:"200px"}} ><i>There is no available order...</i></Typography>}</div>
+       </>
+    ) :
+    <div > <Typography variant="h5"  component="h2"  style={{marginTop:"200px"}}><i>You already have an pending order in delivery...</i></Typography></div>
   }
 }
 

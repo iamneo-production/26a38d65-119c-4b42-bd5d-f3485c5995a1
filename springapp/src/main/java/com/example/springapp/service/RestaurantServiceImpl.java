@@ -1,4 +1,3 @@
-
 package com.example.springapp.service;
 
 
@@ -18,14 +17,15 @@ import org.springframework.stereotype.Service;
 public class RestaurantServiceImpl implements UserService<Restaurants> {
 
   @Autowired
-  RestaurantsRepository restaurantRepository;
-  PasswordService passwordService = new PasswordService();
+  private RestaurantsRepository restaurantRepository;
+
+  @Autowired
+  private PasswordService passwordService ;
 
 
 
   public int addDish(String id, Dish dish) {
     Optional<Restaurants> restaurant = this.getUser(id);
-    System.out.println("Add dish to restaurant: " + id);
     if (restaurant.isPresent()) {
       Set<Dish> set;
       if (restaurant.get().getMenu() == null) {
@@ -37,13 +37,14 @@ public class RestaurantServiceImpl implements UserService<Restaurants> {
       restaurant.get().setMenu(new ArrayList<>(set));
       restaurantRepository.save(restaurant.get());
 
-      System.out.println("Add the dish");
       return 1;
     }
-    System.out.println("Can't add the dish");
     return -1;
   }
 
+  public int getTotalNumberOfRestaurants() {
+    return (int) restaurantRepository.count();
+  }
   
   public int removeDish(String id, Dish dish) {
     Optional<Restaurants> restaurant = this.getUser(id);
@@ -52,24 +53,37 @@ public class RestaurantServiceImpl implements UserService<Restaurants> {
       if (temp.contains(dish)) {
         temp.remove(dish);
         restaurant.get().setMenu(temp);
-        restaurantRepository.save(restaurant.get());
-
-        System.out.println("Remove the dish");
+        restaurantRepository.save(restaurant.get());        
         return 1;
       } else {
-        System.out.println("Dish not in the menu");
         return 0;
       }
     }
-    System.out.println("Can't remove the dish");
     return -1;
   }
 
+  public int updateDishPrice(String restaurantId, String dishName, double newPrice) {
+    long number = Long.parseLong(restaurantId);
+    Optional<Restaurants> restaurantOptional = restaurantRepository.findById(number);
+    if (restaurantOptional.isPresent()) {
+      Restaurants restaurant = restaurantOptional.get();
+      List<Dish> menu = restaurant.getMenu();
+      for (Dish dish : menu) {
+        if (dish.getDishName().equals(dishName)) {
+          dish.setPrice(newPrice);
+          restaurantRepository.save(restaurant);
+          return 1;
+        }
+      }
+      return 0; 
+    } else {
+      return -1; 
+    }
+  }
 
   public List<Dish> getAllDishes(String id) {
     Optional<Restaurants> restaurant = this.getUser(id);
     
-    System.out.println("Get all dishes from restaurant: " + id);
     return restaurant.map(Restaurants::getMenu).orElse(null);
   }
 
@@ -77,7 +91,6 @@ public class RestaurantServiceImpl implements UserService<Restaurants> {
   public RestaurantInfo getInformation(String id) {
     Optional<Restaurants> restaurant = this.getUser(id);
     if (restaurant.isPresent()) {
-      System.out.println("Get the restaurant information");
       if (restaurant.get().getInformation() == null) {
         return new RestaurantInfo();
       } else {
@@ -94,10 +107,8 @@ public class RestaurantServiceImpl implements UserService<Restaurants> {
 
       restaurant.get().setInformation(info);
       restaurantRepository.save(restaurant.get());
-      System.out.println("Update the information");
       return 1;
     }
-    System.out.println("Can't update the information");
     return -1;
   }
 
@@ -108,10 +119,8 @@ public class RestaurantServiceImpl implements UserService<Restaurants> {
       String newPassword = passwordService.generatePassword(password);
       Restaurants restaurant = new Restaurants(userName, newPassword, phoneNumber, address, city, state,zip);
       restaurantRepository.save(restaurant);
-      System.out.println("Restaurant added to the database");
       return restaurant;
     }
-    System.out.println("Restaurant can't be added to the database");
     return null;
   }
 
@@ -120,10 +129,8 @@ public class RestaurantServiceImpl implements UserService<Restaurants> {
     long number = Long.parseLong(id);
     if (this.getUser(id).isPresent()) {
       restaurantRepository.deleteById(number);
-      System.out.println("Restaurant deleted from the database");
       return 1;
-    }
-    System.out.println("Restaurant can't be deleted from the database");
+    }    
     return -1;
   }
 
@@ -144,14 +151,15 @@ public class RestaurantServiceImpl implements UserService<Restaurants> {
         return restaurant.getId()+"";
       }
     }
-    System.out.println("Given userName doesn't found in restaurant database");
     return null;
   }
 
+  
   @Override
   public Optional<Restaurants> getUserByName(String userName) {
     return this.getUser(getUserIdByName(userName));
   }
+
   @Override
   public List<Restaurants> getUsers() {
     return restaurantRepository.findAll();
@@ -170,14 +178,11 @@ public class RestaurantServiceImpl implements UserService<Restaurants> {
       if (this.passwordMatch(id, oldPassword)) {
         restaurant.get().setPassword(passwordService.generatePassword(newPassword));
         restaurantRepository.save(restaurant.get());
-        System.out.println("Update the password");
         return 1;
       } else {
-        System.out.println("Password doesn't match");
         return 0;
       }
     }
-    System.out.println("Can't update the password");
     return -1;
   }
 
@@ -187,10 +192,8 @@ public class RestaurantServiceImpl implements UserService<Restaurants> {
     if (restaurant.isPresent()) {
       restaurant.get().setPhoneNumber(newNumber);
       restaurantRepository.save(restaurant.get());
-      System.out.println("Update the phone number");
       return 1;
     }
-    System.out.println("Can't update the phone number");
     return -1;
   }
 
@@ -204,10 +207,8 @@ public class RestaurantServiceImpl implements UserService<Restaurants> {
       restaurant.get().setState(state);
       restaurant.get().setZip(zip);
       restaurantRepository.save(restaurant.get());
-      System.out.println("Update the address");
       return 1;
     }
-    System.out.println("Can't update the address");
     return -1;
   }
 }

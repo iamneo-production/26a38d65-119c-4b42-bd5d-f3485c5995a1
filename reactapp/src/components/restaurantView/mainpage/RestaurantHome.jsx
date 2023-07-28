@@ -1,8 +1,7 @@
 import React from 'react';
 import './Restaurant.css';
 import { Typography, CardContent,Card,Grid,CardHeader,Stack } from '@mui/material';
-
-const axios = require('axios').default;
+import axios from 'axios';
 
 class RestaurantHome extends React.Component {
   constructor(props) {

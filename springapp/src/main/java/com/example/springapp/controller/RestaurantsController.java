@@ -31,11 +31,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
+@CrossOrigin(origins="https://8081-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io")
 @RestController
 @RequestMapping("/restaurant")
-@CrossOrigin(origins="*")
 public class RestaurantsController {
 
   private final RestaurantServiceImpl restaurantService;
@@ -53,6 +51,11 @@ public class RestaurantsController {
   @GetMapping(path = "/all")
   public List<Restaurants> getAllRestaurants() {
     return restaurantService.getUsers();
+  }
+
+  @GetMapping("/count")
+  public int getTotalNumberOfRestaurants() {
+    return restaurantService.getTotalNumberOfRestaurants();
   }
 
   @GetMapping(path = "/search/" + "{query}")
@@ -112,19 +115,6 @@ public class RestaurantsController {
     }
     return restaurant;
   }
-
-  @GetMapping(path = "/allDishes")
-public List<Dish> getAllDishesFromAllRestaurants() {
-  List<Dish> allDishes = new ArrayList<>();
-  List<Restaurants> restaurants = restaurantService.getUsers();
-
-  for (Restaurants restaurant : restaurants) {
-    List<Dish> dishes = restaurantService.getAllDishes(restaurant.getId()+"");
-    allDishes.addAll(dishes);
-  }
-
-  return allDishes;
-}
 
   @PostMapping(path = "/logout")
   public int logoutRestaurant() {
@@ -308,6 +298,9 @@ public int updateRestaurantInformation(@RequestBody String jsonInfo)
     return res;
   }
 
+ 
+    
+
   @GetMapping(path = "/getComments/" + "{id}")
   public List<Comment> findCommentsByRestaurant(@PathVariable("id") String id)
       throws UserNotExistException {
@@ -315,7 +308,31 @@ public int updateRestaurantInformation(@RequestBody String jsonInfo)
     if (restaurantOptional.isEmpty()) throw new UserNotExistException("User doesn't exist");
     return orderService.restaurantGetComments(id);
   }
-
+  @GetMapping(path = "/username/{username}")
+  public boolean doesUsernameExist(@PathVariable("username") String username) {
+    Optional<Restaurants> restaurant = restaurantService.getUserByName(username);
+      return restaurant.isPresent();
+  }
+  @PostMapping(path = "/updateDishPrice")
+  public int updateDishPrice(@RequestBody String jsonDish)
+      throws UserNotExistException, DishNotExistException {
+    JSONObject dish = new JSONObject(jsonDish);
+    long restaurantId = dish.getLong("restaurantId");
+    String dishName = dish.getString("dishName");
+    double newPrice = dish.getDouble("newPrice");
+  
+    Optional<Restaurants> restaurant = restaurantService.getUser(String.valueOf(restaurantId));
+    if (restaurant.isEmpty()) {
+      throw new UserNotExistException("The given restaurant doesn't exist");
+    }
+  
+    int res = restaurantService.updateDishPrice(String.valueOf(restaurantId), dishName, newPrice);
+    if (res == -1) {
+      throw new DishNotExistException("The given dish doesn't exist");
+    }
+    
+    return res;
+    }
   @ResponseStatus(value = HttpStatus.BAD_REQUEST)
   @ExceptionHandler({UserNotExistException.class, PasswordNotMatchException.class,
       UserAlreadyExistException.class, DishNotExistException.class,

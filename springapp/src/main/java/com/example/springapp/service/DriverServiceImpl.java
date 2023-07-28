@@ -1,13 +1,12 @@
-
 package com.example.springapp.service;
 
 import com.example.springapp.model.Driver;
 import com.example.springapp.repository.DriverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class DriverServiceImpl implements UserService<Driver> {
@@ -28,12 +27,18 @@ public class DriverServiceImpl implements UserService<Driver> {
       String newPassword = passwordService.generatePassword(password);
       Driver driver = new Driver(userName, newPassword, phoneNumber, address, city, state, zip);
       driverRepository.save(driver);
-      System.out.println("Driver added to the database");
       return driver;
     }
-    System.out.println("Driver can't be added to the database");
     return null;
   }
+
+  public int getTotalNumberOfDrivers() {
+    return (int) driverRepository.count();
+  }
+
+  public List<Driver> getAllUsers() {
+        return driverRepository.findAll();
+    }
 
   @Override
   public int deleteUser(String id) {
@@ -41,10 +46,8 @@ public class DriverServiceImpl implements UserService<Driver> {
     if (driver.isPresent()) {
       long number = Long.parseLong(id);
       driverRepository.deleteById(number);
-      System.out.println("Driver deleted from the database");
       return 1;
     }
-    System.out.println("Driver can't be deleted from the database");
     return -1;
   }
 
@@ -65,7 +68,6 @@ public class DriverServiceImpl implements UserService<Driver> {
         return String.valueOf(driver.getId());
       }
     }
-    System.out.println("Given userName not found in the driver database");
     return null;
   }
 
@@ -92,14 +94,11 @@ public class DriverServiceImpl implements UserService<Driver> {
       if (passwordMatch(id, oldPassword)) {
         driver.get().setPassword(passwordService.generatePassword(newPassword));
         driverRepository.save(driver.get());
-        System.out.println("Password updated");
         return 1;
       } else {
-        System.out.println("Password doesn't match");
         return 0;
       }
     }
-    System.out.println("Unable to update the password");
     return -1;
   }
 
@@ -109,10 +108,8 @@ public class DriverServiceImpl implements UserService<Driver> {
     if (driver.isPresent()) {
       driver.get().setPhoneNumber(newNumber);
       driverRepository.save(driver.get());
-      System.out.println("Phone number updated");
       return 1;
     }
-    System.out.println("Unable to update the phone number");
     return -1;
   }
 
@@ -125,10 +122,8 @@ public class DriverServiceImpl implements UserService<Driver> {
       driver.get().setState(state);
       driver.get().setZip(zip);
       driverRepository.save(driver.get());
-      System.out.println("Address updated");
       return 1;
     }
-    System.out.println("Unable to update the address");
     return -1;
   }
 }

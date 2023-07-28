@@ -1,4 +1,3 @@
-
 package com.example.springapp.controller;
 import com.example.springapp.model.Driver;
 import com.example.springapp.model.Orders;
@@ -28,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="https://8081-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io")
 @RestController
 @RequestMapping("/driver")
 public class DriverController {
@@ -47,6 +46,16 @@ public class DriverController {
       throws UserNotExistException {
     return driverService.getUser(id)
         .orElseThrow(() -> new UserNotExistException("User doesn't exist"));
+  }
+
+  @GetMapping("/count")
+  public int getTotalNumberOfDrivers() {
+    return driverService.getTotalNumberOfDrivers();
+  }
+
+  @GetMapping("/all")
+  public List<Driver> getAllDrivers() {
+    return driverService.getAllUsers();
   }
 
   @PostMapping(path = "/login")
@@ -127,7 +136,6 @@ public class DriverController {
   public int acceptOrder(@RequestBody String jsonOrder)
       throws UserNotExistException, OrderNotExistException, OrderAlreadyDeliverException {
     JSONObject order = new JSONObject(jsonOrder);
-    System.out.println(order);
     long Id = order.getLong("orderId");
     String orderId = String.valueOf(Id);
     String driverId = order.getString("driverId");
@@ -221,7 +229,11 @@ public class DriverController {
     }
     return res;
   }
-
+  @GetMapping(path = "/username/{username}")
+  public boolean doesUsernameExist(@PathVariable("username") String username) {
+    Optional<Driver> driver = driverService.getUserByName(username);
+      return driver.isPresent();
+  }
   @ResponseStatus(value = HttpStatus.BAD_REQUEST)
   @ExceptionHandler({UserNotExistException.class, PasswordNotMatchException.class,
       UserAlreadyExistException.class, OrderNotExistException.class,

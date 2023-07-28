@@ -1,4 +1,3 @@
-
 package com.example.springapp.model;
 
 
@@ -9,6 +8,7 @@ import javax.persistence.*;
 @Table(name="res_order")
 public class Order {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long customerId;
     private Long restaurantId;
@@ -99,7 +99,4 @@ public class Order {
     public void setStatus(String status) {
         this.status = status;
     }
-
 }
-
-

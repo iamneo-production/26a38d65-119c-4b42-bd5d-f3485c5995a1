@@ -1,4 +1,3 @@
-
 package com.example.springapp.model;
 
 
@@ -17,7 +16,7 @@ public class RestaurantInfo {
   private String restaurantName;
   private String description;
   
-  @Column(name = "image_url", length = 10000)
+  @Column(name = "image_url", length = 10000000)
   private String imageUrl;
   private String tag1;
   private String tag2;

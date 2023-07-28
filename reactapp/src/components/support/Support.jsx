@@ -8,6 +8,7 @@ import {
   Typography,
   MenuItem,
 } from '@material-ui/core';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,37 +41,36 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Support = (props) => {
-  const [fullName, setFullName] = useState('');
+  const [userName, setuserName] = useState('');
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
   const [message, setMessage] = useState('');
-  const [personName, setPersonName] = useState('');
+  const [query, setquery] = useState('');
 
   const classes = useStyles();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'fullName') {
-      setFullName(value);
+    if (name === 'userName') {
+      setuserName(value);
     } else if (name === 'email') {
       setEmail(value);
     } else if (name === 'mobile') {
       setMobile(value);
     } else if (name === 'message') {
       setMessage(value);
-    } else if (name === 'personName') {
-      setPersonName(value);
+    } else if (name === 'query') {
+      setquery(value);
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission logic
   };
 
   const names = [
-    'I need help with my foodcourt online order.',
+    'I need help with my foodDesk online order.',
     'I found incorrect/outdated information on a page.',
     'There is a photo/review that is bothering me and I would like to report it.',
     'The website/app are not working the way they should.',
@@ -80,7 +80,7 @@ const Support = (props) => {
   ];
 
   return (
-    <Grid container justify="center" style={{ marginBottom: '40px', marginLeft: '-80px' }}>
+    <Grid container justifyContent="center" style={{ marginBottom: '40px', marginLeft: '-80px' }}>
       <Grid item xs={12} sm={8} md={6} lg={4}>
         <div className="box">
           <Paper className={classes.root}>
@@ -94,12 +94,12 @@ const Support = (props) => {
                     variant="outlined"
                     required
                     fullWidth
-                    id="fullName"
+                    id="userName"
                     type="text"
-                    label="Full Name"
-                    name="fullName"
-                    autoComplete="fullName"
-                    value={fullName}
+                    label="UserName"
+                    name="userName"
+                    autoComplete="userName"
+                    value={userName}
                     onChange={handleChange}
                   />
                 </Grid>
@@ -156,10 +156,10 @@ const Support = (props) => {
                     required
                     fullWidth
                     select
-                    name="personName"
+                    name="query"
                     label="How can I help you?"
-                    id="personName"
-                    value={personName}
+                    id="query"
+                    value={query}
                     onChange={handleChange}
                     className={classes.textField}
                   >

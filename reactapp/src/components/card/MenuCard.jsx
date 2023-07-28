@@ -43,26 +43,25 @@ class MenuCard extends React.Component {
     this.props.addDish("add", this.props.dish);
   }
 
-  updatePrice(){
-      
-    alert("Updated");
-    this.closeUpdateDialog();
+  updatePrice() {
+    const updatedPrice = parseFloat(this.state.newPrice);
+    if (!isNaN(updatedPrice)) {
+      const requestData = {
+        restaurantId: this.props.currentUser.id,
+        dishName: this.props.dish.dishName,
+        newPrice: updatedPrice
+      };
 
-
-    // const updatedPrice = parseFloat(this.state.newPrice);
-    // if (!isNaN(updatedPrice)) {
-    //   axios.post("/api/restaurant/updateDishPrice", {
-    //     restaurantId: this.props.currentUser.id,
-    //     dish: this.props.dish,
-    //     newPrice: updatedPrice
-    //   }).then(
-    //     response => {
-    //       this.props.getAllDishes();
-    //     }
-    //   ).catch(err => console.log(err));
-    //   this.closeUpdateDialog();
-    // }
-
+      axios
+        .post('https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/updateDishPrice', requestData)
+        .then(response => {
+          this.props.getAllDishes();
+          this.closeUpdateDialog();
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   }
 
   handleMinus() {
@@ -83,20 +82,13 @@ class MenuCard extends React.Component {
   }
 
 
-  // removeDish() {
-  //   axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/removeDish", {
-  //     restaurantId : this.props.currentUser.id,
-  //     dish : this.props.dish
-  //   }).then(
-  //     response => {
-  //       this.props.getAllDishes();
-  //     }
-  //   ).catch(err => console.log(err));
-  // }
 
   removeDish() {
-    axios.delete(`https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/removeDish/${this.props.currentUser.id}/${this.props.dish.id}`)
-      .then(response => {
+    axios.post("https://8080-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io/restaurant/removeDish", {
+      restaurantId : this.props.currentUser.id,
+      dish : this.props.dish
+    }).then(
+      response => {
         this.props.getAllDishes();
       })
       .catch(err => console.log(err));

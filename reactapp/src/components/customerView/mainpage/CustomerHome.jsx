@@ -54,9 +54,9 @@ const CustomerHome = ({ currentUser }) => {
     <div>
       <Grid container justifyContent="center">
         <Grid>
-          <Paper component="form" onSubmit={handleSearch} style={{ width: 500, padding: '2px 4px', display: "flex", marginLeft: '550px' }}>
+          <Paper component="form" onSubmit={handleSearch} style={{ width: 500, padding: '2px 4px', display: "flex", marginLeft: '450px',borderRadius:"20px" }}>
             <InputBase
-              style={{ marginLeft: '10px', width: 325 }}
+              style={{ marginLeft: '10px', width: 325}}
               placeholder="Search Restaurant or Food"
               value={searchText}
               onChange={handleChange}
@@ -71,15 +71,15 @@ const CustomerHome = ({ currentUser }) => {
           <br />
           <br />
           {restaurants && restaurants.length !== 0 ?(<div>
-          <Typography variant="h4" align='center' style={{ marginLeft: '45%' }}>Top Brands</Typography></div>):<Grid/>}
+          <Typography variant="h4" align='center' style={{ marginLeft: '450px' }}>Top Brands</Typography></div>):<Grid/>}
 
           <div className="cardbody">
-            <Grid container justifyContent="space-evenly" spacing={2}>
+            <Grid container justifyContent="space-evenly" spacing={4} style={{marginLeft:"140px"}}>
               {restaurants && restaurants.length !== 0 ? restaurants.map(restaurant => (
-                <Grid xs={5} key={restaurant.id}>
+                <Grid xs={4} key={restaurant.id}>
                   <RestaurantCard userId={currentUser.id} restaurantId={restaurant.id} restaurantInfo={restaurant.information} />
                 </Grid>
-              )) : <Typography variant="h5" style={{ marginLeft: '45%' }}><i>No result matches your search, please try again...</i></Typography>}
+              )) : <Typography variant="h5" component="h2" style={{marginLeft:"100px"}} ><i>No result matches your search, please try again...</i></Typography>}
             </Grid>
           </div>
         </Grid>

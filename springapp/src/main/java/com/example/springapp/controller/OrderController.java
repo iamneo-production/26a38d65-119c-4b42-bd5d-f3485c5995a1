@@ -1,4 +1,3 @@
-
 package com.example.springapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/res_order")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="https://8081-ddeceafadaabefbefebaadcfefeaeaadbdbabf.project.examly.io")
 public class OrderController {
     private final OrderService orderService;
 
@@ -78,5 +77,4 @@ public class OrderController {
         }
     }
     
-
 }

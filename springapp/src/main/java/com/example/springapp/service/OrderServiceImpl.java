@@ -1,4 +1,3 @@
-
 package com.example.springapp.service;
 
 
@@ -22,7 +21,6 @@ public class OrderServiceImpl {
   @Autowired
   OrdersRepository orderRepository;
 
-
   public int addOrderToCart(String customerId, String restaurantId, List<Dish> content) {
     List<Orders> currentCart = this.customerCart(customerId);
     for (Orders o : currentCart) {
@@ -35,7 +33,6 @@ public class OrderServiceImpl {
         }
         o.setPrice(price);
         orderRepository.save(o);
-        System.out.println("Order added to the cart");
         return 1;
       }
     }
@@ -49,24 +46,19 @@ public class OrderServiceImpl {
     }
     order.setPrice(price);
     orderRepository.save(order);
-    System.out.println("Order added to the cart");
     return 1;
   }
 
-  
   public int checkoutOrder(String id) {
     Optional<Orders> order = getOrder(id);
     if (order.isEmpty()) {
-      System.out.println("Order doesn't exist");
       return 0;
     }
     if (order.get().getStartTime() == null) {
       order.get().setStartTime(LocalDateTime.now());
       orderRepository.save(order.get());
-      System.out.println("Order checkouts");
       return 1;
     }
-    System.out.println("Order already checkout");
     return -1;
   }
 
@@ -87,20 +79,26 @@ public class OrderServiceImpl {
 
  
   public int cancelOrder(String id) {
-    long number = Long.parseLong(id);
-    Optional<Orders> order = getOrder(id);
-    if (order.isEmpty()) {
-      System.out.println("Order doesn't exist");
-      return 0;
+    long orderId = Long.parseLong(id);
+    Optional<Orders> orderOptional = orderRepository.findById(orderId);
+    
+    if (orderOptional.isEmpty()) {
+        return 0;
     }
-    if (!order.get().isDelivery()) {
-      orderRepository.deleteById(number);
-      System.out.println("Order canceled");
-      return 1;
+    
+    Orders order = orderOptional.get();
+    
+    if (order.isDelivery()) {
+        return -1;
     }
-    System.out.println("Can't cancel order. It is either in delivery or finished");
-    return -1;
-  }
+    
+    order.setContent(null);
+    orderRepository.save(order);
+    
+    orderRepository.deleteById(orderId);
+    return 1;
+}
+
 
 
   public Optional<Orders> getOrder(String id) {
@@ -120,14 +118,11 @@ public class OrderServiceImpl {
         order.setDelivery(true);
         order.setDriverId(driverId);
         orderRepository.save(order);
-        System.out.println("Driver accepts the order");
         return 1;
       } else {
-        System.out.println("The order can't be accepted");
         return 0;
       }
     }
-    System.out.println("The order doesn't exist");
     return -1;
   }
 
@@ -139,14 +134,11 @@ public class OrderServiceImpl {
       if (order.isDelivery() && order.getEndTime() == null) {
         order.setEndTime(LocalDateTime.now());
         orderRepository.save(order);
-        System.out.println("Driver finishes the order");
         return 1;
       } else {
-        System.out.println("The order can't be finished");
         return 0;
       }
     }
-    System.out.println("The order can't be finished");
     return -1;
   }
 
@@ -221,14 +213,11 @@ public class OrderServiceImpl {
         Comment newComment = new Comment(rating, content);
         order.setComment(newComment);
         orderRepository.save(order);
-        System.out.println("Add a comment");
         return 1;
       } else {
-        System.out.println("The order already has a comment");
         return 0;
       }
     }
-    System.out.println("The order doesn't exist");
     return -1;
   }
 
@@ -239,10 +228,8 @@ public class OrderServiceImpl {
       Orders order = orderOrNot.get();
       order.setComment(null);
       orderRepository.save(order);
-      System.out.println("Delete a comment");
       return 1;
     }
-    System.out.println("The order doesn't exist");
     return -1;
   }
 

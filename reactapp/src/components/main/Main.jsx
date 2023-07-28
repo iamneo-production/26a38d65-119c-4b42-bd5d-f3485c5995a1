@@ -5,13 +5,13 @@ import Register from '../register/Register';
 import CustomerView from '../customerView/CustomerView';
 import DriverView from '../driverView/DriverView';
 import RestaurantView from '../restaurantView/RestaurantView';
-import Welcome from '../Welcome/Welcome';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import {
   Grid
 } from '@material-ui/core';
 import './Main.css';
 import axios from 'axios';
+import AdminView from '../Admin/Adminview';
 
 const Main = () => {
   const [userId, setUserId] = useState(sessionStorage.getItem("userId"));
@@ -54,56 +54,60 @@ const Main = () => {
   return (
     <Router>
       <Grid container justifyContent="flex-start">
+       
         <Grid item xs={12}>
           <div className="grid-main">
-            {userType && (
-              <TopBar changeUser={changeUser} view={view} currentUser={currentUser} userType={userType} />
-            )}
             <Switch>
-              {/* Routes for different user types */}
-              {userType === 'customer' ? (
-                <Route path="/customer">
-                  <CustomerView currentUser={currentUser} changeView={changeView} />
-                </Route>
-              ) : (
-                <Redirect from="/customer" to="/login" />
+              {userType && userType === "customer" && (
+                <TopBar changeUser={changeUser} view={view} currentUser={currentUser} userType={userType} />
               )}
-              {userType === 'driver' ? (
-                <Route path="/driver">
-                  <DriverView currentUser={currentUser} changeView={changeView} />
-                </Route>
-              ) : (
-                <Redirect from="/driver" to="/login" />
+              {userType && userType === "driver" && (
+                <TopBar changeUser={changeUser} view={view} currentUser={currentUser} userType={userType} />
               )}
-              {userType === 'restaurant' ? (
-                <Route path="/restaurant">
-                  <RestaurantView currentUser={currentUser} changeView={changeView} />
-                </Route>
-              ) : (
-                <Redirect from="/restaurant" to="/login" />
+              {userType && userType === "restaurant" && (
+                <TopBar changeUser={changeUser} view={view} currentUser={currentUser} userType={userType} />
               )}
-              {/* Route for /welcome */}
-              {/* <Route path="/welcome">
-                <Welcome />
-              </Route> */}
-              {/* Route for /login */}
+              {userType && userType === "admin" && (
+                <TopBar changeUser={changeUser} view={view} currentUser={currentUser} userType={userType} />
+              )}
+            </Switch>
+            <Switch>
+              {userType && userType === "customer" ? (
+                <Route path="/customer" render={props => <CustomerView {...props} currentUser={currentUser} changeView={changeView} />} />
+              ) : (
+                <Redirect path="/customer" to="/login" />
+              )}
+              {userType && userType === "driver" ? (
+                <Route path="/driver" render={props => <DriverView {...props} currentUser={currentUser} changeView={changeView} />} />
+              ) : (
+                <Redirect path="/driver" to="/login" />
+              )}
+              {userType && userType === "restaurant" ? (
+                <Route path="/restaurant" render={props => <RestaurantView {...props} currentUser={currentUser} changeView={changeView} />} />
+              ) : (
+                <Redirect path="/restaurant" to="/login" />
+              )}
+              {userType && userType === "admin" ? (
+                <Route path="/admin" render={props => <AdminView {...props} currentUser={currentUser} changeView={changeView} />} />
+              ) : (
+                <Redirect path="/admin" to="/login" />
+              )}
               {!userType ? (
-                <Route path="/login">
-                  <Login changeUser={changeUser} />
-                </Route>
+                <Route path="/login" render={props => <Login {...props} changeUser={changeUser} />} />
               ) : (
-                <Redirect from="/login" to={`/${userType}`} />
+                <Redirect path="/login" to={`/${userType}`} />
               )}
-              {/* Route for /register */}
               {!userType ? (
-                <Route path="/register">
-                  <Register changeUser={changeUser} />
-                </Route>
+                <Route path="/register" render={props => <Register {...props} changeUser={changeUser} />} />
               ) : (
-                <Redirect from="/register" to={`/${userType}`} />
+                <Redirect path="/register" to={`/${userType}`} />
               )}
-              {/* Redirect for the root URL */}
-              <Redirect exact from="/" to="/login" />
+               {!userType ? (
+                <Route path="/admin" render={props => <Register {...props} changeUser={changeUser} />} />
+              ) : (
+                <Redirect path="/admin" to={`/${userType}`} />
+              )}
+              <Redirect path="/" to="/login" />
             </Switch>
           </div>
         </Grid>

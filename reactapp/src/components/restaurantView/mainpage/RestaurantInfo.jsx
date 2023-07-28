@@ -2,7 +2,7 @@ import React from 'react';
 import FastFoodIcon from '@material-ui/icons/Fastfood';
 import { Grid,Stack,TextField,Typography,RadioGroup
 ,Radio,Button,FormControl,FormControlLabel,FormLabel } from '@mui/material';
-const axios = require('axios').default;
+import axios from 'axios';
 
 class RestaurantInfo extends React.Component {
   constructor(props) {

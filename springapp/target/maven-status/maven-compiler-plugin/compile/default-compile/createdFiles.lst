@@ -1,3 +1,4 @@
+com/example/springapp/controller/SupportController.class
 com/example/springapp/service/UserService.class
 com/example/springapp/repository/DriverRepository.class
 com/example/springapp/service/OrderService.class
@@ -15,9 +16,11 @@ com/example/springapp/controller/RestaurantController.class
 com/example/springapp/model/MenuItem.class
 com/example/springapp/exception/OrderAlreadyFinishException.class
 com/example/springapp/model/Orders.class
+com/example/springapp/repository/SupportRepository.class
 com/example/springapp/model/Driver.class
 com/example/springapp/model/RestaurantInfo.class
 com/example/springapp/repository/OrderRepository.class
+com/example/springapp/controller/AdminController.class
 com/example/springapp/controller/OrderController.class
 com/example/springapp/repository/SearchEngineRepository.class
 com/example/springapp/repository/OrdersRepository.class
@@ -25,11 +28,13 @@ com/example/springapp/model/Comment.class
 com/example/springapp/model/Restaurant.class
 com/example/springapp/exception/PasswordNotMatchException.class
 com/example/springapp/controller/DriverController.class
+com/example/springapp/repository/AdminRepository.class
 com/example/springapp/exception/OrderNotFinishedException.class
 com/example/springapp/service/PasswordService.class
 com/example/springapp/model/User.class
 com/example/springapp/model/Customer.class
 com/example/springapp/service/AddressService.class
+com/example/springapp/service/AdminService.class
 com/example/springapp/service/MenuItemService.class
 com/example/springapp/controller/CustomerController.class
 com/example/springapp/adapter/LocalDateTimeAdapter.class
@@ -41,13 +46,15 @@ com/example/springapp/service/DriverServiceImpl.class
 com/example/springapp/service/SearchEngineServiceImpl.class
 com/example/springapp/service/RestaurantService.class
 com/example/springapp/service/OrderServiceImpl.class
+com/example/springapp/model/Admin.class
+com/example/springapp/model/Support.class
 com/example/springapp/exception/OrderNotExistException.class
 com/example/springapp/model/SearchEngine$Node.class
 com/example/springapp/service/CustomerService.class
+com/example/springapp/service/SupportService.class
 com/example/springapp/exception/CommentAlreadyExistException.class
 com/example/springapp/exception/OrderAlreadyDeliverException.class
 com/example/springapp/repository/CustomerRepository.class
 com/example/springapp/repository/RestaurantRepository.class
 com/example/springapp/controller/OrdersController.class
-com/example/springapp/service/CustomerService$PasswordService.class
 com/example/springapp/repository/MenuItemRepository.class

@@ -1,4 +1,3 @@
-
 package com.example.springapp.model;
 
 
@@ -19,8 +18,9 @@ public class Dish {
 
   private String dishName;
   private double price;
-  @Column(name = "image_url", length = 10000)
+  @Column(name = "image_url", length = 100000000)
   private String imageUrl;
+  
 
   public Dish() {
   } 
@@ -38,6 +38,7 @@ public class Dish {
   public void setId(Long id) {
     this.id = id;
   }
+  
 
 
   public String getDishName() {

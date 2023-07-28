@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import {
   Typography,
-  Card,
-  CardHeader,
   IconButton,
   CardActions,
   Grid
