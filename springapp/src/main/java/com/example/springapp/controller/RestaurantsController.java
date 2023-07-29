@@ -160,7 +160,6 @@ public class RestaurantsController {
     if (res == -1) {
       throw new UserNotExistException("The given restaurant doesn't exist");
     }
-    // handle search engine
     searchEngineService.addRestaurant(dishName, restaurantId);
     return res;
   }
@@ -181,7 +180,6 @@ public class RestaurantsController {
     if (res == 0) {
       throw new DishNotExistException("The given dish doesn't exist");
     }
-    // handle search engine
     searchEngineService.removeRestaurant(newDish.getDishName(), restaurantId);
     return res;
   }
@@ -212,7 +210,6 @@ public int updateRestaurantInformation(@RequestBody String jsonInfo)
   String tag3 = object.getString("tag3");
   RestaurantInfo newInfo = new RestaurantInfo(open, name, description, imageUrl, tag1, tag2, tag3);
 
-  // handle search engine
   RestaurantInfo oldInfo = restaurantService.getInformation(restaurantId);
   if (oldInfo != null) {
     searchEngineService.eraseInfo(oldInfo, restaurantId);
@@ -231,7 +228,6 @@ public int updateRestaurantInformation(@RequestBody String jsonInfo)
     if (orderService.restaurantGetActiveOrders(id).size() != 0) {
       throw new OrderNotFinishedException("You still have active orders, please finish them first");
     }
-    // handle search engine
     RestaurantInfo oldInfo = restaurantService.getInformation(id);
     if (oldInfo != null) {
       searchEngineService.eraseInfo(oldInfo, id);

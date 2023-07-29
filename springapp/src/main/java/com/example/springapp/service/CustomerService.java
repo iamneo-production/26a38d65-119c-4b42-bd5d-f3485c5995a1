@@ -128,14 +128,11 @@ public class CustomerService implements UserService<Customer> {
   }
 
   private static class PasswordService {
-    // Password-related operations
     public String generatePassword(String password) {
-      // Implementation logic to generate a password
       return password;
     }
 
     public boolean passwordMatch(String password, String hashedPassword) {
-      // Implementation logic to check if the password matches the hashed password
       return password.equals(hashedPassword);
     }
   }

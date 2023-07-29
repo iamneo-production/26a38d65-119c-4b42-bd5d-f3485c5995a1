@@ -43,7 +43,6 @@ public class SearchEngine {
         nodes.removeIf(node -> node.getWord().equalsIgnoreCase(word) && node.getRestaurantId().equals(restaurantId));
     }
 
-    // Other getters, setters, and methods
 
     @Entity
     @Table(name = "node")
@@ -64,7 +63,6 @@ public class SearchEngine {
             this.restaurantId = restaurantId;
         }
 
-        // Getters and setters
 
         public String getWord() {
             return word;

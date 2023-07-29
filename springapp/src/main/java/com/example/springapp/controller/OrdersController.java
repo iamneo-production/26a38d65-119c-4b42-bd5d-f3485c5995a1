@@ -62,25 +62,22 @@ public int addOrderToCart(@RequestBody String jsonOrder) {
   for (Object object : shopcart) {
     Dish dish = gson.fromJson(object.toString(), Dish.class);
 
-    // Update dish count in the map
     dishCountMap.put(dish, dishCountMap.getOrDefault(dish, 0) + 1);
 
-    // Merge and add dish to the list if it's not already present
     if (!dishSet.contains(dish)) {
-      Dish mergedDish = entityManager.merge(dish); // Use merge instead of persist
+      Dish mergedDish = entityManager.merge(dish);
       list.add(mergedDish);
       dishSet.add(dish);
     }
   }
 
-  // Add dishes to the list based on the dish counts
   for (Map.Entry<Dish, Integer> entry : dishCountMap.entrySet()) {
     Dish dish = entry.getKey();
     int count = entry.getValue();
 
     for (int i = 0; i < count - 1; i++) {
-      if (!list.contains(dish)) { // Check if dish is not already in the list
-        Dish mergedDish = entityManager.merge(dish); // Use merge instead of persist
+      if (!list.contains(dish)) { 
+        Dish mergedDish = entityManager.merge(dish); 
         list.add(mergedDish);
       }
     }
