@@ -1,4 +1,3 @@
-
 package com.example.springapp.controller;
 import com.example.springapp.model.Customer;
 import com.example.springapp.model.Orders;
@@ -24,9 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="http://localhost:8081")
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/api/customer")
 public class CustomerController {
   
   private final CustomerService customerService;

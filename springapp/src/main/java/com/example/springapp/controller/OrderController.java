@@ -1,4 +1,3 @@
-
 package com.example.springapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +8,8 @@ import com.example.springapp.model.Order;
 import com.example.springapp.service.OrderService;
 import java.util.List;
 
-
 @RestController
-@RequestMapping("/res_order")
-@CrossOrigin(origins="*")
+@RequestMapping("/order")
 public class OrderController {
     private final OrderService orderService;
 
@@ -78,5 +75,4 @@ public class OrderController {
         }
     }
     
-
 }

@@ -1,4 +1,3 @@
-
 package com.example.springapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,7 @@ import com.example.springapp.service.RestaurantService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/restaurants")
-@CrossOrigin(origins="*")
+@RequestMapping("/restaurant")
 public class RestaurantController {
 
     @Autowired
@@ -56,5 +54,4 @@ public class RestaurantController {
             return ResponseEntity.notFound().build();
         }
     }
-
 }

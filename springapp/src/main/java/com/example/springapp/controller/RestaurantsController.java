@@ -31,11 +31,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
+@CrossOrigin(origins="http://localhost:8081")
 @RestController
-@RequestMapping("/restaurant")
-@CrossOrigin(origins="*")
+@RequestMapping("/api/restaurant")
 public class RestaurantsController {
 
   private final RestaurantServiceImpl restaurantService;
@@ -112,19 +110,6 @@ public class RestaurantsController {
     }
     return restaurant;
   }
-
-  @GetMapping(path = "/allDishes")
-public List<Dish> getAllDishesFromAllRestaurants() {
-  List<Dish> allDishes = new ArrayList<>();
-  List<Restaurants> restaurants = restaurantService.getUsers();
-
-  for (Restaurants restaurant : restaurants) {
-    List<Dish> dishes = restaurantService.getAllDishes(restaurant.getId()+"");
-    allDishes.addAll(dishes);
-  }
-
-  return allDishes;
-}
 
   @PostMapping(path = "/logout")
   public int logoutRestaurant() {
@@ -227,7 +212,7 @@ public int updateRestaurantInformation(@RequestBody String jsonInfo)
   String tag3 = object.getString("tag3");
   RestaurantInfo newInfo = new RestaurantInfo(open, name, description, imageUrl, tag1, tag2, tag3);
 
-  // handle search engine
+  
   RestaurantInfo oldInfo = restaurantService.getInformation(restaurantId);
   if (oldInfo != null) {
     searchEngineService.eraseInfo(oldInfo, restaurantId);
@@ -246,7 +231,7 @@ public int updateRestaurantInformation(@RequestBody String jsonInfo)
     if (orderService.restaurantGetActiveOrders(id).size() != 0) {
       throw new OrderNotFinishedException("You still have active orders, please finish them first");
     }
-    // handle search engine
+
     RestaurantInfo oldInfo = restaurantService.getInformation(id);
     if (oldInfo != null) {
       searchEngineService.eraseInfo(oldInfo, id);

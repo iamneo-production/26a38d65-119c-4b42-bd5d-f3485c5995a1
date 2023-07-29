@@ -1,4 +1,3 @@
-
 package com.example.springapp.model;
 
 import org.springframework.data.annotation.Id;

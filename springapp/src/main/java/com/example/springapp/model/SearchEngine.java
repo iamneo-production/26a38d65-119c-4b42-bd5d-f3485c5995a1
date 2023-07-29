@@ -1,4 +1,3 @@
-
 package com.example.springapp.model;
 
 
@@ -65,7 +64,6 @@ public class SearchEngine {
             this.restaurantId = restaurantId;
         }
 
-        // Getters and setters
 
         public String getWord() {
             return word;
